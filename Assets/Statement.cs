@@ -6,22 +6,22 @@ using System;
 [Serializable]
 public abstract class Variavel {
     public string Label;
-    public Type type;
+    public Tipo type;
    
-    public static Variavel AlocateByType(Type t) {
-        if (t == Type.Booleano) {
+    public static Variavel AlocateByTipo(Tipo t) {
+        if (t == Tipo.Booleano) {
             return new VarBooleano("None");
         }
-        if (t == Type.Continuo) {
+        if (t == Tipo.Continuo) {
             return new VarContinuo("None");
          }
-        if (t == Type.Inteiro) {
+        if (t == Tipo.Inteiro) {
             return new VarInteiro("None");
         }
-        if (t == Type.Posicao) {
+        if (t == Tipo.Posicao) {
             return new VarPosicao("None");
         }
-        Debug.LogError("ERRO, tentando AlocateByType vazio");
+        Debug.LogError("ERRO, tentando AlocateByTipo vazio");
         return null;
     }
 
@@ -33,11 +33,11 @@ public class VarInteiro : Variavel {
     public int Value;
     public VarInteiro(string lab) {
         Label = lab;
-        type = Type.Inteiro;
+        type = Tipo.Inteiro;
     }
     public VarInteiro(string lab, int val) {
         Label = lab;
-        type = Type.Inteiro;
+        type = Tipo.Inteiro;
         Value = val;
     }
 
@@ -51,11 +51,11 @@ public class VarContinuo : Variavel {
     public float Value;
     public VarContinuo(string lab) {
         Label = lab;
-        type = Type.Continuo;
+        type = Tipo.Continuo;
     }
     public VarContinuo(string lab, float val) {
         Label = lab;
-        type = Type.Continuo;
+        type = Tipo.Continuo;
         Value = val;
     }
 
@@ -71,14 +71,14 @@ public class VarPosicao : Variavel {
     public float z;
     public VarPosicao(string lab) {
         Label = lab;
-        type = Type.Posicao;
+        type = Tipo.Posicao;
     }
     public VarPosicao(string lab, float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
         Label = lab;
-        type = Type.Posicao;
+        type = Tipo.Posicao;
     }
 
     public VarPosicao(string lab, Vector3 pos) {
@@ -86,7 +86,7 @@ public class VarPosicao : Variavel {
         y = pos.y;
         z = pos.z;
         Label = lab;
-        type = Type.Posicao;
+        type = Tipo.Posicao;
     }
     public override Variavel Clone() {
         return (Variavel)(new VarPosicao(Label, x,y,z));
@@ -98,11 +98,11 @@ public class VarBooleano : Variavel {
     public bool Value;
     public VarBooleano(string lab) {
         Label = lab;
-        type = Type.Booleano;
+        type = Tipo.Booleano;
     }
     public VarBooleano(string lab, bool val) {
         Label = lab;
-        type = Type.Booleano;
+        type = Tipo.Booleano;
         Value = val;
     }
 
@@ -120,7 +120,7 @@ public enum RobotStatus {
 }
 
 [Serializable]
-public enum Type {
+public enum Tipo {
     Vazio,
     Inteiro,
     Continuo,
@@ -130,9 +130,9 @@ public enum Type {
 
 [Serializable]
 public abstract class Statement {
-    protected Type type;
+    protected Tipo type;
 
-    public Type ReturnType() {
+    public Tipo ReturnTipo() {
         return type;
     }
 
@@ -150,14 +150,14 @@ public class AlocaInteiro : Statement {
 
     public AlocaInteiro() {
         
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         ParameterLabel = "Variavel Intiero";
         ParameterValue = 0;
     }
 
     public AlocaInteiro(string Label, int val) {
 
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         ParameterLabel = Label;
         ParameterValue = val;
     }
@@ -178,7 +178,7 @@ public class AlocaContinuo : Statement {
     float ParameterValue = 0;
 
     public AlocaContinuo() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         ParameterLabel = "Variavel Continua";
         ParameterValue = 0f;
     }
@@ -199,7 +199,7 @@ public class AlocaBooleano : Statement {
     bool ParameterValue = false;
 
     public AlocaBooleano() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         ParameterLabel = "Variavel Boleana";
         ParameterValue = false;
     }
@@ -222,7 +222,7 @@ public class AlocaPosicao : Statement {
     public float z = 0f;
 
     public AlocaPosicao() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         ParameterLabel = "Variavel Posição";
     }
 
@@ -258,7 +258,7 @@ public class ExpressaoAritimetica : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro1.ReturnType() != Type.Continuo && Parametro1.ReturnType() != Type.Inteiro) {
+        if (Parametro1.ReturnTipo() != Tipo.Continuo && Parametro1.ReturnTipo() != Tipo.Inteiro) {
             Debug.LogError("Em Argumento errado");
             return false;
         }
@@ -270,15 +270,15 @@ public class ExpressaoAritimetica : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Continuo && Robot.Retorno.type != Type.Inteiro) {
+        if (Robot.Retorno.type != Tipo.Continuo && Robot.Retorno.type != Tipo.Inteiro) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
         //Obtendo parametro
         float p1 = 0f;
-        if (Robot.Retorno.type == Type.Continuo) {
+        if (Robot.Retorno.type == Tipo.Continuo) {
             p1 = ((VarContinuo)Robot.Retorno).Value;
-        } else if (Robot.Retorno.type == Type.Inteiro) {
+        } else if (Robot.Retorno.type == Tipo.Inteiro) {
             p1 = ((VarInteiro)Robot.Retorno).Value;
         } else {
             Debug.LogError("ERRO!, operações aritimeticas so com inteiro ou continuo");
@@ -289,7 +289,7 @@ public class ExpressaoAritimetica : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro2.ReturnType() != Type.Posicao) {
+        if (Parametro2.ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -301,14 +301,14 @@ public class ExpressaoAritimetica : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Posicao) {
+        if (Robot.Retorno.type != Tipo.Posicao) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
         float p2 = 0f;
-        if (Robot.Retorno.type == Type.Continuo) {
+        if (Robot.Retorno.type == Tipo.Continuo) {
             p2 = ((VarContinuo)Robot.Retorno).Value;
-        }else if ( Robot.Retorno.type == Type.Inteiro) {
+        }else if ( Robot.Retorno.type == Tipo.Inteiro) {
             p2 = ((VarInteiro)Robot.Retorno).Value;
         } else {
             Debug.LogError("ERRO!, operações aritimeticas so com inteiro ou continuo");
@@ -344,24 +344,24 @@ public class ExpressaoAritimetica : Statement {
 [Serializable]
 public class CastVariavel : Statement {
     public Statement Parametro;
-    public Type CastType;
+    public Tipo CastTipo;
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro == null) {
             Debug.LogError("Parametro nulo");
             return false;
         }
-        Type ParameterTyper = Type.Vazio;
-        if (CastType == Type.Continuo) {
-            ParameterTyper = Type.Inteiro;
-        } else if (CastType == Type.Inteiro) {
-            ParameterTyper = Type.Continuo;
+        Tipo ParameterTipor = Tipo.Vazio;
+        if (CastTipo == Tipo.Continuo) {
+            ParameterTipor = Tipo.Inteiro;
+        } else if (CastTipo == Tipo.Inteiro) {
+            ParameterTipor = Tipo.Continuo;
         } else {
             Debug.LogError("Tipo não pode ser feito cast");
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != ParameterTyper) {
+        if (Parametro.ReturnTipo() != ParameterTipor) {
             Debug.LogError("Em atribuindo tipo diferente a uma variavel");
             return false;
         }
@@ -373,12 +373,12 @@ public class CastVariavel : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != ParameterTyper) {
+        if (Robot.Retorno.type != ParameterTipor) {
             Debug.LogError("Retorno de tipo diferente, esta faltando cast?");
             return false;
         }
         Variavel var;
-        if (CastType == Type.Continuo) {
+        if (CastTipo == Tipo.Continuo) {
             var = new VarContinuo("CastReturn", ((VarInteiro)Robot.Retorno).Value);
         } else {
             var = new VarInteiro("CastReturn", (int)((VarContinuo)Robot.Retorno).Value);
@@ -412,7 +412,7 @@ public class AtribuiVariavel : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != v.type) {
+        if (Parametro.ReturnTipo() != v.type) {
             Debug.LogError("Em atribuindo tipo diferente a uma variavel, esta faltando cast?");
             return false;
         }
@@ -465,7 +465,7 @@ public class RetornaVariavel : Statement {
 public class Atacar : Statement {
     public Statement Parametro;
     public Atacar() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
     }
 
     public override bool Execute(RobotCode Robot) {
@@ -475,7 +475,7 @@ public class Atacar : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != Type.Posicao) {
+        if (Parametro.ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -487,7 +487,7 @@ public class Atacar : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Posicao) {
+        if (Robot.Retorno.type != Tipo.Posicao) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
@@ -505,7 +505,7 @@ public class Atacar : Statement {
 public class AndarAte : Statement {
     public Statement Parametro;
     public AndarAte() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
     }
 
     public override bool Execute(RobotCode Robot) {
@@ -514,7 +514,7 @@ public class AndarAte : Statement {
             Debug.LogError("Parametro nulo");
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != Type.Posicao) {
+        if (Parametro.ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -525,7 +525,7 @@ public class AndarAte : Statement {
             Debug.LogError("Retorno Nulo");
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Posicao) {
+        if (Robot.Retorno.type != Tipo.Posicao) {
             Debug.LogError("Retorno de tipo diferente");
         }
         //Obtendo parametro
@@ -540,7 +540,7 @@ public class AndarAte : Statement {
 }
 
 [Serializable]
-public enum ListType {
+public enum ListTipo {
     Inimigos,
     Alidados,
 }
@@ -548,20 +548,20 @@ public enum ListType {
 [Serializable]
 public class Indexar : Statement {
     public Statement Parametro;
-    public ListType ListToIndex;
+    public ListTipo ListToIndex;
     public RobotStatus StatusToReturn;
 
     public Indexar() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
     }
 
     
     public Indexar(Statement s, RobotStatus st) {
         StatusToReturn = st;
         if (st == RobotStatus.Posicao) {
-            type = Type.Posicao;
+            type = Tipo.Posicao;
         } else {
-            type = Type.Continuo;
+            type = Tipo.Continuo;
         }
         Parametro = s;
 
@@ -574,7 +574,7 @@ public class Indexar : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != Type.Inteiro) {
+        if (Parametro.ReturnTipo() != Tipo.Inteiro) {
             Debug.LogError("Em indexar Argumento errado");
             return false;
         }
@@ -586,7 +586,7 @@ public class Indexar : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Inteiro) {
+        if (Robot.Retorno.type != Tipo.Inteiro) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
@@ -596,7 +596,7 @@ public class Indexar : Statement {
         Robot.Retorno = null;
 
         List<RobotCode> RobotList;
-        if (ListToIndex == ListType.Alidados) {
+        if (ListToIndex == ListTipo.Alidados) {
             RobotList = Robot.Aliados;
         } else {
             RobotList = Robot.Inimigos;
@@ -642,7 +642,7 @@ public class Compare : Statement {
     public CompareOperator Operation;
 
     public Compare() {
-        type = Type.Booleano;
+        type = Tipo.Booleano;
     }
 
     public override bool Execute(RobotCode Robot) {
@@ -661,11 +661,11 @@ public class Compare : Statement {
         bool BoolFlag = false;//boleano que diara se a operação é com boleanos, false se for inteiro e continuo
         //Obtendo parametro
         float p1 = 0f;
-        if (Robot.Retorno.type == Type.Continuo) {
+        if (Robot.Retorno.type == Tipo.Continuo) {
             p1 = ((VarContinuo)Robot.Retorno).Value;
-        } else if (Robot.Retorno.type == Type.Inteiro) {
+        } else if (Robot.Retorno.type == Tipo.Inteiro) {
             p1 = ((VarInteiro)Robot.Retorno).Value;
-        } else if (Robot.Retorno.type == Type.Booleano) {
+        } else if (Robot.Retorno.type == Tipo.Booleano) {
             BoolFlag = true;
             if (((VarBooleano)Robot.Retorno).Value) {
                 p1 = 1;
@@ -690,11 +690,11 @@ public class Compare : Statement {
         }
        
         float p2 = 0f;
-        if (Robot.Retorno.type == Type.Continuo && !BoolFlag) {
+        if (Robot.Retorno.type == Tipo.Continuo && !BoolFlag) {
             p2 = ((VarContinuo)Robot.Retorno).Value;
-        } else if (Robot.Retorno.type == Type.Inteiro && !BoolFlag) {
+        } else if (Robot.Retorno.type == Tipo.Inteiro && !BoolFlag) {
             p2 = ((VarInteiro)Robot.Retorno).Value;
-        } else if (Robot.Retorno.type == Type.Booleano && BoolFlag) {
+        } else if (Robot.Retorno.type == Tipo.Booleano && BoolFlag) {
             if (((VarBooleano)Robot.Retorno).Value) {
                 p2 = 1;
             } else {
@@ -755,7 +755,7 @@ public class Se : Statement {
 
     private bool Verified;
     public Se() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         Verified = false;
         ProgramCounter = 0;
     }
@@ -767,7 +767,7 @@ public class Se : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != Type.Booleano) {
+        if (Parametro.ReturnTipo() != Tipo.Booleano) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -779,7 +779,7 @@ public class Se : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Booleano) {
+        if (Robot.Retorno.type != Tipo.Booleano) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
@@ -820,7 +820,7 @@ public class Enquanto : Statement {
 
     private bool Verified;
     public Enquanto() {
-        type = Type.Vazio;
+        type = Tipo.Vazio;
         Verified = false;
         ProgramCounter = 0;
     }
@@ -832,7 +832,7 @@ public class Enquanto : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnType() != Type.Booleano) {
+        if (Parametro.ReturnTipo() != Tipo.Booleano) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -844,7 +844,7 @@ public class Enquanto : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Booleano) {
+        if (Robot.Retorno.type != Tipo.Booleano) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
@@ -891,7 +891,7 @@ public class ExpressaoLogica : Statement {
     public LogicOperator Operation;
 
     public ExpressaoLogica() {
-        type = Type.Booleano;
+        type = Tipo.Booleano;
     }
 
     public override bool Execute(RobotCode Robot) {
@@ -901,7 +901,7 @@ public class ExpressaoLogica : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro1.ReturnType() != Type.Booleano) {
+        if (Parametro1.ReturnTipo() != Tipo.Booleano) {
             Debug.LogError("Em Argumento errado");
             return false;
         }
@@ -913,13 +913,13 @@ public class ExpressaoLogica : Statement {
             return false;
         }
         //Verificando se o retorno é do tipo correto
-        if (Robot.Retorno.type != Type.Booleano) {
+        if (Robot.Retorno.type != Tipo.Booleano) {
             Debug.LogError("Retorno de tipo diferente");
             return false;
         }
         //Obtendo parametro
         bool p1 = false;
-        if (Robot.Retorno.type == Type.Booleano) {
+        if (Robot.Retorno.type == Tipo.Booleano) {
             p1 = ((VarBooleano)Robot.Retorno).Value;
         } else {
             Debug.LogError("ERRO!, operações logica so com booleano");
@@ -930,7 +930,7 @@ public class ExpressaoLogica : Statement {
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro2.ReturnType() != Type.Booleano) {
+        if (Parametro2.ReturnTipo() != Tipo.Booleano) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
@@ -945,12 +945,12 @@ public class ExpressaoLogica : Statement {
                 return false;
             }
             //Verificando se o retorno é do tipo correto
-            if (Robot.Retorno.type != Type.Booleano) {
+            if (Robot.Retorno.type != Tipo.Booleano) {
                 Debug.LogError("Retorno de tipo diferente");
                 return false;
             }
             
-            if (Robot.Retorno.type == Type.Booleano) {
+            if (Robot.Retorno.type == Tipo.Booleano) {
                 p2 = ((VarBooleano)Robot.Retorno).Value;
             } else {
                 Debug.LogError("ERRO!, operações logica so com booleano");
