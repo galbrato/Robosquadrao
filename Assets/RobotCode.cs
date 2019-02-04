@@ -37,7 +37,7 @@ public class RobotCode : MonoBehaviour {
 
     void IniciarComandosBasicos() {
         Code.Add(new AlocaInteiro("i", 0));
-        Code.Add(new IndexarAliados(new RetornaVariavel("i"),RobotStatus.Posicao));
+        Code.Add(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao));
 
     }
 

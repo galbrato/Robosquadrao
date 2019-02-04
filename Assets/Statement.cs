@@ -540,35 +540,31 @@ public class AndarAte : Statement {
 }
 
 [Serializable]
-public class IndexarAliados : Statement {
+public enum ListType {
+    Inimigos,
+    Alidados,
+}
+
+[Serializable]
+public class Indexar : Statement {
     public Statement Parametro;
-    public RobotStatus StatusToReturn {
-        get { return StatusToReturn; }
-        set {
-            switch (value) {
-                case RobotStatus.Vida:
-                    type = Type.Continuo;
-                    break;
-                case RobotStatus.Dano:
-                    type = Type.Continuo;
-                    break;
-                case RobotStatus.Posicao:
-                    type = Type.Posicao;
-                    break;
-                default:
-                    break;
-            }
-            StatusToReturn = value;
-        }
-    }
-    public IndexarAliados() {
+    public ListType ListToIndex;
+    public RobotStatus StatusToReturn;
+
+    public Indexar() {
         type = Type.Vazio;
     }
 
-    public IndexarAliados(Statement s, RobotStatus st) {
+    
+    public Indexar(Statement s, RobotStatus st) {
         StatusToReturn = st;
-        type = Type.Continuo;
+        if (st == RobotStatus.Posicao) {
+            type = Type.Posicao;
+        } else {
+            type = Type.Continuo;
+        }
         Parametro = s;
+
     }
 
     public override bool Execute(RobotCode Robot) {
@@ -598,19 +594,26 @@ public class IndexarAliados : Statement {
         VarInteiro index = (VarInteiro)Robot.Retorno;
         //Liberando o retorno
         Robot.Retorno = null;
-        
+
+        List<RobotCode> RobotList;
+        if (ListToIndex == ListType.Alidados) {
+            RobotList = Robot.Aliados;
+        } else {
+            RobotList = Robot.Inimigos;
+        }
+
         //Executando o comando
         switch (StatusToReturn) {
             case RobotStatus.Vida:
-                float vida = Robot.Aliados[index.Value].VidaAtual;
+                float vida = RobotList[index.Value].VidaAtual;
                 Robot.VarList.Add(new VarContinuo("Retorno", vida));
                 break;
             case RobotStatus.Dano:
-                float dano = Robot.Aliados[index.Value].Dano;
+                float dano = RobotList[index.Value].Dano;
                 Robot.VarList.Add(new VarContinuo("Retorno", dano));
                 break;
             case RobotStatus.Posicao:
-                Vector3 pos = Robot.Aliados[index.Value].transform.position;
+                Vector3 pos = RobotList[index.Value].transform.position;
                 Robot.VarList.Add(new VarPosicao("Retorno", pos));
                 break;
             default:
