@@ -394,6 +394,11 @@ public class AtribuiVariavel : Statement {
     public Statement Parametro;
     private string VarName;
 
+    public AtribuiVariavel(Statement arg, string VarLabel) {
+        Parametro = arg;
+        VarName = VarLabel;
+    }
+
     public override bool Execute(RobotCode Robot) {
         //Verificando se o nome da variavel é nulo
         if (VarName == null) {
@@ -462,6 +467,36 @@ public class RetornaVariavel : Statement {
 }
 
 [Serializable]
+public enum GlobalVar {
+    Inicio,
+    Objetivo,
+}
+[Serializable]
+public class RetornaGlobal : Statement {
+    public GlobalVar Global2Return;
+
+    public override bool Execute(RobotCode Robot) {
+        if (VarName == null) {
+            Debug.LogError("ERRO, nome da variavel nulo");
+        }
+        //Limpando a Lista de variaveis
+        Variavel v;
+        if (Global2Return == GlobalVar.Inicio) {
+            v = new VarPosicao(Robot.Inicio);
+        } else {
+            v = new VarPosicao(Robot.Objetivo);
+        }
+        if (v == null) {
+            Debug.LogError("ERRO! não foi possivel achar a variavel na memoria");
+            return false;
+        }
+        Robot.Retorno = v.Clone();
+
+        return false;
+    }
+}
+
+[Serializable]
 public class Atacar : Statement {
     public Statement Parametro;
     public Atacar() {
@@ -505,6 +540,10 @@ public class Atacar : Statement {
 public class AndarAte : Statement {
     public Statement Parametro;
     public AndarAte() {
+        type = Tipo.Vazio;
+    }
+    public AndarAte(Statement aqui) {
+        Parametro = aqui;
         type = Tipo.Vazio;
     }
 
