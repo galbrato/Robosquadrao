@@ -13,7 +13,6 @@ public class Laser : MonoBehaviour
 		Vector3 direction = target.position - transform.position;
 		//transform.LookAt(target.position, transform.up);
 		transform.right = direction.normalized;
-		mask =  LayerMask.GetMask("Enemy");
 	}
 
     // Update is called once per frame
@@ -24,7 +23,6 @@ public class Laser : MonoBehaviour
     	}
 
 		Collider[] hitcolliders = Physics.OverlapBox(transform.position, transform.localScale/2, Quaternion.identity, mask);
-		int i = 0;
 
 		if(hitcolliders.Length > 0){
 			hitcolliders[0].GetComponent<Alive>().lifes -= 1.0f;

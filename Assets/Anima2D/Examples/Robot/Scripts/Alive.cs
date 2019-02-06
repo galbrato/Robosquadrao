@@ -43,9 +43,9 @@ public class Alive : MonoBehaviour
         float moveHorizontal = Input.GetAxis ("Horizontal");
         float moveVertical = Input.GetAxis ("Vertical");
 
-        Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+        Vector3 movement = new Vector3 (moveHorizontal, moveVertical, moveVertical);
 
-        rb.AddForce (movement * speed);
+        rb.velocity = (movement.normalized * speed);
 
         GetComponent<SortingGroup>().sortingOrder = -(int)(this.transform.position.z*100);
     }
