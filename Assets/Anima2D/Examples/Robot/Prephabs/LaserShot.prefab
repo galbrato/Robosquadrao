@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 82.95
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &5777899409109300720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73,7 +76,7 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2471695152262148062}
   m_Enabled: 1
-  m_SortingLayerID: -1916887665
+  m_SortingLayerID: -1835506309
   m_SortingLayer: 1
   m_SortingOrder: 60
 --- !u!1 &7752768056797070027
@@ -142,7 +145,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1916887665
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 60
   m_Sprite: {fileID: 21300078, guid: 6d6481d1f4ddf8e49b4af816e0b48064, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,7 +224,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1916887665
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 60
   m_Sprite: {fileID: 21300078, guid: 6d6481d1f4ddf8e49b4af816e0b48064, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
