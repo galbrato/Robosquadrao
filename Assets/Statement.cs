@@ -476,6 +476,7 @@ public class RetornaGlobal : Statement {
     public GlobalVar Global2Return;
     public RetornaGlobal(GlobalVar gvar) {
         Global2Return = gvar;
+        type = Tipo.Posicao;
     }
     public override bool Execute(RobotCode Robot) {
         //Limpando a Lista de variaveis

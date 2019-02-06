@@ -48,9 +48,11 @@ public class RobotCode : MonoBehaviour {
         ProgramCounter = 0;
 
         VarList = new List<Variavel>();
+        Code = new List<Statement>();
 
         Anima = GetComponent<Animator>();
         Inimigos = gameObject.transform.GetChild(10).GetComponent<Sensor>().adversarios;
+        rigid = GetComponent<Rigidbody>();
 
 
         IniciarComandosBasicos();
@@ -112,8 +114,18 @@ public class RobotCode : MonoBehaviour {
         return false;
     }
     public bool WalkToo(Vector3 dest) {
-        rigid.velocity = (dest - transform.position).normalized * Speed;
-        rigid.velocity = Vector3.zero;
+        Debug.Log("Andar até " + dest);
+        Vector3 movement = dest - transform.position;
+        movement.y = movement.z;
+
+        rigid.velocity = (movement.normalized * Speed);
+
+        this.GetComponent<Animator>().SetBool("IsMoving", true);
+        if (rigid.velocity.x <= 0) {
+            this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        } else {
+            this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        }
         return false;
     }
     public void ApplyDamage(){
