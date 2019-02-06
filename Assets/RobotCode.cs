@@ -27,23 +27,27 @@ public class RobotCode : MonoBehaviour {
     public float AtackDelay=1;
     float AtackDelayCouter;
 
+
     void Start() {
         VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         ProgramCounter = 0;
 
         VarList = new List<Variavel>();
+
+        IniciarComandosBasicos();
     }
 
     void IniciarComandosBasicos() {
-        Code.Add(new AlocaInteiro("i",0));
-        Code.Add(new AndarAte(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao));
-
+        //Code.Add(new AlocaInteiro("i",0));
+        //Code.Add(new AndarAte(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao)));
+        Code.Add(new AndarAte(new RetornaGlobal(GlobalVar.Objetivo)));
     }
 
     public bool acha(Variavel a) {
         return a.Label == "aaaa";
     }
+
     // Update is called once per frame
     void Update() {
 

@@ -474,23 +474,19 @@ public enum GlobalVar {
 [Serializable]
 public class RetornaGlobal : Statement {
     public GlobalVar Global2Return;
-
+    public RetornaGlobal(GlobalVar gvar) {
+        Global2Return = gvar;
+    }
     public override bool Execute(RobotCode Robot) {
-        if (VarName == null) {
-            Debug.LogError("ERRO, nome da variavel nulo");
-        }
         //Limpando a Lista de variaveis
         Variavel v;
         if (Global2Return == GlobalVar.Inicio) {
-            v = new VarPosicao(Robot.Inicio);
+            v = new VarPosicao("Inicio", Robot.Inicio);
         } else {
-            v = new VarPosicao(Robot.Objetivo);
+            v = new VarPosicao("Objetivo",Robot.Objetivo);
         }
-        if (v == null) {
-            Debug.LogError("ERRO! não foi possivel achar a variavel na memoria");
-            return false;
-        }
-        Robot.Retorno = v.Clone();
+
+        Robot.Retorno = v;
 
         return false;
     }
