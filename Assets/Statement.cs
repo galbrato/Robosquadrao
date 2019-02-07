@@ -392,7 +392,7 @@ public class CastVariavel : Statement {
 [Serializable]
 public class AtribuiVariavel : Statement {
     public Statement Parametro;
-    private string VarName;
+    public string VarName;
 
     public AtribuiVariavel(Statement arg, string VarLabel) {
         Parametro = arg;
@@ -794,6 +794,7 @@ public class Se : Statement {
         type = Tipo.Vazio;
         Verified = false;
         ProgramCounter = 0;
+        SubCode = new List<Statement>();
     }
 
     bool VerifyCondition(RobotCode Robot) {

@@ -27,6 +27,7 @@ public class RobotCode : MonoBehaviour {
     
     //Atributos do robo
     public float Speed =1;
+    public float StopingDistance = 0.1f;
     public float VidaMax =10;
     public float VidaAtual =10;
     public float Dano =1;
@@ -63,6 +64,16 @@ public class RobotCode : MonoBehaviour {
         //Code.Add(new AndarAte(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao)));
         Code.Add(new AndarAte(new RetornaGlobal(GlobalVar.Objetivo)));
 
+    }
+
+    void ComandosBasicos2() {
+        Se se = new Se();
+        Compare comp = new Compare();
+        comp.Operation = CompareOperator.Igual;
+        comp.Parametro1 = new RetornaVariavel();
+        se.Parametro = comp;
+
+        Code.Add()
     }
 
     public bool acha(Variavel a) {
@@ -116,18 +127,23 @@ public class RobotCode : MonoBehaviour {
     public bool WalkToo(Vector3 dest) {
         Debug.Log("Andar até " + dest);
         Vector3 movement = dest - transform.position;
-        movement.y = movement.z;
-
-        rigid.velocity = (movement.normalized * Speed);
-
-        this.GetComponent<Animator>().SetBool("IsMoving", true);
-        if (rigid.velocity.x <= 0) {
-            this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (movement.magnitude <= StopingDistance) {
+            this.GetComponent<Animator>().SetBool("IsMoving", false);
+            rigid.velocity = Vector3.zero;
         } else {
-            this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        }
+            movement= movement.normalized;
+            movement.y = movement.z;
+            rigid.velocity = (movement * Speed);
+            this.GetComponent<Animator>().SetBool("IsMoving", true);
+            if (rigid.velocity.x <= 0) {
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+        }        
         return false;
     }
+
     public void ApplyDamage(){
     	LayerMask mask = (1 << this.gameObject.layer);
         mask |= (1 << 11);
