@@ -4,10 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 public class LevelSelector : GridLayoutResources {
 
 	public MenuManager menuManager;
+
+	public GameObject Preview;
+
+	public Row[] robos;
+	public Button comecar;
+	public Button cancelar;
+	public GameObject robo_models;
+	public GameObject content;
+	public GameObject Objetivo;
 
 	private int nonBattleScenes = 2;    // Quantidade de cenas da build que não são de batalha (como o "MainMenu" e o "Game")
 	private List<Scene> scenes;
@@ -55,10 +66,38 @@ public class LevelSelector : GridLayoutResources {
 
 			Button botao = objetos[i].GetComponent<Button>();
 			string s = "Batalha " + (i + 1);		// Cria a string com o nome da cena de batalha
-			botao.onClick.AddListener(delegate { menuManager.ChangeScene(s); });	// Adiciona o evento de mudança de cena ao botão, para levar à batalha
+			botao.onClick.AddListener(delegate { 
+				//menuManager.ChangeScene(s); 
+				Preview.SetActive(true);
+				comecar.onClick.AddListener(delegate(){menuManager.ChangeScene(s);});
+				cancelar.onClick.AddListener(delegate(){
+					foreach (Transform child in content.transform){
+						Destroy(child.gameObject);
+					}
+					cancelar.gameObject.transform.parent.gameObject.SetActive(false);
+				});
+				
+				String result = Regex.Match(s, @"\d+").Value;
+				i = Int32.Parse(result) - 1;
+				for(int j = 0; j < robos[i].descricao.Length; j++){
+					GameObject aux = Instantiate(robo_models, new Vector3(0,0,0), Quaternion.identity, content.transform);
+					
+					aux.transform.GetChild(0).GetComponent<Image>().sprite = robos[i].imagem[j];
+					aux.transform.GetChild(1).GetComponent<Text>().text = robos[i].descricao[j];
+				}
+				
+				Objetivo.GetComponent<Text>().text = robos[i].objetivo;
+			});	// Adiciona o evento de mudança de cena ao botão, para levar à batalha
 
 			objetos[i].GetComponentInChildren<Text>().text = (i+1).ToString();	// Muda o texto do botão
 		}
 	}
+}
 
+[Serializable]
+public struct Row{
+	public Sprite[] imagem;
+	[TextArea]
+	public String[] descricao;
+	public String objetivo;
 }

@@ -67,13 +67,13 @@ public class RobotCode : MonoBehaviour {
     }
 
     void ComandosBasicos2() {
-        Se se = new Se();
-        Compare comp = new Compare();
-        comp.Operation = CompareOperator.Igual;
-        comp.Parametro1 = new RetornaVariavel();
-        se.Parametro = comp;
+//        Se se = new Se();
+//        Compare comp = new Compare();
+//        comp.Operation = CompareOperator.Igual;
+//        comp.Parametro1 = new RetornaVariavel();
+//        se.Parametro = comp;
 
-        Code.Add()
+//        Code.Add()
     }
 
     public bool acha(Variavel a) {
@@ -124,7 +124,7 @@ public class RobotCode : MonoBehaviour {
         Anima.SetBool("Laser", false);
         return false;
     }
-    public bool WalkToo(Vector3 dest) {
+    public bool WalkTo(Vector3 dest) {
         Debug.Log("Andar até " + dest);
         Vector3 movement = dest - transform.position;
         if (movement.magnitude <= StopingDistance) {

@@ -569,7 +569,7 @@ public class AndarAte : Statement {
         //Liberando o retorno
         Robot.Retorno = null;
         //Executando o comando
-        Robot.WalkToo(new Vector3(pos.x, pos.y, pos.z));
+        Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
 
         return false;
     }
