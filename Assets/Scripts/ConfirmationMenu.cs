@@ -26,6 +26,7 @@ public class ConfirmationMenu : MonoBehaviour {
 	private Transform canvas;		// Reference to the canvas of the scene
 
 	private GameObject instance = null;	// Referência à INSTÂNCIA da TdC
+	private GameObject background_instance = null;	// Referência ao background
 	
 	void Awake() {
 		if (prefab == null) {	// Caso o prefab ainda não tenha sido carregado
@@ -43,9 +44,13 @@ public class ConfirmationMenu : MonoBehaviour {
 	}
 
 	public void CreateConfirmationMenu() {
-		if (instance == null)
+		if (instance == null) {
 			instance = Instantiate(prefab, canvas);
-		else
+			foreach(Transform trans in instance.transform) {	// Percorre todos os filhos diretos da TdC
+				if (trans.name == "Background")
+					background_instance = trans.gameObject;
+			}
+		} else
 			instance.SetActive(true);
 
 		Configurations();
@@ -85,7 +90,7 @@ public class ConfirmationMenu : MonoBehaviour {
 			Debug.Log("ANCHOR PROBLEM! Anchor Min must be lower than Anchor Max.");
 			return;
 		}
-		RectTransform tranf = instance.GetComponent<RectTransform>();
+		RectTransform tranf = background_instance.GetComponent<RectTransform>();
 		tranf.anchorMin = new Vector2(anchorMin, anchorMin);
 		tranf.anchorMax = new Vector2(anchorMax, anchorMax);
 	}
@@ -94,7 +99,7 @@ public class ConfirmationMenu : MonoBehaviour {
 	/// Configura a imagem de fundo
 	/// </summary>
 	private void ConfigBg() {
-		Image bg = instance.GetComponent<Image>();
+		Image bg = background_instance.GetComponent<Image>();
 		bg.color = backgroundColor;
 		if (backgroundSprite != null)
 			bg.sprite = backgroundSprite;
@@ -107,7 +112,7 @@ public class ConfirmationMenu : MonoBehaviour {
 		Text title = null;		// Referência do titulo
 		Text message = null;	// Referência da mensagem
 
-		foreach(Transform trans in instance.transform) {	// Percorre todos os filhos diretos da TdC
+		foreach(Transform trans in background_instance.transform) {	// Percorre todos os filhos diretos da TdC
 			Text aux = trans.GetComponent<Text>();			// Pega o componente de texto
 			if (aux != null && aux.name == "Título")		// Se o componente existir e for o título, salva a referência
 				title = aux;
@@ -128,7 +133,7 @@ public class ConfirmationMenu : MonoBehaviour {
 	/// Configura o botão de confirmação da TdC
 	/// </summary>
 	private void ConfigConfirmation() {
-		foreach(Transform trans in instance.transform) {	// Percorre todos os filhos diretos da TdC
+		foreach(Transform trans in background_instance.transform) {	// Percorre todos os filhos diretos da TdC
 			Button button = trans.GetComponent<Button>();	// Pega o componente de botão
 			if (button != null && button.name == "Confirmar") {	// Caso seja o botão de confirmação
 				button.onClick =  confirmationEvent;		// Coloca os antigos eventos do botão inicial
