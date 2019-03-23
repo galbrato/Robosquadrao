@@ -528,7 +528,7 @@ public class Atacar : Statement {
         //Liberando o retorno
         Robot.Retorno = null;
         //Executando o comando
-        Robot.Atack(new Vector3(pos.x, pos.y, pos.z));
+        Robot.Attack(new Vector3(pos.x, pos.y, pos.z));
         return false;
     }
 }
