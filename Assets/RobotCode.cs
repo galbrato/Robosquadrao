@@ -42,6 +42,10 @@ public class RobotCode : MonoBehaviour {
     float AtackDelayCouter;
     float HealDelayCouter;
     float LaserDelayCouter;
+    // Informacoes do Inimigo
+    private Vector3 EnemyPosition;
+    //Informacoes do Aliado
+    private Vector3 AllyPosition;
 
 
     void Start() {
@@ -62,7 +66,7 @@ public class RobotCode : MonoBehaviour {
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
 
-        IniciarComandosBasicos();
+        //IniciarComandosBasicos();
     }
 
     void IniciarComandosBasicos() {
@@ -88,49 +92,70 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        Vector3 temp = transform.position;
+        temp.z = temp.y;
+        transform.position = temp;
 
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
         if (HealDelayCouter < HealDelay) HealDelayCouter += Time.deltaTime;
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
 
-        if (Code[ProgramCounter].Execute(this)) {
+    //    if (Code[ProgramCounter].Execute(this)) {
 
-        } else {
-            ProgramCounter = (ProgramCounter + 1) % Code.Count;
-        }
+      //  } else {
+        //    ProgramCounter = (ProgramCounter + 1) % Code.Count;
+       // }
     }
 
-    public bool Atack(Vector3 dir) {
+    public bool Attack(Vector3 dir) {
+        EnemyPosition = dir;
         if (AtackDelayCouter >= AtackDelay) {
-            AtackDelay = 0;
+            if (this.transform.position.x >= EnemyPosition.x) {
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+
+            AtackDelayCouter = 0;
             Anima.SetBool("Attack", true);
             return false;
         }
-        Anima.SetBool("Attack", false);
         return false;
     }
 
     public bool Fix(Vector3 dir) {
+        AllyPosition = dir;
         if(HealDelayCouter >= AtackDelay){
-            HealDelay = 0;
+            if (this.transform.position.x >= AllyPosition.x) {
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+
+            HealDelayCouter = 0;
             Anima.SetBool("Heal", true);
             return false;
         }
-        Anima.SetBool("Heal", false);
         return false;
     }
 
     public bool Laser(Vector3 dir) {
+        EnemyPosition = dir;
         if(LaserDelayCouter >= LaserDelay){
-            LaserDelay = 0;
+            if (this.transform.position.x >= EnemyPosition.x) {
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+            
+            LaserDelayCouter = 0;
             Anima.SetBool("Laser", true);
             return false;
         }
-        Anima.SetBool("Laser", false);
         return false;
     }
-    public bool WalkToo(Vector3 dest) {
+
+    public bool WalkTo(Vector3 dest) {
         Debug.Log("Destino: " + dest);
         Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
@@ -154,13 +179,19 @@ public class RobotCode : MonoBehaviour {
     	LayerMask mask = (1 << this.gameObject.layer);
         mask |= (1 << 11);
         mask = ~mask;
-    	Collider[] hitColliders = Physics.OverlapBox(Mao.position, transform.localScale/2, Quaternion.identity, mask);
+        Vector3 dir = EnemyPosition - this.transform.position;
+        dir = dir.normalized;
+        Vector3 distanciaMao = this.transform.position - Mao.position;
+        float alcance = distanciaMao.magnitude;
+        Vector3 hitbox = (dir*alcance) + this.transform.position;
+    	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
 
         if(hitColliders.Length > 0){
             print(hitColliders[0].name);
-        	hitColliders[0].GetComponent<Alive>().lifes -= 1.0f;
+        	hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual -= Dano;
             hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
         }
+        Anima.SetBool("Attack", false);
     }
 
     public void ApplyHeal(){
@@ -171,6 +202,7 @@ public class RobotCode : MonoBehaviour {
         	hitColliders[0].GetComponent<Alive>().lifes += 1.0f;
             hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Healed");
         }
+        Anima.SetBool("Heal", false);
     }
 
     public void ApplyLaserBeam(){
@@ -180,5 +212,6 @@ public class RobotCode : MonoBehaviour {
         laser.GetComponent<Laser>().mask = (1 << this.gameObject.layer);
         laser.GetComponent<Laser>().mask |= (1 << 11);
         laser.GetComponent<Laser>().mask = ~laser.GetComponent<Laser>().mask;
+        Anima.SetBool("Laser", false);
     }
 }
