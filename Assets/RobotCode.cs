@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RobotCode : MonoBehaviour {
-    Rigidbody rigid;
+    private Rigidbody rigid;
+    private NavMeshAgent agent;
+    private int side = 1;   // Marca para qual lado o robô está virado
 
     //Lista de variaveis, "Memoria" do robo
     public List<Variavel> VarList;
@@ -26,7 +29,7 @@ public class RobotCode : MonoBehaviour {
     private int ProgramCounter;
     
     //Atributos do robo
-    public float Speed =1;
+    public float Speed = 10.0f;
     public float StopingDistance = 0.1f;
     public float VidaMax =10;
     public float VidaAtual =10;
@@ -55,6 +58,9 @@ public class RobotCode : MonoBehaviour {
         Inimigos = gameObject.transform.GetChild(10).GetComponent<Sensor>().adversarios;
         rigid = GetComponent<Rigidbody>();
 
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
+
 
         IniciarComandosBasicos();
     }
@@ -70,10 +76,10 @@ public class RobotCode : MonoBehaviour {
         Se se = new Se();
         Compare comp = new Compare();
         comp.Operation = CompareOperator.Igual;
-        comp.Parametro1 = new RetornaVariavel();
+        //comp.Parametro1 = new RetornaVariavel();
         se.Parametro = comp;
 
-        Code.Add()
+        //Code.Add()
     }
 
     public bool acha(Variavel a) {
@@ -125,22 +131,22 @@ public class RobotCode : MonoBehaviour {
         return false;
     }
     public bool WalkToo(Vector3 dest) {
-        Debug.Log("Andar até " + dest);
-        Vector3 movement = dest - transform.position;
-        if (movement.magnitude <= StopingDistance) {
-            this.GetComponent<Animator>().SetBool("IsMoving", false);
-            rigid.velocity = Vector3.zero;
+        Debug.Log("Destino: " + dest);
+        Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
+        movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
+
+        if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
+            Debug.Log("Parando");
+            this.GetComponent<Animator>().SetBool("IsMoving", false);   // Muda a animação para Idle
         } else {
-            movement= movement.normalized;
-            movement.y = movement.z;
-            rigid.velocity = (movement * Speed);
-            this.GetComponent<Animator>().SetBool("IsMoving", true);
-            if (rigid.velocity.x <= 0) {
-                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
-                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            Debug.Log("Movendo");
+            agent.destination = dest;   // Caso contrário, seta o destino do agent
+            this.GetComponent<Animator>().SetBool("IsMoving", true);    // E a animação para movimentação
+            if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
+                side *= -1;
+                transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
             }
-        }        
+        }
         return false;
     }
 
