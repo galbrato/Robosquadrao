@@ -70,10 +70,9 @@ public class RobotCode : MonoBehaviour {
         Se se = new Se();
         Compare comp = new Compare();
         comp.Operation = CompareOperator.Igual;
-        comp.Parametro1 = new RetornaVariavel();
+        //comp.Parametro1 = new RetornaVariavel();
         se.Parametro = comp;
 
-        Code.Add()
     }
 
     public bool acha(Variavel a) {
