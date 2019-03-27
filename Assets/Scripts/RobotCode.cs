@@ -83,7 +83,6 @@ public class RobotCode : MonoBehaviour {
         //comp.Parametro1 = new RetornaVariavel();
         se.Parametro = comp;
 
-        //Code.Add()
     }
 
     public bool acha(Variavel a) {
