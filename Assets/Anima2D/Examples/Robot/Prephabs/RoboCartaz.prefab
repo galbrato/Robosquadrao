@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 7258952494298671793}
   - component: {fileID: 7258952494298671803}
   - component: {fileID: 7258952494298671806}
-  - component: {fileID: 7258952494298671807}
   - component: {fileID: 7258952494298671805}
   - component: {fileID: 7258952496112586374}
+  - component: {fileID: 3540992031277194722}
   m_Layer: 8
   m_Name: RoboCartaz
   m_TagString: Untagged
@@ -139,7 +139,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 25bc9bf3417544316bedd7b7a945f590, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -156,24 +156,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &7258952494298671807
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7258952494298671794}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.015267, y: 6.154253, z: 2}
-  m_Center: {x: -0.21208668, y: 2.8795595, z: -0.00000035762787}
 --- !u!210 &7258952494298671805
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -208,7 +195,8 @@ MonoBehaviour:
   Alvo: {fileID: 0}
   LaserBeam: {fileID: 2471695152262148062, guid: 5c820f2ea50d6f84e92959f0b932a773,
     type: 3}
-  Speed: 1
+  Speed: 10
+  StopingDistance: 1
   VidaMax: 10
   VidaAtual: 10
   Dano: 1
@@ -217,6 +205,28 @@ MonoBehaviour:
   HealDelay: 1
   DanoLaser: 1
   LaserDelay: 1
+--- !u!195 &3540992031277194722
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258952494298671794}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0.2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7258952494304617657
 GameObject:
   m_ObjectHideFlags: 0
