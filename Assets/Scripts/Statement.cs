@@ -128,10 +128,11 @@ public enum Tipo {
     Booleano
 }
 
+
 [Serializable]
 public abstract class Statement {
     protected Tipo type;
-
+    public Statement[] Parametros;
     public Tipo ReturnTipo() {
         return type;
     }
@@ -535,27 +536,25 @@ public class Atacar : Statement {
 
 [Serializable]
 public class AndarAte : Statement {
-    public Statement Parametro;
+    
     public AndarAte() {
         type = Tipo.Vazio;
+        this.Parametros = new Statement[1];
     }
-    public AndarAte(Statement aqui) {
-        Parametro = aqui;
-        type = Tipo.Vazio;
-    }
+   
 
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
-        if (Parametro == null) {
+        if (Parametros[0] == null) {
             Debug.LogError("Parametro nulo");
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnTipo() != Tipo.Posicao) {
+        if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
         //Executando o parametro
-        Parametro.Execute(Robot);
+        Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
             Debug.LogError("Retorno Nulo");

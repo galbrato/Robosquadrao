@@ -6,6 +6,8 @@ public class StatementHolder : MonoBehaviour {
     public Statement _OriginalStatement;
     //public RectTransform _StatementUI;
     public CodeManager _CodeManager;
+
+    public int LineNumber;
     // Start is called before the first frame update
     void Start() {
         _CodeManager = FindObjectOfType<CodeManager>();

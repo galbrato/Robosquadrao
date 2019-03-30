@@ -62,7 +62,7 @@ public class RobotCode : MonoBehaviour {
     void IniciarComandosBasicos() {
         //Code.Add(new AlocaInteiro("i",0));
         //Code.Add(new AndarAte(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao)));
-        Code.Add(new AndarAte(new RetornaGlobal(GlobalVar.Objetivo)));
+        //Code.Add(new AndarAte(new RetornaGlobal(GlobalVar.Objetivo)));
 
     }
 

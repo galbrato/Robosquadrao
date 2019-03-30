@@ -27,11 +27,14 @@ public class CodeManager : MonoBehaviour{
             Debug.Log("Statement full, não tem como inserir");
             return;
         }
+        //Pegando o Statement holder do pai para poder atribuir o statement para ele
+        StatementHolder SH = Cursor.transform.parent.GetComponentInChildren<StatementHolder>();
+        SH._OriginalStatement = new AndarAte();
+        _ActualCode.Code.Insert()
         //Verificar se o statement passado é valido
 
         //Inserir na UI
         GameObject newStatementUI = Instantiate(_UIPrefabAndarAte, Cursor.transform.parent.transform);
-        StatementHolder SH = newStatementUI.GetComponentInChildren<StatementHolder>();
         if (SH != null) {
             Debug.Log("selecionando o novo botaum");
             SH._CodeManager = this;
