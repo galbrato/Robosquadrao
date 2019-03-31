@@ -7,10 +7,9 @@ public class StatementHolder : MonoBehaviour {
     //public RectTransform _StatementUI;
     public CodeManager _CodeManager;
 
-    public int LineNumber;
     // Start is called before the first frame update
     void Start() {
-        _CodeManager = FindObjectOfType<CodeManager>();
+        if(_CodeManager == null) _CodeManager = FindObjectOfType<CodeManager>();
     }
 
     // Update is called once per frame
@@ -22,8 +21,8 @@ public class StatementHolder : MonoBehaviour {
         _SelectForReal();
     }
     public bool _SelectForReal() {
-        
-        Debug.Log("Clico em " + name + " " + transform.childCount + " filhos");
+        if(_CodeManager == null) _CodeManager = FindObjectOfType<CodeManager>();
+
         StatementHolder[] holders = GetComponentsInChildren<StatementHolder>();
         if (holders.Length > 1) {
 
