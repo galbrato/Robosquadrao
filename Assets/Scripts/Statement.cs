@@ -4,6 +4,32 @@ using UnityEngine;
 using System;
 
 [Serializable]
+public abstract class Statement {
+    protected Tipo type;
+    public Statement[] Parametros;
+    public Tipo ReturnTipo() {
+        return type;
+    }
+
+    /// <summary>
+    /// Função que ira executar o comando, ira retornar true enquanto ela tiver executando, e retornara false quando terminar
+    /// </summary>
+    /// <returns>retorna true se esta executando, false caso ja tenha terminado de executar</returns>
+    public abstract bool Execute(RobotCode Robot);
+
+    public static Statement AlocByName(string name) {
+        if (name == "AndarAte") {
+            return new AndarAte();
+        } else if (name == "Objetivo") {
+            return new RetornaGlobal(GlobalVar.Objetivo);
+        } else if (name == "Inicio") {
+            return new RetornaGlobal(GlobalVar.Inicio);
+        }
+        return null;
+    }
+}
+
+[Serializable]
 public abstract class Variavel {
     public string Label;
     public Tipo type;
@@ -126,22 +152,6 @@ public enum Tipo {
     Continuo,
     Posicao,
     Booleano
-}
-
-
-[Serializable]
-public abstract class Statement {
-    protected Tipo type;
-    public Statement[] Parametros;
-    public Tipo ReturnTipo() {
-        return type;
-    }
-
-    /// <summary>
-    /// Função que ira executar o comando, ira retornar true enquanto ela tiver executando, e retornara false quando terminar
-    /// </summary>
-    /// <returns>retorna true se esta executando, false caso ja tenha terminado de executar</returns>
-    public abstract bool Execute(RobotCode Robot);
 }
 
 [Serializable]

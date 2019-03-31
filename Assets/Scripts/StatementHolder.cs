@@ -25,8 +25,6 @@ public class StatementHolder : MonoBehaviour {
 
         StatementHolder[] holders = GetComponentsInChildren<StatementHolder>();
         if (holders.Length > 1) {
-
-            //Debug.Log(name + " filho:" + _StatementUI.name);
             //posicionar o cursor no meu filho se tiver espaço
             for (int i = 1; i < holders.Length; i++) {
                 if (holders[i]._SelectForReal()) {
@@ -38,6 +36,7 @@ public class StatementHolder : MonoBehaviour {
 
         } else {
             //posicionar o cursor em mim
+            _CodeManager.Cursor.rectTransform.SetParent(null);
             _CodeManager.Cursor.rectTransform.SetParent(transform);
             return true;
         }

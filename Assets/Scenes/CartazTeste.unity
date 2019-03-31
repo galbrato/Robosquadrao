@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 82904799}
   - component: {fileID: 82904798}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 174131715}
   - component: {fileID: 174131714}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 222837303}
   - component: {fileID: 222837302}
   m_Layer: 5
-  m_Name: AndarAteButton (2)
+  m_Name: InicioButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1770,7 +1770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00003050534, y: -0.000002763364}
+  m_AnchoredPosition: {x: -0.00003050534, y: -0.000013823981}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &408034685
@@ -1844,12 +1844,12 @@ RectTransform:
   - {fileID: 1592607900}
   - {fileID: 769676034}
   m_Father: {fileID: 3084281827228909960}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.799988, y: 0}
-  m_SizeDelta: {x: -26.6, y: 0}
+  m_AnchoredPosition: {x: 2.1900024, y: -63.02002}
+  m_SizeDelta: {x: -5.38, y: -126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427993383
 MonoBehaviour:
@@ -1952,13 +1952,13 @@ RectTransform:
   m_Children:
   - {fileID: 770530374}
   - {fileID: 71829496}
-  m_Father: {fileID: 3084281827092969541}
-  m_RootOrder: 2
+  m_Father: {fileID: 3084281827228909960}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 574.2, y: 315.9}
-  m_SizeDelta: {x: -1340.4, y: -955.8}
+  m_AnchoredPosition: {x: 2.4400024, y: 261.00494}
+  m_SizeDelta: {x: -4.880005, y: -525.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468392182
 MonoBehaviour:
@@ -3745,7 +3745,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 990362256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3084281827092969544}
+        m_MethodName: _InsertCode
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Objetivo
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &990362256
@@ -5702,7 +5713,7 @@ GameObject:
   - component: {fileID: 1802195480}
   - component: {fileID: 1802195479}
   m_Layer: 5
-  m_Name: AndarAteButton (1)
+  m_Name: ObjetivoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6069,7 +6080,7 @@ GameObject:
   - component: {fileID: 1907849000}
   - component: {fileID: 1907848999}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6466,7 +6477,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2026642363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3084281827092969544}
+        m_MethodName: _InsertCode
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Inicio
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2026642363
@@ -7337,7 +7359,6 @@ RectTransform:
   m_Children:
   - {fileID: 3084281827101870442}
   - {fileID: 3084281829052133453}
-  - {fileID: 468392181}
   - {fileID: 3084281827228909960}
   - {fileID: 5962637287746330030}
   - {fileID: 6810543480551272528}
@@ -7399,9 +7420,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cursor: {fileID: 642337073}
-  _UIPrefabAndarAte: {fileID: 3445240915877508670, guid: b5b81a3b3ab897c4aa22fdbafab97f6d,
-    type: 3}
   _ActualCode: {fileID: 2071120628}
+  StatementsUIPrefabs:
+  - {fileID: 3445240915877508670, guid: b5b81a3b3ab897c4aa22fdbafab97f6d, type: 3}
+  - {fileID: 6367512926432496449, guid: 734f8823fdc1a084bbbe4b0cd084f6ee, type: 3}
+  - {fileID: 6367512926432496449, guid: ecde81baa174c7f48aa3d715c3ac9dd7, type: 3}
 --- !u!1 &3084281827101870441
 GameObject:
   m_ObjectHideFlags: 0
@@ -7511,14 +7534,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
   m_Children:
+  - {fileID: 468392181}
   - {fileID: 427993382}
   m_Father: {fileID: 3084281827092969541}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.64558333, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.85170376}
-  m_AnchoredPosition: {x: -60.80005, y: -77.3}
-  m_SizeDelta: {x: -70.4, y: -154.5}
+  m_AnchoredPosition: {x: -48, y: -0.025024414}
+  m_SizeDelta: {x: -96, y: 0.049927}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3084281827228909961
 MonoBehaviour:
@@ -8150,7 +8174,7 @@ RectTransform:
   - {fileID: 2641565065807468963}
   - {fileID: 7886538330486742037}
   m_Father: {fileID: 3084281827092969541}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0}
   m_AnchorMax: {x: 0.9, y: 0.25}
@@ -8322,7 +8346,7 @@ RectTransform:
   m_Children:
   - {fileID: 2689546671212440494}
   m_Father: {fileID: 3084281827092969541}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.2}
   m_AnchorMax: {x: 0.95, y: 0.95}
