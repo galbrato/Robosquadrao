@@ -66,7 +66,7 @@ public class RobotCode : MonoBehaviour {
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
 
-        //IniciarComandosBasicos();
+        IniciarComandosBasicos();
     }
 
     void IniciarComandosBasicos() {
@@ -91,19 +91,16 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector3 temp = transform.position;
-        temp.z = temp.y;
-        transform.position = temp;
 
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
         if (HealDelayCouter < HealDelay) HealDelayCouter += Time.deltaTime;
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
 
-    //    if (Code[ProgramCounter].Execute(this)) {
+        if (Code[ProgramCounter].Execute(this)) {
 
-      //  } else {
-        //    ProgramCounter = (ProgramCounter + 1) % Code.Count;
-       // }
+        } else {
+            ProgramCounter = (ProgramCounter + 1) % Code.Count;
+        }
     }
 
     public bool Attack(Vector3 dir) {
