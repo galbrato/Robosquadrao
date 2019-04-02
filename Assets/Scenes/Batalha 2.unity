@@ -395,6 +395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoboCartaz (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7258952494298671794, guid: b11c36086b6f0b44db6933790436faaf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friend
+      objectReference: {fileID: 0}
     - target: {fileID: 7258952494298671793, guid: b11c36086b6f0b44db6933790436faaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2279,6 +2284,7 @@ GameObject:
   - component: {fileID: 1259815661}
   - component: {fileID: 1259815660}
   - component: {fileID: 1259815659}
+  - component: {fileID: 1259815662}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2350,6 +2356,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259815662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259815658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a039e73af76856f43955e61f6e2f74bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1359059704
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoboCartaz
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258952494298671794, guid: b11c36086b6f0b44db6933790436faaf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friend
       objectReference: {fileID: 0}
     - target: {fileID: 7258952494298671793, guid: b11c36086b6f0b44db6933790436faaf,
         type: 3}
