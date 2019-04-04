@@ -59,7 +59,6 @@ public class RobotCode : MonoBehaviour {
         Code = new List<Statement>();
 
         Anima = GetComponent<Animator>();
-        Inimigos = gameObject.transform.GetChild(10).GetComponent<Sensor>().adversarios;
         rigid = GetComponent<Rigidbody>();
 
         agent = GetComponent<NavMeshAgent>();
@@ -99,11 +98,14 @@ public class RobotCode : MonoBehaviour {
         if (HealDelayCouter < HealDelay) HealDelayCouter += Time.deltaTime;
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
 
+
+        Inimigos.RemoveAll((RobotCode r) => {return r == null;});   
     //    if (Code[ProgramCounter].Execute(this)) {
 
       //  } else {
         //    ProgramCounter = (ProgramCounter + 1) % Code.Count;
        // }
+        
     }
 
     public bool Attack(Vector3 dir) {
@@ -155,15 +157,13 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool WalkTo(Vector3 dest) {
-        Debug.Log("Destino: " + dest);
         Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
-            Debug.Log("Parando");
             this.GetComponent<Animator>().SetBool("IsMoving", false);   // Muda a animação para Idle
+            rigid.velocity = new Vector3(0,0,0);
         } else {
-            Debug.Log("Movendo");
             agent.destination = dest;   // Caso contrário, seta o destino do agent
             this.GetComponent<Animator>().SetBool("IsMoving", true);    // E a animação para movimentação
             if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
@@ -175,8 +175,10 @@ public class RobotCode : MonoBehaviour {
     }
 
     public void ApplyDamage(){
+        print("APLICA DANO POHA!");
     	LayerMask mask = (1 << this.gameObject.layer);
         mask |= (1 << 11);
+        mask |= (1 << 0);
         mask = ~mask;
         Vector3 dir = EnemyPosition - this.transform.position;
         dir = dir.normalized;
@@ -185,12 +187,15 @@ public class RobotCode : MonoBehaviour {
         Vector3 hitbox = (dir*alcance) + this.transform.position;
     	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
 
+        Anima.SetBool("Attack", false);
         if(hitColliders.Length > 0){
-            print(hitColliders[0].name);
-        	hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual -= Dano;
+            hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual -= Dano;
+            if(hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual <= 0){
+                hitColliders[0].transform.GetComponent<RobotCode>().Tchakabuuum();
+            }
             hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
         }
-        Anima.SetBool("Attack", false);
+        
     }
 
     public void ApplyHeal(){
@@ -212,5 +217,19 @@ public class RobotCode : MonoBehaviour {
         laser.GetComponent<Laser>().mask |= (1 << 11);
         laser.GetComponent<Laser>().mask = ~laser.GetComponent<Laser>().mask;
         Anima.SetBool("Laser", false);
+    }
+
+    public void Tchakabuuum(){
+        GetComponent<Animator>().enabled = false;
+        
+        SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer piece in sprites){
+            Rigidbody rig = piece.gameObject.AddComponent<Rigidbody>() as Rigidbody;
+            rig.useGravity = true;
+            Vector3 direction = Random.insideUnitCircle.normalized;
+            float rand = Random.Range(20,50);
+            rig.AddForce(direction*rand, ForceMode.Impulse);
+        }
+        Destroy(gameObject, 2);
     }
 }
