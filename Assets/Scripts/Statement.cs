@@ -24,12 +24,28 @@ public abstract class Statement {
             return new RetornaGlobal(GlobalVar.Objetivo);
         } else if (name == "Inicio") {
             return new RetornaGlobal(GlobalVar.Inicio);
+        } else if (name == "Vazio") {
+            return new Vazio();
         }
         return null;
     }
 }
 
 [Serializable]
+public class Vazio : Statement {
+
+    public Vazio() {
+        type = Tipo.Vazio;
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        return false;
+    }
+    public override string ToString() {
+        return "Vazio";
+    }
+}
+    [Serializable]
 public abstract class Variavel {
     public string Label;
     public Tipo type;
@@ -495,12 +511,24 @@ public class RetornaGlobal : Statement {
         if (Global2Return == GlobalVar.Inicio) {
             v = new VarPosicao("Inicio", Robot.Inicio);
         } else {
-            v = new VarPosicao("Objetivo",Robot.Objetivo);
+            v = new VarPosicao("Objetivo", Robot.Objetivo);
         }
 
         Robot.Retorno = v;
 
         return false;
+    }
+
+    public override string ToString() {
+        switch (Global2Return) {
+            case GlobalVar.Inicio:
+                return "Inicio";
+            case GlobalVar.Objetivo:
+                return "Objetivo";
+            default:
+                break;
+        }
+        return "ERRO!";
     }
 }
 
@@ -551,7 +579,12 @@ public class AndarAte : Statement {
         type = Tipo.Vazio;
         this.Parametros = new Statement[1];
     }
-   
+
+
+    public override string ToString() {
+        if (Parametros[0] != null) return "AndarAte(" + Parametros[0].ToString() + ")";
+        else return "AndarAte(NULL)";
+    }
 
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado

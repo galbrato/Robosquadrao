@@ -33,24 +33,25 @@ public static class SaveSystem {
 		return data;
 	}
 
-	public static void SaveRobot(ConfigRobos robos) {
-		string fileName = "player" + robos.robotNumber + ".data";
+	public static void SaveRobot(RobotData robo) {
+		string fileName = "Robot" + robo.Id + ".data";
 		string path = Path.Combine(Application.persistentDataPath, fileName);
 
 		BinaryFormatter formatter = new BinaryFormatter();
 		FileStream stream = new FileStream(path, FileMode.Create);
 
-		RobotData data = new RobotData(robos);
+		//RobotData data = new RobotData(robo);
 
-		formatter.Serialize(stream, data);
+		formatter.Serialize(stream, robo);
 		stream.Close();
 	}
 
 	public static RobotData LoadRobot(int robotNumber) {
-		string fileName = "player" + robotNumber + ".data";
+		string fileName = "Robot" + robotNumber + ".data";
 		string path = Path.Combine(Application.persistentDataPath, fileName);
+        //Debug.Log("caminh: " + Application.persistentDataPath);
 
-		if (!File.Exists(path))
+        if (!File.Exists(path))
 			throw new FileNotFoundException("Player data not found");
 
 		BinaryFormatter formatter = new BinaryFormatter();
