@@ -8,13 +8,13 @@ public class CameraController : MonoBehaviour {
 	public float rightOffset = 6.0f;
 	
 	private Camera cam;
-	private GameObject[] robots;
+	private List<GameObject> robots;
 
 	// Start is called before the first frame update
 	void Start() {
 		cam = Camera.main;
-		robots = GameObject.FindGameObjectsWithTag("Friend");
-		Debug.Log("TAMANHO: " + robots.Length);
+		GameObject[] robotsArray = GameObject.FindGameObjectsWithTag("Friend");
+		robots = new List<GameObject>(robotsArray);
 	}
 
 	// Update is called once per frame
@@ -24,9 +24,13 @@ public class CameraController : MonoBehaviour {
 
 	private float MaisDistante() {
 		float x = float.MinValue;
-		for (int i = 0; i < robots.Length; ++i) {
-			if (robots[i].transform.position.x > x)
-				x = robots[i].transform.position.x;
+		foreach (GameObject robot in robots) {
+			if (robot == null) {
+				robots.Remove(robot);
+				return MaisDistante();
+			}
+			else if (robot.transform.position.x > x)
+				x = robot.transform.position.x;
 		}
 
 		return x;
