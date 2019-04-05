@@ -163,10 +163,10 @@ public class RobotCode : MonoBehaviour {
             agent.destination = dest;   // Caso contrário, seta o destino do agent
             Anima.SetBool("IsMoving", true);    // E a animação para movimentação
 
-            if (this.transform.parent.position.x >= EnemyPosition.x) {
-                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
+            if (this.transform.position.x >= EnemyPosition.x) {
                 this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             }
 
             // if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
@@ -197,23 +197,30 @@ public class RobotCode : MonoBehaviour {
             print("Eu, " + gameObject.name + " errei");
         }
 
-        Anima.SetBool("Attack", false);
         if(hitColliders.Length > 0){
-            hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual -= Dano;
-            if(hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual <= 0){
-                hitColliders[0].transform.GetComponent<RobotCode>().Tchakabuuum();
+            RobotCode eneRob = hitColliders[0].transform.GetComponent<RobotCode>();
+            eneRob.VidaAtual -= Dano;
+            if(eneRob.VidaAtual <= 0){
+                Inimigos.Remove(eneRob);
+                eneRob.Tchakabuuum();
             }
             hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
         }
-        
+        Anima.SetBool("Attack", false);
     }
 
     public void ApplyHeal(){
+        print("APLICA HEAL POHA!");
     	LayerMask mask = 1 << this.gameObject.layer;
-    	Collider[] hitColliders = Physics.OverlapBox(Chave.position, transform.localScale/2, Quaternion.identity, mask);
+        Vector3 dir = AllyPosition - this.transform.position;
+        dir = dir.normalized;
+        Vector3 distanciaChave = this.transform.position - Chave.position;
+        float alcance = distanciaChave.magnitude;
+        Vector3 hitbox = (dir*alcance) + this.transform.position;
+    	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
 
         if(hitColliders.Length > 0){
-        	hitColliders[0].GetComponent<Alive>().lifes += 1.0f;
+        	hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual += DanoHeal;
             hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Healed");
         }
         Anima.SetBool("Heal", false);
@@ -222,15 +229,20 @@ public class RobotCode : MonoBehaviour {
     public void ApplyLaserBeam(){
     	GameObject laser = Instantiate(LaserBeam, LaserPos.position, Quaternion.identity) as GameObject;
     	laser.transform.localScale = transform.localScale;
-    	laser.GetComponent<Laser>().target = Alvo;
-        laser.GetComponent<Laser>().mask = (1 << this.gameObject.layer);
-        laser.GetComponent<Laser>().mask |= (1 << 11);
-        laser.GetComponent<Laser>().mask = ~laser.GetComponent<Laser>().mask;
+        Laser ls = laser.GetComponent<Laser>();
+    	ls.target = Alvo;
+        ls.mask = (1 << this.gameObject.layer);
+        ls.mask |= (1 << 11);
+        ls.mask |= (1 << 0);
+        ls.mask = ~ls.mask;
+
         Anima.SetBool("Laser", false);
     }
 
     public void Tchakabuuum(){
         Anima.enabled = false;
+        agent.enabled = false;
+        gameObject.layer = 0;
         
         SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer piece in sprites){
