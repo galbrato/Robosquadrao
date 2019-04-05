@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    public List <RobotCode> adversarios;
+    private RobotCode my_robot;
     public float raio_Sensor;
     private SphereCollider myCollider;
     // Start is called before the first frame update
     void Start()
     {
-        adversarios = new List<RobotCode>();
+        my_robot = transform.parent.GetComponent<RobotCode>();
         myCollider = GetComponent<SphereCollider>();
         myCollider.radius = raio_Sensor;
     }
 
     // Update is called once per frame
-    void Update()
-    { 
+    void Update(){
+        
     }
 
     void OnTriggerEnter(Collider other){
-        if((other.gameObject.layer != gameObject.transform.parent.gameObject.layer) && other.gameObject.layer != 11){
-            adversarios.Add(other.gameObject.GetComponent<RobotCode>());
+        if((other.gameObject.layer != transform.parent.gameObject.layer) && (other.gameObject.layer == 8 || other.gameObject.layer == 9)){
+            my_robot.Inimigos.Add(other.gameObject.GetComponent<RobotCode>());
+        }
+
+        if(other.gameObject.layer == transform.parent.gameObject.layer){
+            my_robot.Aliados.Add(other.gameObject.GetComponent<RobotCode>());
         }
     }
 
     void OnTriggerExit(Collider other){
-        if((other.gameObject.layer != gameObject.transform.parent.gameObject.layer) && other.gameObject.layer != 11){
-            adversarios.Remove(other.gameObject.GetComponent<RobotCode>());
+        if((other.gameObject.layer != transform.parent.gameObject.layer) && (other.gameObject.layer == 8 || other.gameObject.layer == 9)){
+            my_robot.Inimigos.Remove(other.gameObject.GetComponent<RobotCode>());
+        }
+
+        if(other.gameObject.layer == transform.parent.gameObject.layer){
+            my_robot.Aliados.Remove(other.gameObject.GetComponent<RobotCode>());
         }
     }
 }
