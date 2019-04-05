@@ -24,7 +24,4 @@ public class CursorBehaviour : MonoBehaviour{
             }
         }
     }
-    private void OnDestroy() {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA TO SENDO DESTRUIDO SOCORRO");
-    }
 }
