@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class RobotCode : MonoBehaviour {
     private Rigidbody rigid;
     private NavMeshAgent agent;
-    private int side = 1;   // Marca para qual lado o robô está virado
 
     //Lista de variaveis, "Memoria" do robo
     public List<Variavel> VarList;
@@ -30,7 +29,6 @@ public class RobotCode : MonoBehaviour {
     
     //Atributos do robo
     public float Speed = 10.0f;
-    public float StopingDistance = 0.1f;
     public float VidaMax =10;
     public float VidaAtual =10;
     public float Dano =1;
@@ -42,11 +40,26 @@ public class RobotCode : MonoBehaviour {
     float AtackDelayCouter;
     float HealDelayCouter;
     float LaserDelayCouter;
+    float StopingDistance;
     // Informacoes do Inimigo
     private Vector3 EnemyPosition;
     //Informacoes do Aliado
     private Vector3 AllyPosition;
 
+
+    public Vector3 robotPosition {     // Abstração da posição do robô
+        get {
+            return this.transform.parent.position;
+        }
+    }
+    private Vector3 robotScale {        // Abstração da escala local do robô
+        get {
+            return this.transform.parent.localScale;
+        }
+        set {
+            this.transform.parent.localScale = value;
+        }
+    }
 
     void Start() {
         VidaAtual = VidaMax;
@@ -64,6 +77,7 @@ public class RobotCode : MonoBehaviour {
         agent = transform.parent.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
+        StopingDistance = agent.stoppingDistance;
     }
     
     
@@ -87,14 +101,17 @@ public class RobotCode : MonoBehaviour {
         
     }
 
+    private void FlipRobot(Vector3 actionDirection) {   // Corrige a posição na qual o robô está olhando
+        float scaleX = Mathf.Abs(robotScale.x);         // Pega a escala x original do objeto (para evitar resize)
+        float novoX = (actionDirection.x - robotPosition.x > 0) ? -scaleX : scaleX; // Verifica se a direção de ação está para
+        // a direita ou esquerda do personagem, usando o negativo para flipar para o lado certo
+        robotScale = new Vector3(novoX, robotScale.y, robotScale.z);    // Configura as escalas do robô
+    }
+
     public bool Attack(Vector3 dir) {
         EnemyPosition = dir;
         if (AtackDelayCouter >= AtackDelay) {
-            if (this.transform.parent.position.x >= EnemyPosition.x) {
-                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
-                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-            }
+            FlipRobot(dir);
 
             AtackDelayCouter = 0;
             Anima.SetBool("Attack", true);
@@ -106,11 +123,7 @@ public class RobotCode : MonoBehaviour {
     public bool Fix(Vector3 dir) {
         AllyPosition = dir;
         if(HealDelayCouter >= AtackDelay){
-            if (this.transform.parent.position.x >= AllyPosition.x) {
-                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
-                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-            }
+            FlipRobot(dir);
 
             HealDelayCouter = 0;
             Anima.SetBool("Heal", true);
@@ -122,11 +135,7 @@ public class RobotCode : MonoBehaviour {
     public bool Laser(Vector3 dir) {
         EnemyPosition = dir;
         if(LaserDelayCouter >= LaserDelay){
-            if (this.transform.parent.position.x >= EnemyPosition.x) {
-                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
-                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-            }
+            FlipRobot(dir);
             
             LaserDelayCouter = 0;
             Anima.SetBool("Laser", true);
@@ -141,21 +150,14 @@ public class RobotCode : MonoBehaviour {
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
             Anima.SetBool("IsMoving", false);   // Muda a animação para Idle
-            rigid.velocity = new Vector3(0,0,0);
+            //rigid.velocity = new Vector3(0,0,0);
+            agent.isStopped = true;
         } else {
+            agent.isStopped = false;
             agent.destination = dest;   // Caso contrário, seta o destino do agent
             Anima.SetBool("IsMoving", true);    // E a animação para movimentação
 
-            if (this.transform.parent.position.x >= EnemyPosition.x) {
-                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            } else {
-                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-            }
-
-            // if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
-            //     side *= -1;
-            //     transform.parent.localScale = new Vector3(transform.parent.localScale.x * -1.0f, transform.parent.localScale.y, transform.parent.localScale.z);
-            // }
+            FlipRobot(dest);
         }
         return false;
     }
