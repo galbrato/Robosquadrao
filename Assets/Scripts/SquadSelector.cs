@@ -22,7 +22,7 @@ public class SquadSelector : GridLayoutResources {
 			Debug.Log("Argument cant be null! " + e);
 		}
 
-		EditPrefabs(prefabs, configuracoes, scripts);   // Modifica os botões de nível adicionados ao grid
+		//EditPrefabs(prefabs, configuracoes, scripts);   // Modifica os botões de nível adicionados ao grid
 
 		buttonsUnlocked = Player.robotsUnlocked;  // Lê o nivel atual do player para saber até onde já foi desbloqueado
 		MakesButtonInteractible(gameObject, Mathf.Min(buttonsUnlocked, elementQuantity));   // Permite interação com os botões permitidos
@@ -44,10 +44,10 @@ public class SquadSelector : GridLayoutResources {
 		for (int i = 0; i < objetos.Length; i++) {
 
 			Button botao = objetos[i].GetComponent<Button>();
-			GameObject temp = configs[i];
+			//GameObject temp = configs[i];
 			ConfigRobos scriptTemp = scripts[i];
 			botao.onClick.AddListener(delegate {
-				temp.SetActive(true);
+				//temp.SetActive(true);
 				//scriptTemp.Load(); 
 			});    // Adiciona o evento para ativar a tela de config
 
