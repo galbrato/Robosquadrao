@@ -10,10 +10,19 @@ public class HitOrMiss : MonoBehaviour
 
     public GameObject Win;
     public GameObject Lose;
+    public bool DestruirIni;
+    public bool ChegarObj;
+    private SphereCollider col;
+    private bool MortosIni = false;
     void Start()
     {
         Friends.AddRange(GameObject.FindGameObjectsWithTag("Friend"));
         Enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        col = GetComponent<SphereCollider>();
+
+        if(ChegarObj == true){
+            col.enabled = true;
+        }
     }
 
     // Update is called once per frame
@@ -26,9 +35,23 @@ public class HitOrMiss : MonoBehaviour
             Lose.SetActive(true);
         }
 
-        if (Enemies.Count == 0){
-            Win.SetActive(true);
+        if(DestruirIni == true){
+            if (Enemies.Count == 0){
+                if(ChegarObj == false){
+                   Win.SetActive(true);
+                }else{
+                    MortosIni = true;
+                }
+            }
         }
+    }
 
+    void OnTriggerEnter(Collider other){
+        print("Entrou");
+        if(other.gameObject.layer == 8){
+            if((DestruirIni == true && MortosIni == true) || DestruirIni == false){
+                Win.SetActive(true);
+            }
+        }
     }
 }
