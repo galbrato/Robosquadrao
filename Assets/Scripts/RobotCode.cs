@@ -90,10 +90,10 @@ public class RobotCode : MonoBehaviour {
     public bool Attack(Vector3 dir) {
         EnemyPosition = dir;
         if (AtackDelayCouter >= AtackDelay) {
-            if (this.transform.position.x >= EnemyPosition.x) {
-                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            if (this.transform.parent.position.x >= EnemyPosition.x) {
+                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             } else {
-                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             }
 
             AtackDelayCouter = 0;
@@ -106,10 +106,10 @@ public class RobotCode : MonoBehaviour {
     public bool Fix(Vector3 dir) {
         AllyPosition = dir;
         if(HealDelayCouter >= AtackDelay){
-            if (this.transform.position.x >= AllyPosition.x) {
-                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            if (this.transform.parent.position.x >= AllyPosition.x) {
+                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             } else {
-                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             }
 
             HealDelayCouter = 0;
@@ -122,10 +122,10 @@ public class RobotCode : MonoBehaviour {
     public bool Laser(Vector3 dir) {
         EnemyPosition = dir;
         if(LaserDelayCouter >= LaserDelay){
-            if (this.transform.position.x >= EnemyPosition.x) {
-                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            if (this.transform.parent.position.x >= EnemyPosition.x) {
+                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             } else {
-                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             }
             
             LaserDelayCouter = 0;
@@ -136,7 +136,7 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool WalkTo(Vector3 dest) {
-        Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
+        Vector3 movement = dest - transform.parent.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
@@ -146,16 +146,16 @@ public class RobotCode : MonoBehaviour {
             agent.destination = dest;   // Caso contrário, seta o destino do agent
             Anima.SetBool("IsMoving", true);    // E a animação para movimentação
 
-            if (this.transform.position.x >= EnemyPosition.x) {
-                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            if (this.transform.parent.position.x >= EnemyPosition.x) {
+                this.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             } else {
-                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                this.transform.parent.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             }
 
-            if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
-                side *= -1;
-                transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
-            }
+            // if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
+            //     side *= -1;
+            //     transform.parent.localScale = new Vector3(transform.parent.localScale.x * -1.0f, transform.parent.localScale.y, transform.parent.localScale.z);
+            // }
         }
         return false;
     }
