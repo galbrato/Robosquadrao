@@ -34,6 +34,9 @@ public class CodeManager : MonoBehaviour{
 
     private void InsertStatment(StatementHolder SH, Statement S) {
         Debug.Log("inserindo no " + SH.name + " o " + S.ToString());
+        if (S.ToString().Contains("Vazio")) {
+            return;
+        }
         SH._OriginalStatement = S;
         GameObject UI = StatementsUIPrefabs.Find((GameObject g) => { return S.ToString().Contains(g.name); });
         if (UI == null) {
@@ -56,16 +59,20 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("Erro!, Codigo vazio");
         }
         //Tirar o cursor de filho apra náo ser deletado ao limapr a interface
-        Cursor.transform.SetParent(null);
+        Cursor.transform.parent = _CodeContent.parent;
+        Debug.Log("Cursor Parent: " + Cursor.transform.parent);
         //Limpando a interface de codigo
         for (int i = 0; i < _CodeContent.childCount; i++) {
             Debug.Log(_CodeContent.name + " tem " +  _CodeContent.childCount + " deletando o " + _CodeContent.GetChild(i).gameObject.name);
             Destroy(_CodeContent.GetChild(i).gameObject);
         }
+        StatementHolder aux = new StatementHolder();
         foreach (Statement s in _ActualCode.Code) {
             GameObject NewLine = Instantiate(LinePrefab, _CodeContent);
-            InsertStatment(NewLine.GetComponent<StatementHolder>(), s);
+            aux = NewLine.GetComponent<StatementHolder>();
+            InsertStatment(aux, s);
         }
+        if(aux != null)aux._SelectForReal();
     }
 
     public void _InsertLine() {
