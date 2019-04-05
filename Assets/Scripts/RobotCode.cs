@@ -82,6 +82,9 @@ public class RobotCode : MonoBehaviour {
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
         StopingDistance = agent.stoppingDistance;
+
+        Inicio = transform.parent.position;
+        Objetivo = Alvo.position;
     }
     
     
@@ -217,11 +220,11 @@ public class RobotCode : MonoBehaviour {
         Anima.SetBool("Heal", false);
     }
 
-    public void ApplyLaserBeam(){
+    public void ApplyLaserBeam(Vector3 target){
     	GameObject laser = Instantiate(LaserBeam, LaserPos.position, Quaternion.identity) as GameObject;
     	laser.transform.localScale = transform.localScale;
         Laser ls = laser.GetComponent<Laser>();
-    	ls.target = Alvo;
+    	ls.target = target;
         ls.mask = (1 << this.gameObject.layer);
         ls.mask |= (1 << 11);
         ls.mask |= (1 << 0);
