@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    public RobotCode my_robot;
+    private RobotCode my_robot;
     public float raio_Sensor;
     private SphereCollider myCollider;
     // Start is called before the first frame update

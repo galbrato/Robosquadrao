@@ -59,9 +59,9 @@ public class RobotCode : MonoBehaviour {
         Code = new List<Statement>();
 
         Anima = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
+        rigid = transform.parent.GetComponent<Rigidbody>();
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = transform.parent.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
 
@@ -157,11 +157,18 @@ public class RobotCode : MonoBehaviour {
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
-            this.GetComponent<Animator>().SetBool("IsMoving", false);   // Muda a animação para Idle
+            Anima.SetBool("IsMoving", false);   // Muda a animação para Idle
             rigid.velocity = new Vector3(0,0,0);
         } else {
             agent.destination = dest;   // Caso contrário, seta o destino do agent
-            this.GetComponent<Animator>().SetBool("IsMoving", true);    // E a animação para movimentação
+            Anima.SetBool("IsMoving", true);    // E a animação para movimentação
+
+            if (this.transform.position.x >= EnemyPosition.x) {
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            } else {
+                this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+
             if (movement.x * side > 0) {    // Verifica se o movimento possui a mesma direção da sprite, caso contrário flipa a sprite
                 side *= -1;
                 transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
@@ -182,6 +189,13 @@ public class RobotCode : MonoBehaviour {
         float alcance = distanciaMao.magnitude;
         Vector3 hitbox = (dir*alcance) + this.transform.position;
     	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
+
+        foreach(Collider hit in hitColliders){
+            print("Eu, " + gameObject.name + " Nome do que eu acertei" + hit.gameObject.name);
+        }
+        if(hitColliders.Length <= 0){
+            print("Eu, " + gameObject.name + " errei");
+        }
 
         Anima.SetBool("Attack", false);
         if(hitColliders.Length > 0){
@@ -216,16 +230,15 @@ public class RobotCode : MonoBehaviour {
     }
 
     public void Tchakabuuum(){
-        GetComponent<Animator>().enabled = false;
+        Anima.enabled = false;
         
         SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer piece in sprites){
             Rigidbody rig = piece.gameObject.AddComponent<Rigidbody>() as Rigidbody;
-            rig.useGravity = true;
             Vector3 direction = Random.insideUnitCircle.normalized;
             float rand = Random.Range(20,50);
             rig.AddForce(direction*rand, ForceMode.Impulse);
         }
-        Destroy(gameObject, 2);
+        Destroy(transform.parent.gameObject, 2);
     }
 }

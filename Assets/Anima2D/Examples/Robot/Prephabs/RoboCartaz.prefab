@@ -59,6 +59,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284931281255571403}
+  - component: {fileID: 2191784811352224701}
+  - component: {fileID: 807189788013814523}
+  - component: {fileID: 2912782759789135868}
+  - component: {fileID: 463755505199046799}
   m_Layer: 8
   m_Name: Pivot
   m_TagString: Untagged
@@ -92,6 +96,83 @@ Transform:
   m_Father: {fileID: 7258952494298671793}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2191784811352224701
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531386544933926655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25bc9bf3417544316bedd7b7a945f590, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &807189788013814523
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531386544933926655}
+  m_Enabled: 1
+  m_SortingLayerID: -1835506309
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+--- !u!114 &2912782759789135868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531386544933926655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4247a57a92f4c9c47aea7651bf4835ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aliados: []
+  Inimigos: []
+  Objetivo: {x: 0, y: 0, z: 0}
+  Inicio: {x: 0, y: 0, z: 0}
+  Anima: {fileID: 0}
+  Mao: {fileID: 7258952496098430395}
+  Chave: {fileID: 7258952495788232366}
+  LaserPos: {fileID: 392580383753999830}
+  Alvo: {fileID: 0}
+  LaserBeam: {fileID: 2471695152262148062, guid: 5c820f2ea50d6f84e92959f0b932a773,
+    type: 3}
+  Speed: 10
+  StopingDistance: 3
+  VidaMax: 10
+  VidaAtual: 10
+  Dano: 1
+  AtackDelay: 1
+  DanoHeal: 1
+  HealDelay: 1
+  DanoLaser: 1
+  LaserDelay: 1
+--- !u!136 &463755505199046799
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531386544933926655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 4.8
+  m_Direction: 1
+  m_Center: {x: -0.45, y: 1.86, z: 0}
 --- !u!1 &3217896248747348026
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,10 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258952494298671793}
-  - component: {fileID: 7258952494298671803}
-  - component: {fileID: 7258952494298671806}
-  - component: {fileID: 7258952494298671805}
-  - component: {fileID: 7258952496112586374}
+  - component: {fileID: 6807939377219219236}
   - component: {fileID: 3540992031277194722}
   m_Layer: 8
   m_Name: RoboCartaz
@@ -158,26 +236,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7258952494298671803
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7258952494298671794}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25bc9bf3417544316bedd7b7a945f590, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &7258952494298671806
+--- !u!54 &6807939377219219236
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,50 +252,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!210 &7258952494298671805
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7258952494298671794}
-  m_Enabled: 1
-  m_SortingLayerID: -1835506309
-  m_SortingLayer: 1
-  m_SortingOrder: 0
---- !u!114 &7258952496112586374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7258952494298671794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4247a57a92f4c9c47aea7651bf4835ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Aliados: []
-  Inimigos: []
-  Objetivo: {x: 0, y: 0, z: 0}
-  Inicio: {x: 0, y: 0, z: 0}
-  Anima: {fileID: 7258952494298671803}
-  Mao: {fileID: 7258952496098430395}
-  Chave: {fileID: 7258952495788232366}
-  LaserPos: {fileID: 392580383753999830}
-  Alvo: {fileID: 0}
-  LaserBeam: {fileID: 2471695152262148062, guid: 5c820f2ea50d6f84e92959f0b932a773,
-    type: 3}
-  Speed: 10
-  StopingDistance: 1
-  VidaMax: 10
-  VidaAtual: 10
-  Dano: 1
-  AtackDelay: 1
-  DanoHeal: 1
-  HealDelay: 1
-  DanoLaser: 1
-  LaserDelay: 1
 --- !u!195 &3540992031277194722
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3724,7 +3739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7529063cfe36647b8a01f4b7b7ed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  my_robot: {fileID: 0}
   raio_Sensor: 10
 --- !u!1 &8293914670425934429
 GameObject:
