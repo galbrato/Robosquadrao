@@ -65,6 +65,11 @@ public class RobotCode : MonoBehaviour {
     }
 
     void Start() {
+        //Pegando os dados do robo do arquivo
+        RobotData Data = SaveSystem.LoadRobot(myID);
+        Code = Data.Code;
+        myName = Data.Name;
+
         VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         HealDelayCouter = HealDelay;
