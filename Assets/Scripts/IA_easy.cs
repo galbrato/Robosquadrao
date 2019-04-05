@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class IA_easy : MonoBehaviour
 {
-    public RobotCode myRobotCode;
-    public Rigidbody rigid;
+    private RobotCode myRobotCode;
+    private Rigidbody rigid;
+    private RobotCode alvo = null;
+    private float menor_dist;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +19,22 @@ public class IA_easy : MonoBehaviour
     // Update is called once per frame
     void Update(){
         if(myRobotCode.Inimigos.Count > 0){
-                myRobotCode.WalkTo(myRobotCode.Inimigos[0].transform.position);
-            
+                if(alvo == null){
+                    menor_dist = 8000.0f;
+                    foreach(RobotCode robot in myRobotCode.Inimigos){
+                        float dist = (robot.transform.position - myRobotCode.transform.position).magnitude;
+                        if(dist < menor_dist){
+                            menor_dist = dist;
+                            alvo = robot;
+                        }
+                    }
+                }
+
+                myRobotCode.WalkTo(alvo.transform.position);
+                
                 if(rigid.velocity == Vector3.zero){
-                    if(myRobotCode.Inimigos[0].VidaAtual > 0){
-                        myRobotCode.Attack(myRobotCode.Inimigos[0].transform.position);
+                    if(alvo.VidaAtual > 0){
+                        myRobotCode.Attack(alvo.transform.position);
                     }
                 }
         }else{
