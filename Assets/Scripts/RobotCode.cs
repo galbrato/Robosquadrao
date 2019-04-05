@@ -77,7 +77,6 @@ public class RobotCode : MonoBehaviour {
         ProgramCounter = 0;
 
         VarList = new List<Variavel>();
-        Code = new List<Statement>();
 
         Anima = GetComponent<Animator>();
 
@@ -105,14 +104,23 @@ public class RobotCode : MonoBehaviour {
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
-        /*
+        
         if (Code[ProgramCounter].Execute(this)) {
 
         } else {
             ProgramCounter = (ProgramCounter + 1) % Code.Count;
         }
-        */
-        
+
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            _PrintCode();
+        }
+    }
+
+    void _PrintCode() {
+        for (int i = 0; i < Code.Count; i++) {
+
+            Debug.Log("Linha[" + i + "]: " + Code[i].ToString());
+        }
     }
 
     private void FlipRobot(Vector3 actionDirection) {   // Corrige a posição na qual o robô está olhando
