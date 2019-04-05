@@ -35,7 +35,7 @@ public class ConfigRobos : MonoBehaviour {
 		robotNumber = int.Parse(numero);
 
 		defaultName += robotNumber;
-		Debug.Log("Nome padrão: " + defaultName);
+		//Debug.Log("Nome padrão: " + defaultName);
 	}
 
 	private void OnEnable() {

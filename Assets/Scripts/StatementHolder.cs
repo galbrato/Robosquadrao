@@ -6,9 +6,10 @@ public class StatementHolder : MonoBehaviour {
     public Statement _OriginalStatement;
     //public RectTransform _StatementUI;
     public CodeManager _CodeManager;
+
     // Start is called before the first frame update
     void Start() {
-        _CodeManager = FindObjectOfType<CodeManager>();
+        if(_CodeManager == null) _CodeManager = FindObjectOfType<CodeManager>();
     }
 
     // Update is called once per frame
@@ -20,12 +21,10 @@ public class StatementHolder : MonoBehaviour {
         _SelectForReal();
     }
     public bool _SelectForReal() {
-        
-        Debug.Log("Clico em " + name + " " + transform.childCount + " filhos");
+        if(_CodeManager == null) _CodeManager = FindObjectOfType<CodeManager>();
+
         StatementHolder[] holders = GetComponentsInChildren<StatementHolder>();
         if (holders.Length > 1) {
-
-            //Debug.Log(name + " filho:" + _StatementUI.name);
             //posicionar o cursor no meu filho se tiver espaço
             for (int i = 1; i < holders.Length; i++) {
                 if (holders[i]._SelectForReal()) {
@@ -37,6 +36,7 @@ public class StatementHolder : MonoBehaviour {
 
         } else {
             //posicionar o cursor em mim
+            _CodeManager.Cursor.rectTransform.SetParent(null);
             _CodeManager.Cursor.rectTransform.SetParent(transform);
             return true;
         }

@@ -64,26 +64,9 @@ public class RobotCode : MonoBehaviour {
         agent = transform.parent.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
-
-        IniciarComandosBasicos();
     }
-
-    void IniciarComandosBasicos() {
-        //Code.Add(new AlocaInteiro("i",0));
-        //Code.Add(new AndarAte(new Indexar(new RetornaVariavel("i"),RobotStatus.Posicao)));
-        Code.Add(new AndarAte(new RetornaGlobal(GlobalVar.Objetivo)));
-
-    }
-
-    void ComandosBasicos2() {
-        Se se = new Se();
-        Compare comp = new Compare();
-        comp.Operation = CompareOperator.Igual;
-        //comp.Parametro1 = new RetornaVariavel();
-        se.Parametro = comp;
-
-    }
-
+    
+    
     public bool acha(Variavel a) {
         return a.Label == "aaaa";
     }
