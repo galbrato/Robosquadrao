@@ -48,7 +48,7 @@ public class RobotCode : MonoBehaviour {
     private Vector3 AllyPosition;
 
 
-    void Start() {
+    void Start() { 
         VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         HealDelayCouter = HealDelay;
@@ -76,6 +76,9 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            _PrintCode();
+        }
         Vector3 temp = transform.position;
         temp.z = temp.y;
         transform.position = temp;
@@ -89,6 +92,13 @@ public class RobotCode : MonoBehaviour {
       //  } else {
         //    ProgramCounter = (ProgramCounter + 1) % Code.Count;
        // }
+    }
+
+    void _PrintCode() {
+        for (int i = 0; i < Code.Count; i++) {
+            
+            Debug.Log("Linha[" + i + "]: " + Code[i].ToString());
+        }
     }
 
     public bool Attack(Vector3 dir) {
