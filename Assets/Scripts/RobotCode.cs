@@ -64,6 +64,7 @@ public class RobotCode : MonoBehaviour {
         }
     }
 
+
     void Start() {
         //Pegando os dados do robo do arquivo
         RobotData Data = SaveSystem.LoadRobot(myID);
@@ -184,6 +185,14 @@ public class RobotCode : MonoBehaviour {
         return false;
     }
 
+    Vector3 hitbox = Vector3.zero;
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            Gizmos.DrawWireCube(hitbox, transform.localScale);
+    }
+
     public void ApplyDamage(){
         print("APLICA DANO POHA!");
     	LayerMask mask = (1 << this.gameObject.layer);
@@ -194,11 +203,11 @@ public class RobotCode : MonoBehaviour {
         dir = dir.normalized;
         Vector3 distanciaMao = this.transform.position - Mao.position;
         float alcance = distanciaMao.magnitude;
-        Vector3 hitbox = (dir*alcance) + this.transform.position;
+        hitbox = (dir*alcance) + this.transform.position;
     	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
 
         foreach(Collider hit in hitColliders){
-            print("Eu, " + gameObject.name + " Nome do que eu acertei" + hit.gameObject.name);
+            print("Eu, " + gameObject.name + " acertei o " + hit.transform.parent.name);
         }
         if(hitColliders.Length <= 0){
             print("Eu, " + gameObject.name + " errei");
