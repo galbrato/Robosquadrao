@@ -1303,6 +1303,11 @@ PrefabInstance:
       propertyPath: AtackDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2912782759789135868, guid: b11c36086b6f0b44db6933790436faaf,
+        type: 3}
+      propertyPath: Alvo
+      value: 
+      objectReference: {fileID: 846857257}
     - target: {fileID: 8532153705197494664, guid: b11c36086b6f0b44db6933790436faaf,
         type: 3}
       propertyPath: raio_Sensor
