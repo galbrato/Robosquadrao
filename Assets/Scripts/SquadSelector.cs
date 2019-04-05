@@ -40,7 +40,7 @@ public class SquadSelector : GridLayoutResources {
 		return configs;
 	}
 
-	protected void EditPrefabs(GameObject[] objetos, GameObject[] configs, ConfigRobos[] scripts) {
+	protected void EditPrefabs(GameObject[] objetos) {
 		for (int i = 0; i < objetos.Length; i++) {
 
 			Button botao = objetos[i].GetComponent<Button>();

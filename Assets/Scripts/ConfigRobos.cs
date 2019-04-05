@@ -43,7 +43,7 @@ public class ConfigRobos : MonoBehaviour {
 	}
 
 	public void Save() {
-		SaveSystem.SaveRobot(this);
+		//SaveSystem.SaveRobot(this);
 	}
 
 	public void Load() {
@@ -52,7 +52,7 @@ public class ConfigRobos : MonoBehaviour {
 		try {
 			RobotData data = SaveSystem.LoadRobot(robotNumber);
 
-			robotName = data.robotName;
+			robotName = data.Name;
 		} catch (System.IO.FileNotFoundException){
 			CreateNewSave();
 		}
@@ -65,15 +65,5 @@ public class ConfigRobos : MonoBehaviour {
 	public void LoadDefaultName() {
 		realRobotName = defaultName;
 		inputField.text = defaultName;
-	}
-}
-
-[System.Serializable]
-public class RobotData {
-
-	public string robotName;
-
-	public RobotData (ConfigRobos robot) {
-		robotName = robot.robotName;
 	}
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class RobotCode : MonoBehaviour {
+    public string myName = "Robo";
+    public int myID = 0;
+
     private Rigidbody rigid;
     private NavMeshAgent agent;
     private int side = 1;   // Marca para qual lado o robô está virado
@@ -77,21 +80,16 @@ public class RobotCode : MonoBehaviour {
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
         if (HealDelayCouter < HealDelay) HealDelayCouter += Time.deltaTime;
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
-
-        Inimigos.RemoveAll((RobotCode r) => {return r == null;});   
-    //    if (Code[ProgramCounter].Execute(this)) {
-
-      //  } else {
-        //    ProgramCounter = (ProgramCounter + 1) % Code.Count;
-       // }
         
-    }
+        Inimigos.RemoveAll((RobotCode r) => {return r == null;});
+        /*
+        if (Code[ProgramCounter].Execute(this)) {
 
-    void _PrintCode() {
-        for (int i = 0; i < Code.Count; i++) {
-            
-            Debug.Log("Linha[" + i + "]: " + Code[i].ToString());
+        } else {
+            ProgramCounter = (ProgramCounter + 1) % Code.Count;
         }
+        */
+        
     }
 
     public bool Attack(Vector3 dir) {

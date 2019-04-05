@@ -8,7 +8,7 @@ public class CodeManager : MonoBehaviour{
     public Text Cursor;
     public Transform _CodeContent;
    
-    public RobotCode _ActualCode;
+    private RobotData _ActualRobot;
 
     public GameObject LinePrefab;
 
@@ -17,12 +17,7 @@ public class CodeManager : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
-        //_CodeContent = transform.Find("Content");
-        int NumberOfLines = GameObject.Find("Line").transform.parent.childCount;
-        _ActualCode.Code = new List<Statement>(NumberOfLines);
-        for (int i = 0; i < NumberOfLines; i++) {
-            _ActualCode.Code.Add(new Vazio());
-        }
+       
     }
 
     // Update is called once per frame
@@ -30,6 +25,30 @@ public class CodeManager : MonoBehaviour{
         if (Input.GetKeyUp(KeyCode.R)) {
             _PutCodeOnUI();
         }
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            _PrintCode();
+        }
+    }
+
+    public void _LoadRobot(int ID) {
+        try {
+            _ActualRobot = SaveSystem.LoadRobot(ID);
+        } catch (System.IO.FileNotFoundException) {
+            Debug.Log("Robo " + ID + " inexistente criando novo");
+            _ActualRobot = new RobotData(ID);
+        }
+    }
+
+    public void _SaveRobot() {
+        if (_ActualRobot != null) {
+            SaveSystem.SaveRobot(_ActualRobot);
+        }
+    }
+
+    public void _StartEditRobot(int robotID) {
+        gameObject.SetActive(true);
+        _LoadRobot(robotID);
+        _PutCodeOnUI();
     }
 
     private void InsertStatment(StatementHolder SH, Statement S) {
@@ -55,19 +74,22 @@ public class CodeManager : MonoBehaviour{
     }
 
     public void _PutCodeOnUI() {
-        if (_ActualCode.Code.Count <= 0) {
-            Debug.LogError("Erro!, Codigo vazio");
-        }
         //Tirar o cursor de filho apra náo ser deletado ao limapr a interface
-        Cursor.transform.parent = _CodeContent.parent;
-        Debug.Log("Cursor Parent: " + Cursor.transform.parent);
+        Cursor.transform.parent = null;
+
         //Limpando a interface de codigo
         for (int i = 0; i < _CodeContent.childCount; i++) {
-            Debug.Log(_CodeContent.name + " tem " +  _CodeContent.childCount + " deletando o " + _CodeContent.GetChild(i).gameObject.name);
             Destroy(_CodeContent.GetChild(i).gameObject);
         }
+        _CodeContent.DetachChildren();
+
+        if (_ActualRobot.Code.Count <= 0) {
+            Debug.LogError("Codigo vazio");
+        } 
+
+        // Inserindo o codigo na interface
         StatementHolder aux = new StatementHolder();
-        foreach (Statement s in _ActualCode.Code) {
+        foreach (Statement s in _ActualRobot.Code) {
             GameObject NewLine = Instantiate(LinePrefab, _CodeContent);
             aux = NewLine.GetComponent<StatementHolder>();
             InsertStatment(aux, s);
@@ -80,7 +102,7 @@ public class CodeManager : MonoBehaviour{
         while (!t.name.Contains("Line")) {
             t = t.parent;
         }
-        _ActualCode.Code.Insert(t.GetSiblingIndex() + 1, new Vazio());
+        _ActualRobot.Code.Insert(t.GetSiblingIndex() + 1, new Vazio());
         GameObject NewLine = Instantiate(LinePrefab, t.parent);
         NewLine.transform.SetSiblingIndex(t.GetSiblingIndex() + 1);
         NewLine.name = "Line " + NewLine.transform.GetSiblingIndex();
@@ -112,7 +134,7 @@ public class CodeManager : MonoBehaviour{
             if (!SH.name.Contains("Line")) {
                 Debug.LogError("ERRO! " +name + " não é um uma linha e não é um parameter");
             }
-            _ActualCode.Code[SH.transform.GetSiblingIndex()] = SH._OriginalStatement;
+            _ActualRobot.Code[SH.transform.GetSiblingIndex()] = SH._OriginalStatement;
         }
         
         //Inserir na UI
@@ -143,7 +165,7 @@ public class CodeManager : MonoBehaviour{
                 if (ParameterFather.name.Contains("Line")) {
                     int i = ParameterFather.transform.GetSiblingIndex();
                     //Debug.Log(ParameterFather.name + " remover" + i);
-                    _ActualCode.Code[i] = new Vazio();
+                    _ActualRobot.Code[i] = new Vazio();
                 } else {// Deletar da lista de parametros do pai
                     StatementHolder FatherFather = ParameterFather.transform.parent.GetComponentInParent<StatementHolder>();
                     FatherFather._OriginalStatement.Parametros[0] = null;
@@ -160,8 +182,8 @@ public class CodeManager : MonoBehaviour{
                 //Linha com statement, deletar o irmão do cursor
                 StatementHolder Line = t.GetComponent<StatementHolder>();
                 //Removendo o statment da linah do codigo
-                int i = _ActualCode.Code.IndexOf(Line._OriginalStatement);
-                _ActualCode.Code[i] = new Vazio();
+                int i = _ActualRobot.Code.IndexOf(Line._OriginalStatement);
+                _ActualRobot.Code[i] = new Vazio();
                 //Tirando a referencia do do codigo do StatementHolder da linha
                 Line._OriginalStatement = null;
                 //Deletando o statement
@@ -175,7 +197,7 @@ public class CodeManager : MonoBehaviour{
                 if (i < 0) i = t.GetSiblingIndex() + 1;
                 t.parent.GetChild(i).GetComponent<StatementHolder>()._SelectForReal();
                 //Removedo a linha no codigo
-                _ActualCode.Code.RemoveAt(t.GetSiblingIndex());
+                _ActualRobot.Code.RemoveAt(t.GetSiblingIndex());
                 //Deletando a linha
                 Destroy(t.gameObject);
             } else {
@@ -185,4 +207,33 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
     }
+
+    void _PrintCode() {
+        for (int i = 0; i < _ActualRobot.Code.Count; i++) {
+
+            Debug.Log("Linha[" + i + "]: " + _ActualRobot.Code[i].ToString());
+        }
+    }
+
 }
+
+[System.Serializable]
+public class RobotData {
+    public int Id;
+    public string Name;
+    public List<Statement> Code;
+
+    public RobotData(RobotCode robot) {
+        Name = robot.myName;
+        Id = robot.myID;
+        Code = robot.Code;
+    }
+
+    public RobotData(int Id) {
+        this.Id = Id;
+        Name = "Robo";
+        Code = new List<Statement>();
+        Code.Add(new Vazio());
+    }
+}
+
