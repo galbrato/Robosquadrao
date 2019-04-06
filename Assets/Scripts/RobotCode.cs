@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;   
 
 public class RobotCode : MonoBehaviour {
-    public string myName = "Robo";
+    public string myName = "Rola";
     public int myID = 0;
 
     private Rigidbody rigid;
@@ -40,6 +41,8 @@ public class RobotCode : MonoBehaviour {
     public float HealDelay = 1;
     public float DanoLaser = 1;
     public float LaserDelay = 1;
+    public Image HealthBar;
+    public Text nome_text;
     float AtackDelayCouter;
     float HealDelayCouter;
     float LaserDelayCouter;
@@ -85,6 +88,8 @@ public class RobotCode : MonoBehaviour {
 
         Inicio = transform.parent.position;
         Objetivo = Alvo.position;
+
+        nome_text.text = myName;
     }
     
     
@@ -108,6 +113,7 @@ public class RobotCode : MonoBehaviour {
         }
         */
         
+        HealthBar.fillAmount = VidaAtual/VidaMax;
     }
 
     private void FlipRobot(Vector3 actionDirection) {   // Corrige a posição na qual o robô está olhando
