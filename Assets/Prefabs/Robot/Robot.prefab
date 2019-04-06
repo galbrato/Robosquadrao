@@ -349,7 +349,7 @@ Transform:
   - {fileID: 1497905167}
   - {fileID: 8812818853885625466}
   m_Father: {fileID: 7630719192129390890}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5252662753223120405
 Animator:
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.6303456
+  m_Length: 0.63034546
   m_ChildTransform: {fileID: 7630719192132290339}
   m_AttachedIK: {fileID: 7630719193903377878}
 --- !u!1 &7630719192129390889
@@ -542,8 +542,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2532264531976155575}
   - {fileID: 2017779607522597624}
+  - {fileID: 2532264531976155575}
   - {fileID: 310172583987747380}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.819733
+  m_Length: 0.81973326
   m_ChildTransform: {fileID: 7630719193630017577}
   m_AttachedIK: {fileID: 7630719193585795471}
 --- !u!1 &7630719192353365239
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0744869
+  m_Length: 1.0744871
   m_ChildTransform: {fileID: 7630719192322751246}
   m_AttachedIK: {fileID: 7630719193585795471}
 --- !u!1 &7630719192956529568
@@ -2584,7 +2584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.9925896
+  m_Length: 0.99258983
   m_ChildTransform: {fileID: 7630719193655447279}
   m_AttachedIK: {fileID: 7630719192970557388}
 --- !u!1 &7630719193172224465
@@ -3095,7 +3095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0658736
+  m_Length: 1.0658737
   m_ChildTransform: {fileID: 7630719193499902445}
   m_AttachedIK: {fileID: 7630719193284223048}
 --- !u!1 &7630719193499902444
@@ -3145,7 +3145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.81959766
+  m_Length: 0.81959796
   m_ChildTransform: {fileID: 7630719192470818753}
   m_AttachedIK: {fileID: 7630719193284223048}
 --- !u!1 &7630719193526869760
@@ -3465,7 +3465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.63034606
+  m_Length: 0.63034666
   m_ChildTransform: {fileID: 7630719192464045926}
   m_AttachedIK: {fileID: 7630719192970557388}
 --- !u!1 &7630719193903377877
@@ -4150,7 +4150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7630719192129390890}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &7370441057108217070
 SphereCollider:
