@@ -45,6 +45,7 @@ public class SquadSelector : GridLayoutResources {
 
 			Button botao = objetos[i].GetComponent<Button>();
 			//GameObject temp = configs[i];
+			//GameObject temp = configs[i];
 			ConfigRobos scriptTemp = scripts[i];
 			botao.onClick.AddListener(delegate {
 				//temp.SetActive(true);

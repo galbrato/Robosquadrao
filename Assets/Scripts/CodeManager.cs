@@ -7,8 +7,10 @@ public class CodeManager : MonoBehaviour{
     //Cursos e variaveis para fazer o cursor piscar
     public Text Cursor;
     public Transform _CodeContent;
-   
-    private RobotData _ActualRobot;
+	public InputField inputField;
+
+
+    public RobotData _ActualRobot;
 
     public GameObject LinePrefab;
 
@@ -17,7 +19,6 @@ public class CodeManager : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
-       
     }
 
     // Update is called once per frame
@@ -41,6 +42,7 @@ public class CodeManager : MonoBehaviour{
 
     public void _SaveRobot() {
         if (_ActualRobot != null) {
+            _ActualRobot.Name = inputField.text;
             SaveSystem.SaveRobot(_ActualRobot);
         }
     }
@@ -49,10 +51,10 @@ public class CodeManager : MonoBehaviour{
         gameObject.SetActive(true);
         _LoadRobot(robotID);
         _PutCodeOnUI();
+        inputField.text = _ActualRobot.Name;
     }
 
     private void InsertStatment(StatementHolder SH, Statement S) {
-        Debug.Log("inserindo no " + SH.name + " o " + S.ToString());
         if (S.ToString().Contains("Vazio")) {
             return;
         }
@@ -147,7 +149,6 @@ public class CodeManager : MonoBehaviour{
 
     public void _RemoveCode() {
         Transform t = Cursor.transform.parent;
-        Debug.Log("Caso : "+t.name + " childs: " + t.childCount);
 
         if (t.name.Contains("Parameter")) {
             if (t.childCount == 2) {
@@ -164,7 +165,6 @@ public class CodeManager : MonoBehaviour{
                 // Deletar da lista de codigo se estiver na linha
                 if (ParameterFather.name.Contains("Line")) {
                     int i = ParameterFather.transform.GetSiblingIndex();
-                    //Debug.Log(ParameterFather.name + " remover" + i);
                     _ActualRobot.Code[i] = new Vazio();
                 } else {// Deletar da lista de parametros do pai
                     StatementHolder FatherFather = ParameterFather.transform.parent.GetComponentInParent<StatementHolder>();
@@ -172,7 +172,6 @@ public class CodeManager : MonoBehaviour{
                 }
                 Cursor.transform.SetParent(ParameterFather.transform);
 
-                //Debug.Log(Cursor.transform.name + " vo colocar como filho de " + ParameterFather.transform);
                 Destroy(ParameterFather.transform.GetChild(0).gameObject);
             } else {
                 Debug.LogError("ERRO, essa parte nunca deveria acotencer");

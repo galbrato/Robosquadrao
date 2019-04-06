@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RobotCode : MonoBehaviour {
     public string myName = "Rola";
-    public int myID = 0;
+    public int myID = -1;
 
     private Rigidbody rigid;
     private NavMeshAgent agent;
@@ -21,6 +21,7 @@ public class RobotCode : MonoBehaviour {
     public Vector3 Objetivo;
     public Vector3 Inicio;
     public Animator Anima;
+    public Animator DamageAnimator;
     public Transform Mao;
     public Transform Chave;
     public Transform LaserPos;
@@ -55,19 +56,27 @@ public class RobotCode : MonoBehaviour {
 
     public Vector3 robotPosition {     // Abstração da posição do robô
         get {
-            return this.transform.parent.position;
+            return this.transform.position;
         }
     }
     private Vector3 robotScale {        // Abstração da escala local do robô
         get {
-            return this.transform.parent.localScale;
+            return this.transform.localScale;
         }
         set {
-            this.transform.parent.localScale = value;
+            this.transform.localScale = value;
         }
     }
 
+
     void Start() {
+        if (myID >= 0) {
+            //Pegando os dados do robo do arquivo
+            RobotData Data = SaveSystem.LoadRobot(myID);
+            Code = Data.Code;
+            myName = Data.Name;
+        }
+
         VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         HealDelayCouter = HealDelay;
@@ -75,21 +84,21 @@ public class RobotCode : MonoBehaviour {
         ProgramCounter = 0;
 
         VarList = new List<Variavel>();
-        Code = new List<Statement>();
 
-        Anima = GetComponent<Animator>();
+        Anima = GetComponentsInChildren<Animator>()[0];
+        DamageAnimator = GetComponentsInChildren<Animator>()[1];
 
-        rigid = transform.parent.GetComponent<Rigidbody>();
+        rigid = transform.GetComponent<Rigidbody>();
 
-        agent = transform.parent.GetComponent<NavMeshAgent>();
+        agent = transform.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
         StopingDistance = agent.stoppingDistance;
 
-        Inicio = transform.parent.position;
-        Objetivo = Alvo.position;
-
+        Inicio = transform.position;
+        //Objetivo = Alvo.position;
         nome_text.text = myName;
+        playmode = true;
     }
     
     
@@ -105,15 +114,26 @@ public class RobotCode : MonoBehaviour {
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
-        /*
-        if (Code[ProgramCounter].Execute(this)) {
+        if (myID>=0) {
+            if (Code[ProgramCounter].Execute(this)) {
 
-        } else {
-            ProgramCounter = (ProgramCounter + 1) % Code.Count;
+            } else {
+                ProgramCounter = (ProgramCounter + 1) % Code.Count;
+            }
         }
-        */
-        
-        HealthBar.fillAmount = VidaAtual/VidaMax;
+
+
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            _PrintCode();
+        }
+
+        HealthBar.fillAmount = VidaAtual / VidaMax;
+    }
+
+    void _PrintCode() {
+        for (int i = 0; i < Code.Count; i++) {
+            Debug.Log("Linha[" + i + "]: " + Code[i].ToString());
+        }
     }
 
     private void FlipRobot(Vector3 actionDirection) {   // Corrige a posição na qual o robô está olhando
@@ -160,7 +180,8 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool WalkTo(Vector3 dest) {
-        Vector3 movement = dest - transform.parent.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
+        if (!agent.enabled) return false;
+        Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
@@ -176,36 +197,43 @@ public class RobotCode : MonoBehaviour {
         }
         return false;
     }
+    bool playmode = false;
+    Vector3 hitbox = Vector3.zero;
+    void OnDrawGizmos() {
+        if (playmode) {
+            Gizmos.color = Color.red;
+            //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            Gizmos.DrawWireSphere(hitbox,0.5f);
+        }
+    }
+
+    public bool TakeDamage(float damage) {
+        VidaAtual -= damage;
+        if (VidaAtual <= 0) {
+            Tchakabuuum();
+            return true;
+        }
+        DamageAnimator.SetTrigger("Hitted");
+        return false;
+    }
 
     public void ApplyDamage(){
-        print("APLICA DANO POHA!");
-    	LayerMask mask = (1 << this.gameObject.layer);
-        mask |= (1 << 11);
-        mask |= (1 << 0);
-        mask = ~mask;
-        Vector3 dir = EnemyPosition - this.transform.position;
+        Vector3 dir = EnemyPosition - robotPosition;
         dir = dir.normalized;
-        Vector3 distanciaMao = this.transform.position - Mao.position;
-        float alcance = distanciaMao.magnitude;
-        Vector3 hitbox = (dir*alcance) + this.transform.position;
-    	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
-
-        foreach(Collider hit in hitColliders){
-            print("Eu, " + gameObject.name + " Nome do que eu acertei" + hit.gameObject.name);
-        }
-        if(hitColliders.Length <= 0){
-            print("Eu, " + gameObject.name + " errei");
-        }
-
-        if(hitColliders.Length > 0){
-            RobotCode eneRob = hitColliders[0].transform.GetComponent<RobotCode>();
-            eneRob.VidaAtual -= Dano;
-            if(eneRob.VidaAtual <= 0){
-                Inimigos.Remove(eneRob);
-                eneRob.Tchakabuuum();
+        float alcance = agent.stoppingDistance;
+        Vector3 DamagePosition = robotPosition + (dir * alcance);
+        hitbox = DamagePosition;
+        for(int i = 0; i < Inimigos.Count; i++){
+            print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
+            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f) {
+                if (Inimigos[i].TakeDamage(Dano)) {
+                    Inimigos.Remove(Inimigos[i]);
+                    i--;
+                }
             }
-            hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
         }
+        
         Anima.SetBool("Attack", false);
     }
 
@@ -251,6 +279,6 @@ public class RobotCode : MonoBehaviour {
             float rand = Random.Range(20,50);
             rig.AddForce(direction*rand, ForceMode.Impulse);
         }
-        Destroy(transform.parent.gameObject, 2);
+        Destroy(transform.gameObject, 2);
     }
 }
