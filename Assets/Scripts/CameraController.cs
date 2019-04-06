@@ -24,6 +24,10 @@ public class CameraController : MonoBehaviour {
 
 	private float MaisDistante() {
 		float x = float.MinValue;
+
+		if (robots.Count == 0) 
+			return cam.transform.position.x;
+		
 		foreach (GameObject robot in robots) {
 			if (robot == null) {
 				robots.Remove(robot);
@@ -47,6 +51,6 @@ public class CameraController : MonoBehaviour {
 		Vector3 newPos = cam.transform.position;
 		newPos.x += movement;
 
-		cam.transform.position = newPos;
+		cam.transform.position = Vector3.Lerp(cam.transform.position, newPos, 0.1f);
 	}
 }
