@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RobotCode : MonoBehaviour {
     public string myName = "Rola";
-    public int myID = 0;
+    public int myID = -1;
 
     private Rigidbody rigid;
     private NavMeshAgent agent;
@@ -56,24 +56,26 @@ public class RobotCode : MonoBehaviour {
 
     public Vector3 robotPosition {     // Abstração da posição do robô
         get {
-            return this.transform.parent.position;
+            return this.transform.position;
         }
     }
     private Vector3 robotScale {        // Abstração da escala local do robô
         get {
-            return this.transform.parent.localScale;
+            return this.transform.localScale;
         }
         set {
-            this.transform.parent.localScale = value;
+            this.transform.localScale = value;
         }
     }
 
 
     void Start() {
-        //Pegando os dados do robo do arquivo
-        RobotData Data = SaveSystem.LoadRobot(myID);
-        Code = Data.Code;
-        myName = Data.Name;
+        if (myID >= 0) {
+            //Pegando os dados do robo do arquivo
+            RobotData Data = SaveSystem.LoadRobot(myID);
+            Code = Data.Code;
+            myName = Data.Name;
+        }
 
         VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
@@ -83,17 +85,17 @@ public class RobotCode : MonoBehaviour {
 
         VarList = new List<Variavel>();
 
-        Anima = GetComponent<Animator>();
+        Anima = GetComponentsInChildren<Animator>()[0];
         DamageAnimator = GetComponentsInChildren<Animator>()[1];
 
-        rigid = transform.parent.GetComponent<Rigidbody>();
+        rigid = transform.GetComponent<Rigidbody>();
 
-        agent = transform.parent.GetComponent<NavMeshAgent>();
+        agent = transform.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;   // Impede o NavMeshAgent de ficar rotacionando a sprite
 
         StopingDistance = agent.stoppingDistance;
 
-        Inicio = transform.parent.position;
+        Inicio = transform.position;
         //Objetivo = Alvo.position;
         nome_text.text = myName;
         playmode = true;
@@ -112,11 +114,12 @@ public class RobotCode : MonoBehaviour {
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
-        
-        if (Code[ProgramCounter].Execute(this)) {
+        if (myID>=0) {
+            if (Code[ProgramCounter].Execute(this)) {
 
-        } else {
-            ProgramCounter = (ProgramCounter + 1) % Code.Count;
+            } else {
+                ProgramCounter = (ProgramCounter + 1) % Code.Count;
+            }
         }
 
 
@@ -178,7 +181,7 @@ public class RobotCode : MonoBehaviour {
 
     public bool WalkTo(Vector3 dest) {
         if (!agent.enabled) return false;
-        Vector3 movement = dest - transform.parent.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
+        Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
@@ -276,6 +279,6 @@ public class RobotCode : MonoBehaviour {
             float rand = Random.Range(20,50);
             rig.AddForce(direction*rand, ForceMode.Impulse);
         }
-        Destroy(transform.parent.gameObject, 2);
+        Destroy(transform.gameObject, 2);
     }
 }

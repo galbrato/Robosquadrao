@@ -15,7 +15,7 @@ public class IA_easy : MonoBehaviour {
     void Start()
     {
         myRobotCode = this.GetComponent<RobotCode>();
-        agent = transform.parent.GetComponent<NavMeshAgent>();
+        agent = transform.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
