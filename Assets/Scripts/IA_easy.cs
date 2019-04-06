@@ -5,21 +5,24 @@ using UnityEngine.AI;
 
 public class IA_easy : MonoBehaviour {
     
-    public RobotCode myRobotCode;
-    public NavMeshAgent agent;
+    private RobotCode myRobotCode;
+    private NavMeshAgent agent;
     private RobotCode alvo = null;
     private float menor_dist;
+    public Transform Objetivo = null;
 
     // Start is called before the first frame update
     void Start()
     {
         myRobotCode = this.GetComponent<RobotCode>();
-        agent = transform.parent.GetComponent<NavMeshAgent>();
+        agent = transform.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update(){
-        if(myRobotCode.Inimigos.Count > 0) {
+        if(Objetivo != null && myRobotCode.Inimigos.Count == 0){
+            myRobotCode.WalkTo(Objetivo.position);
+        }else if(myRobotCode.Inimigos.Count > 0) {
             if(alvo == null){
                 menor_dist = 8000.0f;
                 foreach(RobotCode robot in myRobotCode.Inimigos){
