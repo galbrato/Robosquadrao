@@ -21,6 +21,7 @@ public class RobotCode : MonoBehaviour {
     public Vector3 Objetivo;
     public Vector3 Inicio;
     public Animator Anima;
+    public Animator DamageAnimator;
     public Transform Mao;
     public Transform Chave;
     public Transform LaserPos;
@@ -83,6 +84,7 @@ public class RobotCode : MonoBehaviour {
         VarList = new List<Variavel>();
 
         Anima = GetComponent<Animator>();
+        DamageAnimator = GetComponentsInChildren<Animator>()[1];
 
         rigid = transform.parent.GetComponent<Rigidbody>();
 
@@ -92,9 +94,9 @@ public class RobotCode : MonoBehaviour {
         StopingDistance = agent.stoppingDistance;
 
         Inicio = transform.parent.position;
-        Objetivo = Alvo.position;
-
+        //Objetivo = Alvo.position;
         nome_text.text = myName;
+        playmode = true;
     }
     
     
@@ -175,6 +177,7 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool WalkTo(Vector3 dest) {
+        if (!agent.enabled) return false;
         Vector3 movement = dest - transform.parent.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
 
@@ -191,44 +194,43 @@ public class RobotCode : MonoBehaviour {
         }
         return false;
     }
-
+    bool playmode = false;
     Vector3 hitbox = Vector3.zero;
     void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (playmode) {
+            Gizmos.color = Color.red;
+            //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(hitbox, transform.localScale);
+            Gizmos.DrawWireSphere(hitbox,0.5f);
+        }
+    }
+
+    public bool TakeDamage(float damage) {
+        VidaAtual -= damage;
+        if (VidaAtual <= 0) {
+            Tchakabuuum();
+            return true;
+        }
+        DamageAnimator.SetTrigger("Hitted");
+        return false;
     }
 
     public void ApplyDamage(){
-        print("APLICA DANO POHA!");
-    	LayerMask mask = (1 << this.gameObject.layer);
-        mask |= (1 << 11);
-        mask |= (1 << 0);
-        mask = ~mask;
-        Vector3 dir = EnemyPosition - this.transform.position;
+        Vector3 dir = EnemyPosition - robotPosition;
         dir = dir.normalized;
-        Vector3 distanciaMao = this.transform.position - Mao.position;
-        float alcance = distanciaMao.magnitude;
-        hitbox = (dir*alcance) + this.transform.position;
-    	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
-
-        foreach(Collider hit in hitColliders){
-            print("Eu, " + gameObject.name + " acertei o " + hit.transform.parent.name);
-        }
-        if(hitColliders.Length <= 0){
-            print("Eu, " + gameObject.name + " errei");
-        }
-
-        if(hitColliders.Length > 0){
-            RobotCode eneRob = hitColliders[0].transform.GetComponent<RobotCode>();
-            eneRob.VidaAtual -= Dano;
-            if(eneRob.VidaAtual <= 0){
-                Inimigos.Remove(eneRob);
-                eneRob.Tchakabuuum();
+        float alcance = agent.stoppingDistance;
+        Vector3 DamagePosition = robotPosition + (dir * alcance);
+        hitbox = DamagePosition;
+        for(int i = 0; i < Inimigos.Count; i++){
+            print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
+            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f) {
+                if (Inimigos[i].TakeDamage(Dano)) {
+                    Inimigos.Remove(Inimigos[i]);
+                    i--;
+                }
             }
-            hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
         }
+        
         Anima.SetBool("Attack", false);
     }
 
