@@ -70,8 +70,5 @@ public class Habilities : MonoBehaviour
     	GameObject laser = Instantiate(LaserBeam, LaserPosition.position, Quaternion.identity) as GameObject;
     	laser.transform.localScale = transform.localScale;
     	laser.GetComponent<Laser>().target = target.position;
-        laser.GetComponent<Laser>().mask = (1 << this.gameObject.layer);
-        laser.GetComponent<Laser>().mask |= (1 << 11);
-        laser.GetComponent<Laser>().mask = ~laser.GetComponent<Laser>().mask;
     }
 }

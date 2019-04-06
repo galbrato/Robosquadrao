@@ -7,11 +7,10 @@ public class Laser : MonoBehaviour
 {
 	public Vector3 target;
 	public float speed = 50;
-	public LayerMask mask;
+	public RobotCode mae;
 
 	void Start(){
 		Vector3 direction = target - transform.position;
-		//transform.LookAt(target.position, transform.up);
 		transform.right = direction.normalized;
 	}
 
@@ -21,12 +20,9 @@ public class Laser : MonoBehaviour
     	GetComponent<Rigidbody>().velocity = transform.right * speed;
     }
 
-		Collider[] hitcolliders = Physics.OverlapBox(transform.position, transform.localScale/2, Quaternion.identity, mask);
-
-		if(hitcolliders.Length > 0){
-			hitcolliders[0].GetComponent<Alive>().lifes -= 1.0f;
-			hitcolliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Hitted");
-			Destroy(this.gameObject);
+		if(transform.position == target){
+			Destroy(this);
+			mae.ApplyLaserDamage(target);
 		}
   }
 
