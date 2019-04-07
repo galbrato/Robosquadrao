@@ -123,7 +123,6 @@ public class CodeManager : MonoBehaviour{
         if (Cursor.transform.parent.childCount == 2) {
             return;
         }
-       
 
         //Pegando o Statement holder do pai do cursor para poder atribuir o novo statement para ele
         StatementHolder SH = Cursor.GetComponentInParent<StatementHolder>();
@@ -131,10 +130,21 @@ public class CodeManager : MonoBehaviour{
         //Se for um parametro, tem que isnerir no codigo "pai"
         if (SH.name == "Parameter") {
             StatementHolder SHFather = SH.transform.parent.GetComponentInParent<StatementHolder>();
+            if (SHFather._OriginalStatement.ParametrosTipos[0] != SH._OriginalStatement.ReturnTipo()) {
+                Debug.LogError(SHFather._OriginalStatement.name + " espera argumento do tipo " + SHFather._OriginalStatement.ParametrosTipos[0]+ " foi passado " + SH._OriginalStatement.ReturnTipo());
+                SH._OriginalStatement = null;
+                return;
+            }
             SHFather._OriginalStatement.Parametros[0] = SH._OriginalStatement;//issu vai dar merda quando tiver 2 parametros
         } else {//se não fopr parametro esta no inicio da linha insere direto no codigo
             if (!SH.name.Contains("Line")) {
                 Debug.LogError("ERRO! " +name + " não é um uma linha e não é um parameter");
+                return;
+            }
+            if (SH._OriginalStatement.ReturnTipo() != Tipo.Vazio) {
+                SH._OriginalStatement = null;
+                Debug.LogError("ERRO! achamando uma func que não retorna vazio");
+                return;
             }
             _ActualRobot.Code[SH.transform.GetSiblingIndex()] = SH._OriginalStatement;
         }
