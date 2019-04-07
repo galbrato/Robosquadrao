@@ -22,8 +22,6 @@ public class RobotCode : MonoBehaviour {
     public Vector3 Inicio;
     public Animator Anima;
     public Animator DamageAnimator;
-    public Transform Mao;
-    public Transform Chave;
     public Transform LaserPos;
     public Transform Alvo;
     public GameObject LaserBeam;
@@ -96,7 +94,7 @@ public class RobotCode : MonoBehaviour {
         StopingDistance = agent.stoppingDistance;
 
         Inicio = transform.position;
-        //Objetivo = Alvo.position;
+        Objetivo = Alvo.position;
         nome_text.text = myName;
         playmode = true;
     }
@@ -217,7 +215,6 @@ public class RobotCode : MonoBehaviour {
         DamageAnimator.SetTrigger("Hitted");
         return false;
     }
-
     public void ApplyDamage(){
         Vector3 dir = EnemyPosition - robotPosition;
         dir = dir.normalized;
@@ -238,19 +235,21 @@ public class RobotCode : MonoBehaviour {
     }
 
     public void ApplyHeal(){
-        print("APLICA HEAL POHA!");
-    	LayerMask mask = 1 << this.gameObject.layer;
-        Vector3 dir = AllyPosition - this.transform.position;
+        Vector3 dir = AllyPosition - robotPosition;
         dir = dir.normalized;
-        Vector3 distanciaChave = this.transform.position - Chave.position;
-        float alcance = distanciaChave.magnitude;
-        Vector3 hitbox = (dir*alcance) + this.transform.position;
-    	Collider[] hitColliders = Physics.OverlapBox(hitbox, transform.localScale/2, Quaternion.identity, mask);
+        float alcance = agent.stoppingDistance;
+        Vector3 HealPosition = robotPosition + (dir*alcance);
+        hitbox = HealPosition;
 
-        if(hitColliders.Length > 0){
-        	hitColliders[0].transform.GetComponent<RobotCode>().VidaAtual += DanoHeal;
-            hitColliders[0].transform.GetChild(9).GetComponent<Animator>().SetTrigger("Healed");
+        for(int i = 0; i < Aliados.Count; i++){
+            print("Heal:" + HealPosition + " inimigo " + Aliados[i].name + " pos" + Aliados[i].robotPosition + " Distance : " + Vector3.Distance(HealPosition, Aliados[i].robotPosition));
+            if(Vector3.Distance(HealPosition, Inimigos[i].robotPosition) < 1.0f) {
+                if(Aliados[i].VidaAtual < Aliados[i].VidaMax){
+                    Aliados[i].VidaAtual++;
+                }
+            }
         }
+
         Anima.SetBool("Heal", false);
     }
 
@@ -259,12 +258,20 @@ public class RobotCode : MonoBehaviour {
     	laser.transform.localScale = transform.localScale;
         Laser ls = laser.GetComponent<Laser>();
     	ls.target = target;
-        ls.mask = (1 << this.gameObject.layer);
-        ls.mask |= (1 << 11);
-        ls.mask |= (1 << 0);
-        ls.mask = ~ls.mask;
+        ls.mae = this;
 
         Anima.SetBool("Laser", false);
+    }
+
+    public void ApplyLaserDamage(Vector3 target){
+        for(int i = 0; i < Inimigos.Count; i++){
+            if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.0f) {
+                if (Inimigos[i].TakeDamage(Dano)) {
+                    Inimigos.Remove(Inimigos[i]);
+                    i--;
+                }
+            }
+        }
     }
 
     public void Tchakabuuum(){
