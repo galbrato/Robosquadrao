@@ -184,7 +184,6 @@ public enum RobotStatus {
     Vida,
     Dano,
     Posicao,
-
 }
 
 [Serializable]
@@ -193,7 +192,7 @@ public enum Tipo {
     Inteiro,
     Continuo,
     Posicao,
-    Booleano
+    Booleano,
 }
 
 [Serializable]
@@ -532,8 +531,10 @@ public class RetornaGlobal : Statement {
         switch (Global2Return) {
             case GlobalVar.Inicio:
                 name = "Inicio";
+                type = Tipo.Posicao;
                 break;
             case GlobalVar.Objetivo:
+                type = Tipo.Posicao;
                 name = "Objetivo";
                 break;
             default:
@@ -617,6 +618,8 @@ public class AndarAte : Statement {
         name = "AndarAte";
         type = Tipo.Vazio;
         this.Parametros = new Statement[1];
+        this.ParametrosTipos = new Tipo[1];
+        this.ParametrosTipos[0] = Tipo.Posicao;
     }
 
 
