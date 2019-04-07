@@ -96,8 +96,8 @@ public class RobotCode : MonoBehaviour {
 
         StopingDistance = agent.stoppingDistance;
 
-        Inicio = transform.position;
-        Objetivo = Alvo.position;
+        //Inicio = transform.position;
+        //Objetivo = Alvo.position;
         nome_text.text = myName;
     }
     
@@ -183,7 +183,6 @@ public class RobotCode : MonoBehaviour {
         if (!agent.enabled) return false;
         Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
-        print("Tentando ir para a pos " + dest);
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
             Anima.SetBool("IsMoving", false);   // Muda a animação para Idle

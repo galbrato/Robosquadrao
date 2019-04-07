@@ -38,7 +38,9 @@ public class ConfirmationMenu : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		canvas = GameObject.Find("Canvas").transform;	// Get the canvas
+		canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
+		if (canvas == null)
+			canvas = GameObject.Find("Canvas").transform;	// Get the canvas
 		
 		ConfigButton();
 	}
