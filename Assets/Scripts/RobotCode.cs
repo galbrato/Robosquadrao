@@ -245,11 +245,11 @@ public class RobotCode : MonoBehaviour {
         Anima.SetBool("Heal", false);
     }
 
-    public void ApplyLaserBeam(Vector3 target){
+    public void ApplyLaserBeam(){
     	GameObject laser = Instantiate(LaserBeam, LaserPos.position, Quaternion.identity) as GameObject;
     	laser.transform.localScale = transform.localScale;
         Laser ls = laser.GetComponent<Laser>();
-    	ls.target = target;
+    	ls.target = EnemyPosition;
         ls.mae = this;
 
         Anima.SetBool("Laser", false);
@@ -257,7 +257,7 @@ public class RobotCode : MonoBehaviour {
 
     public void ApplyLaserDamage(Vector3 target){
         for(int i = 0; i < Inimigos.Count; i++){
-            if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.0f) {
+            if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.3f) {
                 if (Inimigos[i].TakeDamage(Dano)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;

@@ -32,6 +32,8 @@ public abstract class Statement {
             return new Vazio();
         } else if (name == "QualquerInimigo") {
             return new QualQuerInimigo();
+        } else if (name == "LaserAtaque") {
+            return new LaserAtaque();
         }
         return null;
     }
@@ -193,6 +195,7 @@ public enum Tipo {
     Continuo,
     Posicao,
     Booleano,
+    Invalido,
 }
 
 [Serializable]
@@ -608,6 +611,49 @@ public class Atacar : Statement {
     public override string ToString() {
         if (Parametros[0] != null) return "Atacar(" + Parametros[0].ToString() + ")";
         else return "Atacar(NULL)";
+    }
+}
+
+
+[Serializable]
+public class LaserAtaque : Statement {
+    public LaserAtaque() {
+        name = "LaserAtaque";
+        type = Tipo.Vazio;
+        Parametros = new Statement[1];
+        ParametrosTipos = new Tipo[1];
+        ParametrosTipos[0] = Tipo.Posicao;
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
+            Debug.LogError("Em Atacar Argumento errado");
+            return false;
+        }
+        //Executando o parametro
+        Parametros[0].Execute(Robot);
+        //Verificando se retorno do parametro foi passado
+        if (Robot.Retorno == null) {
+            Debug.Log("Retorno Nulo");
+            return false;
+        }
+        //Verificando se o retorno é do tipo correto
+        if (Robot.Retorno.type != Tipo.Posicao) {
+            Debug.LogError("Retorno de tipo diferente");
+            return false;
+        }
+        //Obtendo parametro
+        VarPosicao pos = (VarPosicao)Robot.Retorno;
+        //Liberando o retorno
+        Robot.Retorno = null;
+        //Executando o comando
+        Robot.Laser(new Vector3(pos.x, pos.y, pos.z));
+        return false;
+    }
+
+    public override string ToString() {
+        if (Parametros[0] != null) return "LaserAtaque(" + Parametros[0].ToString() + ")";
+        else return "LaserAtaque(NULL)";
     }
 }
 

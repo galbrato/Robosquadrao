@@ -13,4 +13,9 @@ public class RobotAnim : MonoBehaviour
     public void ApplyDamage() {
         mRobot.ApplyDamage();
     }
+
+    public void ApplyLaserBeam() {
+        mRobot.ApplyLaserBeam();
+    }
+
 }
