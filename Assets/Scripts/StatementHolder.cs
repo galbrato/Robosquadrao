@@ -36,8 +36,8 @@ public class StatementHolder : MonoBehaviour {
 
         } else {
             //posicionar o cursor em mim
-            _CodeManager.Cursor.rectTransform.SetParent(null);
-            _CodeManager.Cursor.rectTransform.SetParent(transform);
+            _CodeManager.Cursor.transform.SetParent(null);
+            _CodeManager.Cursor.transform.SetParent(transform);
             return true;
         }
         return false;

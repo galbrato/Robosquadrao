@@ -7,6 +7,8 @@ using System;
 public abstract class Statement {
     protected Tipo type;
     public Statement[] Parametros;
+    public Tipo[] ParametrosTipos;
+    public string name;
     public Tipo ReturnTipo() {
         return type;
     }
@@ -24,8 +26,12 @@ public abstract class Statement {
             return new RetornaGlobal(GlobalVar.Objetivo);
         } else if (name == "Inicio") {
             return new RetornaGlobal(GlobalVar.Inicio);
+        }else if (name == "Atacar") {
+            return new Atacar();
         } else if (name == "Vazio") {
             return new Vazio();
+        } else if (name == "QualquerInimigo") {
+            return new QualQuerInimigo();
         }
         return null;
     }
@@ -35,6 +41,7 @@ public abstract class Statement {
 public class Vazio : Statement {
 
     public Vazio() {
+        name = "Vazio";
         type = Tipo.Vazio;
     }
 
@@ -45,7 +52,26 @@ public class Vazio : Statement {
         return "Vazio";
     }
 }
-    [Serializable]
+
+[Serializable]
+public class QualQuerInimigo : Statement {
+    public QualQuerInimigo() {
+        name = "QualquerInimigo";
+        type = Tipo.Posicao;
+    }
+    public override bool Execute(RobotCode Robot) {
+        if (Robot.Inimigos == null || Robot.Inimigos.Count == 0) {
+            return false;
+        }
+        Robot.Retorno = new VarPosicao(Robot.Inimigos[0].name, Robot.Inimigos[0].transform.position);
+        return false;
+    }
+    public override string ToString() {
+        return "QualquerInimigo";
+    }
+}
+
+[Serializable]
 public abstract class Variavel {
     public string Label;
     public Tipo type;
@@ -503,6 +529,16 @@ public class RetornaGlobal : Statement {
     public GlobalVar Global2Return;
     public RetornaGlobal(GlobalVar gvar) {
         Global2Return = gvar;
+        switch (Global2Return) {
+            case GlobalVar.Inicio:
+                name = "Inicio";
+                break;
+            case GlobalVar.Objetivo:
+                name = "Objetivo";
+                break;
+            default:
+                break;
+        }
         type = Tipo.Posicao;
     }
     public override bool Execute(RobotCode Robot) {
@@ -534,27 +570,24 @@ public class RetornaGlobal : Statement {
 
 [Serializable]
 public class Atacar : Statement {
-    public Statement Parametro;
     public Atacar() {
+        name = "Atacar";
         type = Tipo.Vazio;
+        Parametros = new Statement[1];
+        ParametrosTipos = new Tipo[1];
+        ParametrosTipos[0] = Tipo.Posicao;
     }
 
     public override bool Execute(RobotCode Robot) {
-        //Verificando se o Parametro foi passado
-        if (Parametro == null) {
-            Debug.LogError("Parametro nulo");
-            return false;
-        }
-        //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnTipo() != Tipo.Posicao) {
+        if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
         }
         //Executando o parametro
-        Parametro.Execute(Robot);
+        Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if(Robot.Retorno == null) {
-            Debug.LogError("Retorno Nulo");
+            Debug.Log("Retorno Nulo");
             return false;
         }
         //Verificando se o retorno é do tipo correto
@@ -570,12 +603,18 @@ public class Atacar : Statement {
         Robot.Attack(new Vector3(pos.x, pos.y, pos.z));
         return false;
     }
+
+    public override string ToString() {
+        if (Parametros[0] != null) return "Atacar(" + Parametros[0].ToString() + ")";
+        else return "Atacar(NULL)";
+    }
 }
 
 [Serializable]
 public class AndarAte : Statement {
     
     public AndarAte() {
+        name = "AndarAte";
         type = Tipo.Vazio;
         this.Parametros = new Statement[1];
     }
