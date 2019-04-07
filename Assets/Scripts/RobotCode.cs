@@ -70,6 +70,9 @@ public class RobotCode : MonoBehaviour {
 
 
     void Start() {
+        this.Objetivo = Battle.Objetivo;
+        this.Inicio = Battle.Inicio;
+
         if (myID >= 0) {
             //Pegando os dados do robo do arquivo
             RobotData Data = SaveSystem.LoadRobot(myID);
@@ -98,7 +101,6 @@ public class RobotCode : MonoBehaviour {
         Inicio = transform.position;
         //Objetivo = Alvo.position;
         nome_text.text = myName;
-        playmode = true;
     }
     
     
@@ -183,6 +185,7 @@ public class RobotCode : MonoBehaviour {
         if (!agent.enabled) return false;
         Vector3 movement = dest - transform.position;   // Vetor para saber o vetor movimento (para onde irá se mover)
         movement.y = 0; // Ignora a posição em Y, já que esse eixo não importa na distância do personagem
+        print("Tentando ir para a pos " + dest);
 
         if (movement.magnitude <= StopingDistance) { // Se já estiver perto o suficiente
             Anima.SetBool("IsMoving", false);   // Muda a animação para Idle
@@ -196,16 +199,6 @@ public class RobotCode : MonoBehaviour {
             FlipRobot(dest);
         }
         return false;
-    }
-    bool playmode = false;
-    Vector3 hitbox = Vector3.zero;
-    void OnDrawGizmos() {
-        if (playmode) {
-            Gizmos.color = Color.red;
-            //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireSphere(hitbox,0.5f);
-        }
     }
 
     public bool TakeDamage(float damage) {
@@ -223,7 +216,7 @@ public class RobotCode : MonoBehaviour {
         dir = dir.normalized;
         float alcance = agent.stoppingDistance;
         Vector3 DamagePosition = robotPosition + (dir * alcance);
-        hitbox = DamagePosition;
+        Vector3 hitbox = DamagePosition;
         for(int i = 0; i < Inimigos.Count; i++){
             print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
             if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f) {
