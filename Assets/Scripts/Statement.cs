@@ -632,6 +632,7 @@ public class AndarAte : Statement {
         //Verificando se o Parametro foi passado
         if (Parametros[0] == null) {
             Debug.LogError("Parametro nulo");
+            return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
         if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
@@ -642,11 +643,13 @@ public class AndarAte : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
-            Debug.LogError("Retorno Nulo");
+            Debug.Log("Retorno Nulo, skipando");
+            return false;
         }
         //Verificando se o retorno é do tipo correto
         if (Robot.Retorno.type != Tipo.Posicao) {
             Debug.LogError("Retorno de tipo diferente");
+            return false;
         }
         //Obtendo parametro
         VarPosicao pos = (VarPosicao)Robot.Retorno;
