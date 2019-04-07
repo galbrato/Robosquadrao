@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AndarAteUI : MonoBehaviour{
-
-    public AndarAte statement;
-    
+public class TurnOffOnPLay : MonoBehaviour
+{
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

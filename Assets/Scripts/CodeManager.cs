@@ -59,7 +59,7 @@ public class CodeManager : MonoBehaviour{
             return;
         }
         SH._OriginalStatement = S;
-        GameObject UI = StatementsUIPrefabs.Find((GameObject g) => { return S.ToString().Contains(g.name); });
+        GameObject UI = StatementsUIPrefabs.Find((GameObject g) => { return S.name.Contains(g.name); });
         if (UI == null) {
             Debug.LogError("ERRO, Não conseguiu achar " + S.ToString() + " dentro da lsita de prefabs");
         }

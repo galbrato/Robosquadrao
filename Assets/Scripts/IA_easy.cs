@@ -20,6 +20,8 @@ public class IA_easy : MonoBehaviour {
 
     // Update is called once per frame
     void Update(){
+        if (!agent.enabled) return;
+        
         if(Objetivo != null && myRobotCode.Inimigos.Count == 0){
             myRobotCode.WalkTo(Objetivo.position);
         }else if(myRobotCode.Inimigos.Count > 0) {

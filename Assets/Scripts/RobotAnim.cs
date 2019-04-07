@@ -13,6 +13,4 @@ public class RobotAnim : MonoBehaviour
     public void ApplyDamage() {
         mRobot.ApplyDamage();
     }
-
-
 }

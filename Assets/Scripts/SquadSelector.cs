@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 public class SquadSelector : GridLayoutResources {
 
 	private GameObject[] configuracoes;
@@ -38,7 +38,7 @@ public class SquadSelector : GridLayoutResources {
 		}
 
 		return configs;
-	}*/
+	}
 
 	protected override void EditPrefabs(GameObject[] objetos) {
 		for (int i = 0; i < objetos.Length; i++) {
@@ -55,3 +55,4 @@ public class SquadSelector : GridLayoutResources {
 		}
 	}
 }
+*/
