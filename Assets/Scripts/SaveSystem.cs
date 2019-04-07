@@ -33,6 +33,11 @@ public static class SaveSystem {
 		return data;
 	}
 
+	public static bool PlayerDataExists() {
+		string path = Path.Combine(Application.persistentDataPath, "player.data");
+		return File.Exists(path) ? true : false;
+	}
+
 	public static void SaveRobot(RobotData robo) {
 		string fileName = "Robot" + robo.Id + ".data";
 		string path = Path.Combine(Application.persistentDataPath, fileName);
