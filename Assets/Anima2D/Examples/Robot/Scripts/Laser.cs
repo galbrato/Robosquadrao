@@ -15,16 +15,16 @@ public class Laser : MonoBehaviour
 	}
 
     // Update is called once per frame
-  void Update(){	
-    if(target != null){ // MUDEI O TARGET DE TRANSFORM PARA VECTOR3
-    	GetComponent<Rigidbody>().velocity = transform.right * speed;
-    }
+    void Update(){	
+        if(target != null){ // MUDEI O TARGET DE TRANSFORM PARA VECTOR3
+            GetComponent<Rigidbody>().velocity = transform.right * speed;
+        }
 
-		if(transform.position == target){
-			Destroy(this);
-			mae.ApplyLaserDamage(target);
-		}
-  }
+        if(Vector3.Distance(transform.position, target) < 1.3f){
+            mae.ApplyLaserDamage(target);
+            Destroy(this.gameObject);
+        }
+    }
 
     void FixedUpdate(){
     	GetComponent<SortingGroup>().sortingOrder = -(int)(this.transform.position.z*100);
