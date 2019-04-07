@@ -19,6 +19,7 @@ public class StatementHolder : MonoBehaviour {
 
     public void _Select() {
         _SelectForReal();
+        _CodeManager.Contextualize();
     }
     public bool _SelectForReal() {
         if(_CodeManager == null) _CodeManager = FindObjectOfType<CodeManager>();

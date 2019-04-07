@@ -193,6 +193,7 @@ public enum Tipo {
     Continuo,
     Posicao,
     Booleano,
+    Invalido,
 }
 
 [Serializable]

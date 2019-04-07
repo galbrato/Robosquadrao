@@ -6,7 +6,9 @@ using UnityEngine;
 public class CodeManager : MonoBehaviour{
     //Cursos e variaveis para fazer o cursor piscar
     public Text Cursor;
+    private Transform CursorExParent;
     public Transform _CodeContent;
+    public Transform _FuncContent;
 	public InputField inputField;
 
 
@@ -16,9 +18,60 @@ public class CodeManager : MonoBehaviour{
 
     //Lista de prfabs de codigo
     public List<GameObject> StatementsUIPrefabs;
+    private List<Button> StatementsButtons;
 
     // Start is called before the first frame update
     void Start(){
+        CursorExParent = Cursor.transform.parent;
+        if (StatementsButtons == null) {
+            Assossiate();
+        }
+    }
+
+    private void Assossiate() {
+        StatementsButtons = new List<Button>();
+        foreach (GameObject Stmt in StatementsUIPrefabs) {
+            Button[] buttons = _FuncContent.GetComponentsInChildren<Button>();
+            foreach (Button b in buttons) {
+                if (b.transform.parent.name.Contains(Stmt.name)) {
+                    StatementsButtons.Add(b);
+                    break;
+                }
+            }
+        }
+        if (StatementsButtons.Count == StatementsUIPrefabs.Count) {
+            for (int i = 0; i < StatementsUIPrefabs.Count; i++) {
+                Debug.Log(StatementsUIPrefabs[i].name + " tem como botão " + StatementsButtons[i].transform.parent.name);
+            }
+        } else {
+            Debug.LogError("ERRO! não achou tudo");
+        }
+    }
+
+    public void Contextualize() {
+        if (StatementsButtons == null) Assossiate();
+
+        //descobrir o tipo esperando
+        Tipo TipoEsperado = Tipo.Invalido;
+        StatementHolder SH = Cursor.GetComponentInParent<StatementHolder>();
+        if (SH.name.Contains("Line")) {
+            if (SH._OriginalStatement == null) {
+                TipoEsperado = Tipo.Vazio;
+            } 
+        }else if (SH.name.Contains("Parameter")) {
+            if (SH._OriginalStatement == null) {
+                StatementHolder SHFather = SH.transform.parent.GetComponentInParent<StatementHolder>();
+                if (SHFather._OriginalStatement.ParametrosTipos != null) {
+                    TipoEsperado = SHFather._OriginalStatement.ParametrosTipos[0];
+                }
+            } 
+        }
+
+        //Deligar os botões
+        for (int i = 0; i < StatementsButtons.Count; i++) {
+            Statement s = Statement.AlocByName(StatementsUIPrefabs[i].name);
+            StatementsButtons[i].interactable = (s.ReturnTipo() == TipoEsperado) ;
+        }
     }
 
     // Update is called once per frame
@@ -29,6 +82,7 @@ public class CodeManager : MonoBehaviour{
         if (Input.GetKeyUp(KeyCode.Space)) {
             _PrintCode();
         }
+        
     }
 
     public void _LoadRobot(int ID) {
@@ -96,7 +150,7 @@ public class CodeManager : MonoBehaviour{
             aux = NewLine.GetComponent<StatementHolder>();
             InsertStatment(aux, s);
         }
-        if(aux != null)aux._SelectForReal();
+        if(aux != null)aux._Select();
     }
 
     public void _InsertLine() {
@@ -109,7 +163,7 @@ public class CodeManager : MonoBehaviour{
         NewLine.transform.SetSiblingIndex(t.GetSiblingIndex() + 1);
         NewLine.name = "Line " + NewLine.transform.GetSiblingIndex();
 
-        NewLine.GetComponent<StatementHolder>()._SelectForReal();
+        NewLine.GetComponent<StatementHolder>()._Select();
     }
 
     public void _InsertCode(string StatementName) {
@@ -153,7 +207,7 @@ public class CodeManager : MonoBehaviour{
         GameObject newStatementUI = Instantiate(UIPrefab, Cursor.transform.parent.transform);
         
         //Selecionar novo botaum
-        SH._SelectForReal();
+        SH._Select();
         
     }
 
@@ -175,6 +229,7 @@ public class CodeManager : MonoBehaviour{
                 // Deletar da lista de codigo se estiver na linha
                 if (ParameterFather.name.Contains("Line")) {
                     int i = ParameterFather.transform.GetSiblingIndex();
+                    ParameterFather._OriginalStatement = null;
                     _ActualRobot.Code[i] = new Vazio();
                 } else {// Deletar da lista de parametros do pai
                     StatementHolder FatherFather = ParameterFather.transform.parent.GetComponentInParent<StatementHolder>();
@@ -204,7 +259,7 @@ public class CodeManager : MonoBehaviour{
                 //pegando a nova linah do cursor
                 int i = t.GetSiblingIndex() - 1;
                 if (i < 0) i = t.GetSiblingIndex() + 1;
-                t.parent.GetChild(i).GetComponent<StatementHolder>()._SelectForReal();
+                t.parent.GetChild(i).GetComponent<StatementHolder>()._Select();
                 //Removedo a linha no codigo
                 _ActualRobot.Code.RemoveAt(t.GetSiblingIndex());
                 //Deletando a linha
@@ -215,6 +270,7 @@ public class CodeManager : MonoBehaviour{
         } else {
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
+        Contextualize();
     }
 
     void _PrintCode() {
