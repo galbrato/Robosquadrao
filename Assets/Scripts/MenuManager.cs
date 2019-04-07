@@ -2,8 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
+
+	void Awake() {
+		if (SceneManager.GetActiveScene().name == "MainMenu")
+			BotaoLoad();
+	}
+
+	public void BotaoLoad(){
+		GameObject botao_GO = GameObject.Find("Continuar");	// Game Object do botão de continuar
+		if (botao_GO == null) {
+			Debug.Log("ERRO! Não existe botão de continuar nessa cena");
+			return;
+		}
+		Button botao = botao_GO.GetComponent<Button>();
+		botao.interactable = SaveSystem.PlayerDataExists();
+	}
 
 	public void LoadGame() {
 		Player.Load();

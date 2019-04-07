@@ -32,7 +32,7 @@ public class ConfirmationMenu : MonoBehaviour {
 		if (prefab == null) {	// Caso o prefab ainda não tenha sido carregado
 			prefab = (GameObject) Resources.Load("ConfirmationScreen");	// Recupera o recurso da TdC
 			if (prefab == null)	// Caso não encontre o prefab, indica erro
-				Debug.Log("ERROR!! The resource ConfirmationScreen could not be loaded!");
+				Debug.LogError("ERROR!! The resource ConfirmationScreen could not be loaded!");
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ConfirmationMenu : MonoBehaviour {
 	private void ConfigButton() {
 		firstButton = GetComponent<Button>();
 		if (firstButton == null) {	// Caso não haja botões acoplados, retorna erro
-			Debug.Log("Error! This Game Object must have an Button attached to it!");
+			Debug.LogError("Error! This Game Object must have an Button attached to it!");
 			return;
 		}
 

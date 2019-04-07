@@ -74,7 +74,7 @@ public class LevelSelector : GridLayoutResources {
 					foreach (Transform child in content.transform){
 						Destroy(child.gameObject);
 					}
-					cancelar.gameObject.transform.parent.gameObject.SetActive(false);
+					//cancelar.gameObject.transform.parent.gameObject.SetActive(false);
 				});
 				
 				String result = Regex.Match(s, @"\d+").Value;
