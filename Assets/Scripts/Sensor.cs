@@ -5,14 +5,12 @@ using UnityEngine;
 public class Sensor : MonoBehaviour
 {
     private RobotCode my_robot;
-    public float raio_Sensor;
     private SphereCollider myCollider;
     // Start is called before the first frame update
     void Start()
     {
         my_robot = transform.parent.GetComponent<RobotCode>();
         myCollider = GetComponent<SphereCollider>();
-        myCollider.radius = raio_Sensor;
     }
 
     // Update is called once per frame

@@ -629,7 +629,7 @@ MonoBehaviour:
   DanoHeal: 1
   HealDelay: 1
   DanoLaser: 1
-  LaserDelay: 1
+  LaserDelay: 3
   HealthBar: {fileID: 369523105885290709}
   nome_text: {fileID: 8331154153702539705}
 --- !u!136 &5607347782094606586
@@ -4161,7 +4161,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 16
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8877004907768381971
 MonoBehaviour:
@@ -4175,4 +4175,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7529063cfe36647b8a01f4b7b7ed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raio_Sensor: 10

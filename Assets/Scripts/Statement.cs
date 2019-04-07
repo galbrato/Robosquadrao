@@ -574,6 +574,7 @@ public class RetornaGlobal : Statement {
 
 [Serializable]
 public class Atacar : Statement {
+    private float TimeCounter = 0f;
     public Atacar() {
         name = "Atacar";
         type = Tipo.Vazio;
@@ -605,7 +606,14 @@ public class Atacar : Statement {
         Robot.Retorno = null;
         //Executando o comando
         Robot.Attack(new Vector3(pos.x, pos.y, pos.z));
-        return false;
+
+        TimeCounter += Time.deltaTime;
+        if (TimeCounter > Robot.AtackDelay) {
+            TimeCounter = 0f;
+            return false;
+        }
+
+        return true;
     }
 
     public override string ToString() {
@@ -617,6 +625,7 @@ public class Atacar : Statement {
 
 [Serializable]
 public class LaserAtaque : Statement {
+    private float TimeCounter=0f;
     public LaserAtaque() {
         name = "LaserAtaque";
         type = Tipo.Vazio;
@@ -648,7 +657,13 @@ public class LaserAtaque : Statement {
         Robot.Retorno = null;
         //Executando o comando
         Robot.Laser(new Vector3(pos.x, pos.y, pos.z));
-        return false;
+
+        TimeCounter += Time.deltaTime;
+        if (TimeCounter > Robot.LaserDelay) {
+            return false;
+        }
+
+        return true ;
     }
 
     public override string ToString() {
@@ -659,7 +674,8 @@ public class LaserAtaque : Statement {
 
 [Serializable]
 public class AndarAte : Statement {
-    
+    private float Duration = 1f;
+    private float TimeCounter = 0;
     public AndarAte() {
         name = "AndarAte";
         type = Tipo.Vazio;
@@ -704,7 +720,13 @@ public class AndarAte : Statement {
         //Executando o comando
         Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
 
-        return false;
+        TimeCounter += Time.deltaTime;
+        if (TimeCounter > Duration) {
+            TimeCounter = 0;
+            return false;
+        }
+
+        return true;
     }
 }
 

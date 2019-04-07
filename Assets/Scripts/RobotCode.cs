@@ -108,6 +108,8 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        agent.isStopped = true;
+        Anima.SetBool("IsMoving", false);
 
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
         if (HealDelayCouter < HealDelay) HealDelayCouter += Time.deltaTime;
