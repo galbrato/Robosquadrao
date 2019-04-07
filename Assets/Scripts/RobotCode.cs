@@ -68,6 +68,9 @@ public class RobotCode : MonoBehaviour {
 
 
     void Start() {
+        this.Objetivo = Battle.Objetivo;
+        this.Inicio = Battle.Inicio;
+
         if (myID >= 0) {
             //Pegando os dados do robo do arquivo
             RobotData Data = SaveSystem.LoadRobot(myID);
@@ -93,10 +96,9 @@ public class RobotCode : MonoBehaviour {
 
         StopingDistance = agent.stoppingDistance;
 
-        Inicio = transform.position;
-        Objetivo = Alvo.position;
+        //Inicio = transform.position;
+        //Objetivo = Alvo.position;
         nome_text.text = myName;
-        playmode = true;
     }
     
     
@@ -195,16 +197,6 @@ public class RobotCode : MonoBehaviour {
         }
         return false;
     }
-    bool playmode = false;
-    Vector3 hitbox = Vector3.zero;
-    void OnDrawGizmos() {
-        if (playmode) {
-            Gizmos.color = Color.red;
-            //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireSphere(hitbox,0.5f);
-        }
-    }
 
     public bool TakeDamage(float damage) {
         VidaAtual -= damage;
@@ -220,7 +212,7 @@ public class RobotCode : MonoBehaviour {
         dir = dir.normalized;
         float alcance = agent.stoppingDistance;
         Vector3 DamagePosition = robotPosition + (dir * alcance);
-        hitbox = DamagePosition;
+        Vector3 hitbox = DamagePosition;
         for(int i = 0; i < Inimigos.Count; i++){
             print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
             if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f) {
@@ -239,7 +231,7 @@ public class RobotCode : MonoBehaviour {
         dir = dir.normalized;
         float alcance = agent.stoppingDistance;
         Vector3 HealPosition = robotPosition + (dir*alcance);
-        hitbox = HealPosition;
+        Vector3 hitbox = HealPosition;
 
         for(int i = 0; i < Aliados.Count; i++){
             print("Heal:" + HealPosition + " inimigo " + Aliados[i].name + " pos" + Aliados[i].robotPosition + " Distance : " + Vector3.Distance(HealPosition, Aliados[i].robotPosition));
