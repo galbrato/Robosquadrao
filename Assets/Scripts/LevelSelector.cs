@@ -79,6 +79,7 @@ public class LevelSelector : GridLayoutResources {
 				});
                 cancelarFundo.onClick.AddListener(delegate () {
                     foreach (Transform child in content.transform) {
+						Debug.Log("Meu nome: " + gameObject.name);
                         Destroy(child.gameObject);
                     }
                     //cancelar.gameObject.transform.parent.gameObject.SetActive(false);
