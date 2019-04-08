@@ -2858,6 +2858,34 @@ PrefabInstance:
       propertyPath: inter
       value: 
       objectReference: {fileID: 1962014780}
+    - target: {fileID: 183400310, guid: b1ab57c363cb24f4981a899d0449d6a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
+    - target: {fileID: 342063971, guid: b1ab57c363cb24f4981a899d0449d6a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
+    - target: {fileID: 2566580478427474752, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
+    - target: {fileID: 5647584802415727664, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
+    - target: {fileID: 5647584802500622292, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
+    - target: {fileID: 5647584803511998177, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: aaed96b4176be1e47a4db4cefd7efeaa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ab57c363cb24f4981a899d0449d6a0, type: 3}
 --- !u!1 &939950365

@@ -42,6 +42,12 @@ public class RobotCode : MonoBehaviour {
     public float LaserDelay = 2;
     public Image HealthBar;
     public Text nome_text;
+    public AudioSource Explosion;
+    public AudioClip die;
+    public AudioClip heal;
+    public AudioClip punch;
+    public Transform chave;
+    public Transform soco;
     float AtackDelayCouter;
     float HealDelayCouter;
     float LaserDelayCouter;
@@ -202,6 +208,7 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool TakeDamage(float damage) {
+        soco.GetComponent<AudioSource>().PlayOneShot(punch);
         VidaAtual -= damage;
         if (VidaAtual <= 0) {
             Tchakabuuum();
@@ -235,6 +242,7 @@ public class RobotCode : MonoBehaviour {
         float alcance = agent.stoppingDistance;
         Vector3 HealPosition = robotPosition + (dir*alcance);
         Vector3 hitbox = HealPosition;
+        chave.GetComponent<AudioSource>().PlayOneShot(heal);
 
         for(int i = 0; i < Aliados.Count; i++){
             print("Heal:" + HealPosition + " inimigo " + Aliados[i].name + " pos" + Aliados[i].robotPosition + " Distance : " + Vector3.Distance(HealPosition, Aliados[i].robotPosition));
@@ -275,6 +283,7 @@ public class RobotCode : MonoBehaviour {
         agent.enabled = false;
         gameObject.layer = 0;
         this.tag = "Untagged";
+        Explosion.PlayOneShot(die);
         
         SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer piece in sprites){
