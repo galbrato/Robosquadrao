@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1200,7 +1200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259815658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.1700003, z: -10}
+  m_LocalPosition: {x: -11.82, y: 3.1700003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1393,7 +1393,17 @@ PrefabInstance:
     - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: VidaMax
-      value: 11111
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: myName
+      value: Robo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: Dano
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193655447279, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1544,6 +1554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 952.222
+      objectReference: {fileID: 0}
+    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1906,12 +1921,17 @@ PrefabInstance:
     - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: VidaMax
-      value: 11111
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: myName
       value: Inimigo_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: Dano
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193655447279, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -2078,6 +2098,11 @@ PrefabInstance:
       propertyPath: m_Length
       value: 1.0658737
       objectReference: {fileID: 0}
+    - target: {fileID: 7630719193655447272, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Length
+      value: 0.63034666
+      objectReference: {fileID: 0}
     - target: {fileID: 7630719192099547125, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_Length
@@ -2087,6 +2112,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Length
       value: 0.81973326
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719193499902446, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Length
+      value: 0.81959796
+      objectReference: {fileID: 0}
+    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -2102,16 +2137,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7630719193499902446, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Length
-      value: 0.81959796
-      objectReference: {fileID: 0}
-    - target: {fileID: 7630719193655447272, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Length
-      value: 0.63034666
       objectReference: {fileID: 0}
     - target: {fileID: 3030559534790382982, guid: cceb03779b8c11646afaa05215287949,
         type: 3}

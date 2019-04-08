@@ -1767,7 +1767,7 @@ PrefabInstance:
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.28
+      value: -23.3
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1777,7 +1777,7 @@ PrefabInstance:
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1999,6 +1999,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Inimigo_1
       objectReference: {fileID: 0}
+    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
     - target: {fileID: 7630719192954737934, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_Length
@@ -2200,6 +2205,7 @@ MonoBehaviour:
   titleText: Desistir da batalha
   bodyText: "Voc\xEA est\xE1 prestes desistir desta batalha, e ter\xE1 que come\xE7ar
     do ponto inicial da pr\xF3xima vez. Tem certeza que deseja continuar?"
+  needsConfirmation: 1
 --- !u!1 &1961847704
 GameObject:
   m_ObjectHideFlags: 0

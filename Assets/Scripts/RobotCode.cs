@@ -39,7 +39,7 @@ public class RobotCode : MonoBehaviour {
     public float DanoHeal = 1;
     public float HealDelay = 1;
     public float DanoLaser = 1;
-    public float LaserDelay = 1;
+    public float LaserDelay = 2;
     public Image HealthBar;
     public Text nome_text;
     float AtackDelayCouter;
@@ -108,7 +108,8 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        agent.isStopped = true;
+        if (agent.enabled)
+            agent.isStopped = true;
         Anima.SetBool("IsMoving", false);
 
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
@@ -227,7 +228,7 @@ public class RobotCode : MonoBehaviour {
         Vector3 hitbox = DamagePosition;
         for(int i = 0; i < Inimigos.Count; i++){
             print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
-            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.3f) {
+            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.3f && !Inimigos[i].CompareTag("Untagged")) {
                 if (Inimigos[i].TakeDamage(Dano)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;
@@ -261,6 +262,7 @@ public class RobotCode : MonoBehaviour {
         Laser ls = laser.GetComponent<Laser>();
     	ls.target = EnemyPosition;
         ls.mae = this;
+        ls.ad = LaserPos.gameObject.GetComponent<AudioSource>();
 
         Anima.SetBool("Laser", false);
     }
@@ -268,7 +270,7 @@ public class RobotCode : MonoBehaviour {
     public void ApplyLaserDamage(Vector3 target){
         for(int i = 0; i < Inimigos.Count; i++){
             if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.3f) {
-                if (Inimigos[i].TakeDamage(Dano)) {
+                if (Inimigos[i].TakeDamage(DanoLaser)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;
                 }
@@ -280,6 +282,7 @@ public class RobotCode : MonoBehaviour {
         Anima.enabled = false;
         agent.enabled = false;
         gameObject.layer = 0;
+        this.tag = "Untagged";
         
         SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer piece in sprites){
