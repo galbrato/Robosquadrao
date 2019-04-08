@@ -20,11 +20,16 @@ public class CodeManager : MonoBehaviour{
     public List<GameObject> StatementsUIPrefabs;
     private List<Button> StatementsButtons;
 
+    private ConfirmationMenu VoltarButton;
+
     // Start is called before the first frame update
     void Start(){
         CursorExParent = Cursor.transform.parent;
         if (StatementsButtons == null) {
             Assossiate();
+        }
+        if (VoltarButton == null) {
+            VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         }
     }
 
@@ -98,6 +103,7 @@ public class CodeManager : MonoBehaviour{
         if (_ActualRobot != null) {
             _ActualRobot.Name = inputField.text;
             SaveSystem.SaveRobot(_ActualRobot);
+            VoltarButton.needsConfirmation = false;
         }
     }
 
@@ -106,6 +112,10 @@ public class CodeManager : MonoBehaviour{
         _LoadRobot(robotID);
         _PutCodeOnUI();
         inputField.text = _ActualRobot.Name;
+
+        if (VoltarButton == null) VoltarButton = GetComponentInChildren<ConfirmationMenu>();
+        
+        VoltarButton.needsConfirmation = false;
     }
 
     private void InsertStatment(StatementHolder SH, Statement S) {
@@ -164,6 +174,7 @@ public class CodeManager : MonoBehaviour{
         NewLine.name = "Line " + NewLine.transform.GetSiblingIndex();
 
         NewLine.GetComponent<StatementHolder>()._Select();
+        VoltarButton.needsConfirmation = true;
     }
 
     public void _InsertCode(string StatementName) {
@@ -208,7 +219,7 @@ public class CodeManager : MonoBehaviour{
         
         //Selecionar novo botaum
         SH._Select();
-        
+        VoltarButton.needsConfirmation = true;
     }
 
     public void _RemoveCode() {
@@ -271,6 +282,7 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
         Contextualize();
+        VoltarButton.needsConfirmation = true;
     }
 
     void _PrintCode() {
