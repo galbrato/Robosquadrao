@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 598058236}
   - component: {fileID: 598058235}
   - component: {fileID: 598058234}
+  - component: {fileID: 1499784068}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -394,9 +395,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 598058235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1499784068}
+        m_MethodName: FYI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1499784068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598058232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &761533310
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +519,7 @@ GameObject:
   - component: {fileID: 996602336}
   - component: {fileID: 996602335}
   - component: {fileID: 996602334}
+  - component: {fileID: 628164309}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -591,9 +623,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 996602335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 628164309}
+        m_MethodName: FYI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &628164309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996602332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &1089628663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0.000030402867}
+  m_AnchoredPosition: {x: -0.0000076293945, y: 0.00006694524}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4192524274689685109
@@ -2251,6 +2313,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: AtualizaNomes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &8377737268933502152
@@ -2272,6 +2345,7 @@ MonoBehaviour:
   titleText: Certeza?
   bodyText: "Voce tem certeza que deseja voltar? qualquer altera\xE7\xE3o n\xE3o salva
     sera perdida!"
+  needsConfirmation: 1
 --- !u!1 &4553954932356366482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,6 +2848,7 @@ GameObject:
   - component: {fileID: 5647584802209466207}
   - component: {fileID: 5647584802209466200}
   - component: {fileID: 5647584802209466201}
+  - component: {fileID: 1417586670}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -2877,9 +2952,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5647584802209466200}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1417586670}
+        m_MethodName: SendMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1417586670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647584802209466203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &5647584802233584519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,6 +2997,7 @@ GameObject:
   - component: {fileID: 5647584802233584571}
   - component: {fileID: 5647584802233584516}
   - component: {fileID: 5647584802233584517}
+  - component: {fileID: 1758545776}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -2995,9 +3101,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5647584802233584516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1758545776}
+        m_MethodName: FYI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1758545776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647584802233584519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &5647584802245577388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5041,6 +5177,7 @@ GameObject:
   - component: {fileID: 5647584803663477362}
   - component: {fileID: 5647584803663477363}
   - component: {fileID: 5647584803663477372}
+  - component: {fileID: 1121149245}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -5144,9 +5281,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5647584803663477363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121149245}
+        m_MethodName: FYI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1121149245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647584803663477374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &5647584803831615066
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,7 +5725,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1862099310538239581}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5577,6 +5744,7 @@ GameObject:
   - component: {fileID: 7672378818300200182}
   - component: {fileID: 840856321071701962}
   - component: {fileID: 5826642419264339697}
+  - component: {fileID: 1785148268}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -5680,9 +5848,39 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 840856321071701962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1785148268}
+        m_MethodName: FYI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1785148268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549950485189977422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametro: Vazio
+  saida: Vazio
+  contexto: "Se p\xE1"
+  ref_parametro: {fileID: 0}
+  ref_saida: {fileID: 0}
+  ref_contexto: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &7254684989421915356
 GameObject:
   m_ObjectHideFlags: 0

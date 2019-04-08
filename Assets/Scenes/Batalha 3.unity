@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1540,6 +1540,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 952.222
       objectReference: {fileID: 0}
+    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300030, guid: 87efaf20c96bd46b2a6e7bf4d4d3fd57,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cceb03779b8c11646afaa05215287949, type: 3}
 --- !u!1 &1853288715
@@ -1761,17 +1767,17 @@ PrefabInstance:
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.5
+      value: -23.3
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1833,6 +1839,11 @@ PrefabInstance:
       propertyPath: Dano
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5466671128751352161, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: myName
+      value: Inimigo_1
+      objectReference: {fileID: 0}
     - target: {fileID: 7630719193655447279, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.z
@@ -1881,12 +1892,12 @@ PrefabInstance:
     - target: {fileID: 7630719193448828533, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.94100815
+      value: 0.9410081
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193448828533, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.33838388
+      value: 0.33838412
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193448828533, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1941,12 +1952,12 @@ PrefabInstance:
     - target: {fileID: 7630719193499902445, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6357707
+      value: 0.6357708
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193499902445, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.77187806
+      value: 0.77187794
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193499902445, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1976,12 +1987,22 @@ PrefabInstance:
     - target: {fileID: 7630719192470818753, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.4401113
+      value: -0.4401114
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192470818753, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 952.222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Text
+      value: Inimigo_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192954737934, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1998,11 +2019,6 @@ PrefabInstance:
       propertyPath: m_Length
       value: 1.0658737
       objectReference: {fileID: 0}
-    - target: {fileID: 7630719193655447272, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Length
-      value: 0.63034666
-      objectReference: {fileID: 0}
     - target: {fileID: 7630719192099547125, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_Length
@@ -2013,10 +2029,30 @@ PrefabInstance:
       propertyPath: m_Length
       value: 0.81973326
       objectReference: {fileID: 0}
+    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.82150763
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.24056602
+      objectReference: {fileID: 0}
     - target: {fileID: 7630719193499902446, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_Length
       value: 0.81959796
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719193655447272, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Length
+      value: 0.63034666
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cceb03779b8c11646afaa05215287949, type: 3}
@@ -2169,6 +2205,7 @@ MonoBehaviour:
   titleText: Desistir da batalha
   bodyText: "Voc\xEA est\xE1 prestes desistir desta batalha, e ter\xE1 que come\xE7ar
     do ponto inicial da pr\xF3xima vez. Tem certeza que deseja continuar?"
+  needsConfirmation: 1
 --- !u!1 &1961847704
 GameObject:
   m_ObjectHideFlags: 0
