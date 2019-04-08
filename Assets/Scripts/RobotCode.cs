@@ -78,7 +78,7 @@ public class RobotCode : MonoBehaviour {
             myName = Data.Name;
         }
 
-        VidaAtual = VidaMax;
+        //VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         HealDelayCouter = HealDelay;
         LaserDelayCouter = LaserDelay;
