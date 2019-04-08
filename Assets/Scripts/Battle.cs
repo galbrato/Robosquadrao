@@ -78,6 +78,19 @@ public class Battle : MonoBehaviour {
 
 	private void Recompensas() {
 		Player.currentLevel++;
+		switch(battleLevel) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				Player.robotsUnlocked++;
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void Vitoria() {
