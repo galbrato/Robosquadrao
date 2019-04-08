@@ -205,7 +205,7 @@ public class RobotCode : MonoBehaviour {
 
             FlipRobot(dest);
         }
-        return false;
+        return agent.isStopped;
     }
 
     public bool TakeDamage(float damage) {

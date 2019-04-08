@@ -16,7 +16,8 @@ public class LevelSelector : GridLayoutResources {
 	public Row[] robos;
 	public Button comecar;
 	public Button cancelar;
-	public GameObject robo_models;
+	public Button cancelarFundo;
+    public GameObject robo_models;
 	public GameObject content;
 	public GameObject Objetivo;
 
@@ -76,8 +77,14 @@ public class LevelSelector : GridLayoutResources {
 					}
 					//cancelar.gameObject.transform.parent.gameObject.SetActive(false);
 				});
-				
-				String result = Regex.Match(s, @"\d+").Value;
+                cancelarFundo.onClick.AddListener(delegate () {
+                    foreach (Transform child in content.transform) {
+                        Destroy(child.gameObject);
+                    }
+                    //cancelar.gameObject.transform.parent.gameObject.SetActive(false);
+                });
+
+                String result = Regex.Match(s, @"\d+").Value;
 				i = Int32.Parse(result) - 1;
 				for(int j = 0; j < robos[i].descricao.Length; j++){
 					GameObject aux = Instantiate(robo_models, new Vector3(0,0,0), Quaternion.identity, content.transform);

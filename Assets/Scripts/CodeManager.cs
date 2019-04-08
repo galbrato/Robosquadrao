@@ -18,6 +18,7 @@ public class CodeManager : MonoBehaviour{
 
     //Lista de prfabs de codigo
     public List<GameObject> StatementsUIPrefabs;
+    public List<int> FuncLevel;
     private List<Button> StatementsButtons;
 
     private ConfirmationMenu VoltarButton;
@@ -36,7 +37,7 @@ public class CodeManager : MonoBehaviour{
     private void Assossiate() {
         StatementsButtons = new List<Button>();
         foreach (GameObject Stmt in StatementsUIPrefabs) {
-            Button[] buttons = _FuncContent.GetComponentsInChildren<Button>();
+            Button[] buttons = _FuncContent.GetComponentsInChildren<Button>(true);
             foreach (Button b in buttons) {
                 if (b.transform.parent.name.Contains(Stmt.name)) {
                     StatementsButtons.Add(b);
@@ -75,7 +76,12 @@ public class CodeManager : MonoBehaviour{
         //Deligar os botões
         for (int i = 0; i < StatementsButtons.Count; i++) {
             Statement s = Statement.AlocByName(StatementsUIPrefabs[i].name);
-            StatementsButtons[i].interactable = (s.ReturnTipo() == TipoEsperado) ;
+            if (FuncLevel[i] <= Player.currentLevel) {
+                StatementsButtons[i].transform.parent.gameObject.SetActive(s.ReturnTipo() == TipoEsperado);
+            } else {
+                StatementsButtons[i].transform.parent.gameObject.SetActive(false);
+
+            }
         }
     }
 

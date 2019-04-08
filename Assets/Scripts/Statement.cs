@@ -698,8 +698,8 @@ public class Fix : Statement {
     }
 
     public override string ToString() {
-        if (Parametros[0] != null) return "Atacar(" + Parametros[0].ToString() + ")";
-        else return "Atacar(NULL)";
+        if (Parametros[0] != null) return "Reparar" + Parametros[0].ToString() + ")";
+        else return "Reparar(NULL)";
     }
 }
 
@@ -799,7 +799,7 @@ public class AndarAte : Statement {
         //Liberando o retorno
         Robot.Retorno = null;
         //Executando o comando
-        Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
+        bool retorno = !Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
 
         TimeCounter += Time.deltaTime;
         if (TimeCounter > Duration) {
@@ -807,7 +807,7 @@ public class AndarAte : Statement {
             return false;
         }
 
-        return true;
+        return retorno;
     }
 }
 
