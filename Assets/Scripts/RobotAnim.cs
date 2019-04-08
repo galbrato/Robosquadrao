@@ -18,4 +18,8 @@ public class RobotAnim : MonoBehaviour
         mRobot.ApplyLaserBeam();
     }
 
+    public void ApplyHeal() {
+        mRobot.ApplyHeal();
+    }
+
 }
