@@ -7,6 +7,8 @@ public class Battle : MonoBehaviour {
 
 	public int battleLevel;
 
+	public GameObject allyPrefab;	// Prefab do robô aliado a ser spawnado
+
 	public static Vector3 Objetivo;
 	public static Vector3 Inicio;
 	
@@ -25,6 +27,7 @@ public class Battle : MonoBehaviour {
     private GameObject telaVitoria;
     private GameObject telaDerrota;
     private SphereCollider colliderObjetivo;
+	private Vector3[] spawnPositions;
 
 	void Awake() {
 		Inicio = GameObject.Find("Inicio").transform.position;
@@ -47,6 +50,22 @@ public class Battle : MonoBehaviour {
 		foreach(GameObject amigo in amigos) {
 			Friends.Add(amigo.GetComponent<RobotCode>());
 		}
+
+		// Descobre as posições para spawnar os robôs já desbloqueados
+		try {
+			MeshRenderer[] posRobo = GameObject.Find("AllySpawnPosition").GetComponentsInChildren<MeshRenderer>();
+		spawnPositions = new Vector3[posRobo.Length];
+		for (int i = 0; i < posRobo.Length; ++i)
+			spawnPositions[i] = posRobo[i].transform.position;
+		} catch (System.NullReferenceException) {
+			Debug.LogError("ERRO! Cenário não possui o objeto AllySpawnPosition com as posições de spawn");
+		}
+
+		allyPrefab = (GameObject) Resources.Load("Robot/Robot");
+		if (allyPrefab == null)
+			Debug.LogError("ERRO! Não foi possível encontrar o prefab do robô!");
+		
+		SpawnaRobos(allyPrefab);
 	}
 
     void Start() {
@@ -66,6 +85,16 @@ public class Battle : MonoBehaviour {
         
 		VerificaDerrota();
 		VerificaVitoria();
+	}
+
+	private void SpawnaRobos(GameObject robo) {
+		int limit = Mathf.Min(Player.robotsUnlocked, spawnPositions.Length);
+		for (int i = 0; i < limit; ++i) {
+			GameObject instancia = Instantiate(robo, spawnPositions[i], Quaternion.identity);
+			RobotCode codigo = instancia.GetComponent<RobotCode>();
+			codigo.myID = i;
+			codigo.VidaAtual = codigo.VidaMax;
+		}
 	}
 
 	private void ConfereVidaAliados() {
