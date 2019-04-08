@@ -27,6 +27,9 @@ public class ConfirmationMenu : MonoBehaviour {
 
 	private GameObject instance = null;	// Referência à INSTÂNCIA da TdC
 	private GameObject background_instance = null;	// Referência ao background
+
+	public bool needsConfirmation = true;	// Bool para indicar se a TdC necessita ser aberta ou se
+	// o botão terá seu evento normal
 	
 	void Awake() {
 		if (prefab == null) {	// Caso o prefab ainda não tenha sido carregado
@@ -38,24 +41,27 @@ public class ConfirmationMenu : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
-		if (canvas == null)
+		try {
+			canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
+		} catch (System.NullReferenceException) {
 			canvas = GameObject.Find("Canvas").transform;	// Get the canvas
+		}
 		
 		ConfigButton();
 	}
 
 	public void CreateConfirmationMenu() {
-		if (instance == null) {
+		if (!needsConfirmation)			// Caso não necessite abrir a TdC
+			confirmationEvent.Invoke();	// Apenas chama os eventos que haviam no botão
+		else if (instance == null) {
 			instance = Instantiate(prefab, canvas);
 			foreach(Transform trans in instance.transform) {	// Percorre todos os filhos diretos da TdC
 				if (trans.name == "Background")
 					background_instance = trans.gameObject;
 			}
+			Configurations();
 		} else
 			instance.SetActive(true);
-
-		Configurations();
 	}
 
 	public void Configurations() {
