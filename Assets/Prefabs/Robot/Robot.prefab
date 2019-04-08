@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4247a57a92f4c9c47aea7651bf4835ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myName: Rola
+  myName: Robo
   myID: 0
   Aliados: []
   Inimigos: []
@@ -710,7 +710,7 @@ MonoBehaviour:
   DanoLaser: 1
   LaserDelay: 3
   HealthBar: {fileID: 369523105885290709}
-  nome_text: {fileID: 0}
+  nome_text: {fileID: 3030559534790382982}
 --- !u!136 &5607347782094606586
 CapsuleCollider:
   m_ObjectHideFlags: 0

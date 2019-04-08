@@ -4,8 +4,8 @@ using UnityEngine;
 
 public static class Player {
 
-	public static int currentLevel = 4;
-	public static int robotsUnlocked = 4;
+	public static int currentLevel = 1;
+	public static int robotsUnlocked = 1;
 
 	public static void Save() {
 		SaveSystem.SavePlayer();

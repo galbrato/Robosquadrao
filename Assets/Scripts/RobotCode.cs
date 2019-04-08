@@ -39,7 +39,7 @@ public class RobotCode : MonoBehaviour {
     public float DanoHeal = 1;
     public float HealDelay = 1;
     public float DanoLaser = 1;
-    public float LaserDelay = 1;
+    public float LaserDelay = 2;
     public Image HealthBar;
     public Text nome_text;
     float AtackDelayCouter;
@@ -108,7 +108,8 @@ public class RobotCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        agent.isStopped = true;
+        if (agent.enabled)
+            agent.isStopped = true;
         Anima.SetBool("IsMoving", false);
 
         if (AtackDelayCouter < AtackDelay) AtackDelayCouter += Time.deltaTime;
@@ -260,7 +261,7 @@ public class RobotCode : MonoBehaviour {
     public void ApplyLaserDamage(Vector3 target){
         for(int i = 0; i < Inimigos.Count; i++){
             if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.3f) {
-                if (Inimigos[i].TakeDamage(Dano)) {
+                if (Inimigos[i].TakeDamage(DanoLaser)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;
                 }

@@ -660,6 +660,7 @@ public class LaserAtaque : Statement {
 
         TimeCounter += Time.deltaTime;
         if (TimeCounter > Robot.LaserDelay) {
+            TimeCounter = 0;
             return false;
         }
 
