@@ -219,8 +219,8 @@ public class RobotCode : MonoBehaviour {
         return false;
     }
 
-    public bool TakeHeal(float heal) {
-        VidaAtual += heal;
+    public bool TakeHeal(float cura) {
+        VidaAtual += cura;
         if (VidaAtual > VidaMax) VidaAtual = VidaMax;
 
         DamageAnimator.SetTrigger("Healed");

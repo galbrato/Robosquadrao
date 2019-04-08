@@ -900,7 +900,7 @@ MonoBehaviour:
   Dano: 1
   AtackDelay: 2
   DanoHeal: 1
-  HealDelay: 1
+  HealDelay: 2
   DanoLaser: 1
   LaserDelay: 3
   HealthBar: {fileID: 369523105885290709}
