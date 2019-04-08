@@ -217,7 +217,7 @@ public class RobotCode : MonoBehaviour {
         Vector3 hitbox = DamagePosition;
         for(int i = 0; i < Inimigos.Count; i++){
             print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
-            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f) {
+            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f && !Inimigos[i].CompareTag("Untagged")) {
                 if (Inimigos[i].TakeDamage(Dano)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;
@@ -272,6 +272,7 @@ public class RobotCode : MonoBehaviour {
         Anima.enabled = false;
         agent.enabled = false;
         gameObject.layer = 0;
+        this.tag = "Untagged";
         
         SpriteRenderer[] sprites = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer piece in sprites){
