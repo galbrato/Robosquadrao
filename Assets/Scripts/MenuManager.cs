@@ -12,13 +12,21 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void BotaoLoad(){
-		GameObject botao_GO = GameObject.Find("Continuar");	// Game Object do botão de continuar
-		if (botao_GO == null) {
-			Debug.Log("ERRO! Não existe botão de continuar nessa cena");
-			return;
+		try {
+			Button continuar = GameObject.Find("Continuar").GetComponent<Button>();
+			continuar.interactable = SaveSystem.PlayerDataExists();
+
+			if (!continuar.interactable) {
+				try {
+					ConfirmationMenu novoJogo = GameObject.Find("Novo Jogo").GetComponent<ConfirmationMenu>();
+					novoJogo.needsConfirmation = false;
+				} catch(System.NullReferenceException) {
+					Debug.LogError("ERRO! Não existe botão de novo jogo nessa cena!");
+				}
+			}
+		} catch(System.NullReferenceException) {
+			Debug.LogError("ERRO! Não existe botão de continuar nessa cena!");
 		}
-		Button botao = botao_GO.GetComponent<Button>();
-		botao.interactable = SaveSystem.PlayerDataExists();
 	}
 
 	public void LoadGame() {
