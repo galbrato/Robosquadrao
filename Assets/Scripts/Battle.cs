@@ -30,6 +30,22 @@ public class Battle : MonoBehaviour {
 	private Vector3[] spawnPositions;
 
 	void Awake() {
+		// Descobre as posições para spawnar os robôs já desbloqueados
+		try {
+			MeshRenderer[] posRobo = GameObject.Find("AllySpawnPosition").GetComponentsInChildren<MeshRenderer>();
+		spawnPositions = new Vector3[posRobo.Length];
+		for (int i = 0; i < posRobo.Length; ++i)
+			spawnPositions[i] = posRobo[i].transform.position;
+		} catch (System.NullReferenceException) {
+			Debug.LogError("ERRO! Cenário não possui o objeto AllySpawnPosition com as posições de spawn");
+		}
+
+		allyPrefab = (GameObject) Resources.Load("Robot/Robot");
+		if (allyPrefab == null)
+			Debug.LogError("ERRO! Não foi possível encontrar o prefab do robô!");
+		
+		SpawnaRobos(allyPrefab);
+		
 		Inicio = GameObject.Find("Inicio").transform.position;
 
 		GameObject gameObjectObjetivo = GameObject.Find("Objetivo");
@@ -51,21 +67,6 @@ public class Battle : MonoBehaviour {
 			Friends.Add(amigo.GetComponent<RobotCode>());
 		}
 
-		// Descobre as posições para spawnar os robôs já desbloqueados
-		try {
-			MeshRenderer[] posRobo = GameObject.Find("AllySpawnPosition").GetComponentsInChildren<MeshRenderer>();
-		spawnPositions = new Vector3[posRobo.Length];
-		for (int i = 0; i < posRobo.Length; ++i)
-			spawnPositions[i] = posRobo[i].transform.position;
-		} catch (System.NullReferenceException) {
-			Debug.LogError("ERRO! Cenário não possui o objeto AllySpawnPosition com as posições de spawn");
-		}
-
-		allyPrefab = (GameObject) Resources.Load("Robot/Robot");
-		if (allyPrefab == null)
-			Debug.LogError("ERRO! Não foi possível encontrar o prefab do robô!");
-		
-		SpawnaRobos(allyPrefab);
 	}
 
     void Start() {
