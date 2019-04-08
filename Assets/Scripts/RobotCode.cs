@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;   
+using UnityEngine.UI;
 
 public class RobotCode : MonoBehaviour {
     public string myName = "Rola";
@@ -48,6 +48,7 @@ public class RobotCode : MonoBehaviour {
     public AudioClip punch;
     public Transform chave;
     public Transform soco;
+    Renderer sort;
     float AtackDelayCouter;
     float HealDelayCouter;
     float LaserDelayCouter;
@@ -94,6 +95,7 @@ public class RobotCode : MonoBehaviour {
 
         Anima = GetComponentsInChildren<Animator>()[0];
         DamageAnimator = GetComponentsInChildren<Animator>()[1];
+        sort = GetComponent<Renderer>();
 
         rigid = transform.GetComponent<Rigidbody>();
 
@@ -137,6 +139,7 @@ public class RobotCode : MonoBehaviour {
         }
 
         HealthBar.fillAmount = VidaAtual / VidaMax;
+        sort.sortingOrder = (int)transform.position.z;
     }
 
     void _PrintCode() {
