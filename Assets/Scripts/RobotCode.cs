@@ -84,7 +84,7 @@ public class RobotCode : MonoBehaviour {
             myName = Data.Name;
         }
 
-        VidaAtual = VidaMax;
+        //VidaAtual = VidaMax;
         AtackDelayCouter = AtackDelay;
         HealDelayCouter = HealDelay;
         LaserDelayCouter = LaserDelay;
@@ -165,8 +165,9 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool Fix(Vector3 dir) {
+        Debug.Log("Curaaaaaaaaaaa");
         AllyPosition = dir;
-        if(HealDelayCouter >= AtackDelay){
+        if(HealDelayCouter >= HealDelay){
             FlipRobot(dir);
 
             HealDelayCouter = 0;
@@ -217,6 +218,15 @@ public class RobotCode : MonoBehaviour {
         DamageAnimator.SetTrigger("Hitted");
         return false;
     }
+
+    public bool TakeHeal(float heal) {
+        VidaAtual += heal;
+        if (VidaAtual > VidaMax) VidaAtual = VidaMax;
+
+        DamageAnimator.SetTrigger("Healed");
+        return false;
+    }
+
     public void ApplyDamage(){
         Vector3 dir = EnemyPosition - robotPosition;
         dir = dir.normalized;
@@ -225,7 +235,7 @@ public class RobotCode : MonoBehaviour {
         Vector3 hitbox = DamagePosition;
         for(int i = 0; i < Inimigos.Count; i++){
             print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
-            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.0f && !Inimigos[i].CompareTag("Untagged")) {
+            if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.3f && !Inimigos[i].CompareTag("Untagged")) {
                 if (Inimigos[i].TakeDamage(Dano)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;
@@ -246,10 +256,8 @@ public class RobotCode : MonoBehaviour {
 
         for(int i = 0; i < Aliados.Count; i++){
             print("Heal:" + HealPosition + " inimigo " + Aliados[i].name + " pos" + Aliados[i].robotPosition + " Distance : " + Vector3.Distance(HealPosition, Aliados[i].robotPosition));
-            if(Vector3.Distance(HealPosition, Inimigos[i].robotPosition) < 1.0f) {
-                if(Aliados[i].VidaAtual < Aliados[i].VidaMax){
-                    Aliados[i].VidaAtual++;
-                }
+            if(Vector3.Distance(HealPosition, Aliados[i].robotPosition) < 1.3f) {
+                Aliados[i].TakeHeal(DanoHeal);
             }
         }
 

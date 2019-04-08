@@ -10,14 +10,16 @@ public class Battle : MonoBehaviour {
 	public static Vector3 Objetivo;
 	public static Vector3 Inicio;
 	
-    public List<GameObject> Friends;
+    public List<RobotCode> Friends;
     public List<GameObject> Enemies;
 
 	public bool destruirInimigos;
 	public bool chegarFinal;
+	public bool recuperarVidaAliados;
 
     public bool inimigosMortos = false;
 	public bool aliadoNoFinal = false;
+	public bool aliadosVidaCheia = false;
 
 	private Text texto;
     private GameObject telaVitoria;
@@ -39,8 +41,12 @@ public class Battle : MonoBehaviour {
 		if (battleLevel < Player.currentLevel)
 			texto.enabled = false;
 
-        Friends.AddRange(GameObject.FindGameObjectsWithTag("Friend"));
+		List<GameObject> amigos = new List<GameObject>();
+        amigos.AddRange(GameObject.FindGameObjectsWithTag("Friend"));
         Enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+		foreach(GameObject amigo in amigos) {
+			Friends.Add(amigo.GetComponent<RobotCode>());
+		}
 	}
 
     void Start() {
@@ -55,9 +61,19 @@ public class Battle : MonoBehaviour {
         Friends.RemoveAll(x => x == null);
         Enemies.RemoveAll(x => x == null);
 		if (Enemies.Count == 0) inimigosMortos = true;
+
+		ConfereVidaAliados();
         
 		VerificaDerrota();
 		VerificaVitoria();
+	}
+
+	private void ConfereVidaAliados() {
+		foreach(RobotCode friend in Friends) {
+			if (friend.VidaAtual < friend.VidaMax)
+				return;
+		}
+		aliadosVidaCheia = true;
 	}
 
 	private void Recompensas() {
@@ -72,7 +88,10 @@ public class Battle : MonoBehaviour {
 	}
 
 	public void VerificaVitoria() {
-		if (chegarFinal) {
+		if (recuperarVidaAliados) {
+			if (aliadosVidaCheia)
+				Vitoria();
+		} else if (chegarFinal) {
 			if(destruirInimigos) {
 				//if ((destruirInimigos && aliadoNoFinal && inimigosMortos) || aliadoNoFinal)
 				if (aliadoNoFinal && inimigosMortos)
