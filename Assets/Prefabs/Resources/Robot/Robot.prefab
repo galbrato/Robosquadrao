@@ -896,8 +896,8 @@ MonoBehaviour:
     type: 3}
   Speed: 10
   VidaMax: 5
-  VidaAtual: 4
-  Dano: 1
+  VidaAtual: 5
+  Dano: 2
   AtackDelay: 2
   DanoHeal: 1
   HealDelay: 2
