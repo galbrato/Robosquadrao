@@ -26,12 +26,16 @@ public abstract class Statement {
             return new RetornaGlobal(GlobalVar.Objetivo);
         } else if (name == "Inicio") {
             return new RetornaGlobal(GlobalVar.Inicio);
-        }else if (name == "Atacar") {
+        } else if (name == "Atacar") {
             return new Atacar();
+        } else if (name == "Fix") {
+            return new Fix();
         } else if (name == "Vazio") {
             return new Vazio();
         } else if (name == "QualquerInimigo") {
             return new QualQuerInimigo();
+        } else if (name == "AliadoDanificado") {
+            return new AliadoDanificado();
         } else if (name == "LaserAtaque") {
             return new LaserAtaque();
         }
@@ -72,6 +76,33 @@ public class QualQuerInimigo : Statement {
         return "QualquerInimigo";
     }
 }
+
+
+[Serializable]
+public class AliadoDanificado : Statement {
+    public AliadoDanificado() {
+        name = "AliadoDanificado";
+        type = Tipo.Posicao;
+    }
+    public override bool Execute(RobotCode Robot) {
+        if (Robot.Aliados == null || Robot.Aliados.Count == 0) {
+            Debug.Log("Eu não tenho amiguinhus :(");
+            return false;
+        }
+        RobotCode RoboMachucado = Robot.Aliados.Find((RobotCode r) => { return (r.VidaAtual < r.VidaMax); });
+        if (RoboMachucado == null) {
+            Debug.Log("Não tenho amiguinhu machucado");
+            Robot.Retorno = null;
+            return false;
+        }
+        Robot.Retorno = new VarPosicao(RoboMachucado.name, RoboMachucado.transform.position);
+        return false;
+    }
+    public override string ToString() {
+        return "AliadoDanificado";
+    }
+}
+
 
 [Serializable]
 public abstract class Variavel {
@@ -622,6 +653,55 @@ public class Atacar : Statement {
     }
 }
 
+[Serializable]
+public class Fix : Statement {
+    private float TimeCounter = 0f;
+    public Fix() {
+        name = "Fix";
+        type = Tipo.Vazio;
+        Parametros = new Statement[1];
+        ParametrosTipos = new Tipo[1];
+        ParametrosTipos[0] = Tipo.Posicao;
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
+            Debug.LogError("Em fix Argumento errado");
+            return false;
+        }
+        //Executando o parametro
+        Parametros[0].Execute(Robot);
+        //Verificando se retorno do parametro foi passado
+        if (Robot.Retorno == null) {
+            Debug.Log("Retorno Nulo");
+            return false;
+        }
+        //Verificando se o retorno é do tipo correto
+        if (Robot.Retorno.type != Tipo.Posicao) {
+            Debug.LogError("Retorno de tipo diferente");
+            return false;
+        }
+        //Obtendo parametro
+        VarPosicao pos = (VarPosicao)Robot.Retorno;
+        //Liberando o retorno
+        Robot.Retorno = null;
+        //Executando o comando
+        Robot.Fix(new Vector3(pos.x, pos.y, pos.z));
+
+        TimeCounter += Time.deltaTime;
+        if (TimeCounter > Robot.HealDelay) {
+            TimeCounter = 0f;
+            return false;
+        }
+
+        return true;
+    }
+
+    public override string ToString() {
+        if (Parametros[0] != null) return "Atacar(" + Parametros[0].ToString() + ")";
+        else return "Atacar(NULL)";
+    }
+}
 
 [Serializable]
 public class LaserAtaque : Statement {
