@@ -1602,7 +1602,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LaserAtaque
+  m_Text: LaserAtaque()
 --- !u!1 &1431518600402770533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,7 +2838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fix()
+  m_Text: Reparar()
 --- !u!1 &4036457086321572450
 GameObject:
   m_ObjectHideFlags: 0
