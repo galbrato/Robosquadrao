@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0b9cd18faff4f418d0e7e0b31f0f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   speed: 82.95
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
+  mae: {fileID: 0}
+  laser_launch: {fileID: 8300000, guid: d9b241c6d730eb74d998b9caf70118f2, type: 3}
+  laser_hit: {fileID: 8300000, guid: 40415696563ea0946bac6a31cbfa14c7, type: 3}
+  ad: {fileID: 0}
 --- !u!54 &5777899409109300720
 Rigidbody:
   m_ObjectHideFlags: 0

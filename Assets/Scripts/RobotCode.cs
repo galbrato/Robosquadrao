@@ -254,6 +254,7 @@ public class RobotCode : MonoBehaviour {
         Laser ls = laser.GetComponent<Laser>();
     	ls.target = EnemyPosition;
         ls.mae = this;
+        ls.ad = LaserPos.gameObject.GetComponent<AudioSource>();
 
         Anima.SetBool("Laser", false);
     }
