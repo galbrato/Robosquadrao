@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -716,9 +716,11 @@ MonoBehaviour:
   Friends: []
   Enemies: []
   destruirInimigos: 0
-  chegarFinal: 1
+  chegarFinal: 0
+  recuperarVidaAliados: 1
   inimigosMortos: 0
   aliadoNoFinal: 0
+  aliadosVidaCheia: 0
 --- !u!1 &881007503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,15 +2837,15 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 1.685
       objectReference: {fileID: 0}
-    - target: {fileID: 7630719192464285289, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Length
-      value: 0.9925891
-      objectReference: {fileID: 0}
     - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719192464285289, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Length
+      value: 0.9925891
       objectReference: {fileID: 0}
     - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
