@@ -15,11 +15,22 @@ public class IA_easy : MonoBehaviour {
     void Start()
     {
         myRobotCode = this.GetComponent<RobotCode>();
+
+        myRobotCode.Code = new List<Statement>();
+        
+        for (int i = 0; i < 5; i++) {
+            myRobotCode.Code.Add(new AndarAte());
+            myRobotCode.Code[i].Parametros[0] = new QualQuerInimigo();
+        }
+        myRobotCode.Code.Add(new Atacar());
+        myRobotCode.Code[5].Parametros[0] = new QualQuerInimigo();
+
         agent = transform.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update(){
+        return;
         if (!agent.enabled) return;
         
         if(Objetivo != null && myRobotCode.Inimigos.Count == 0){

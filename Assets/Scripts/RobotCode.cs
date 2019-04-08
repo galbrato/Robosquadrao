@@ -123,13 +123,13 @@ public class RobotCode : MonoBehaviour {
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
-        if (myID>=0) {
+        //if (myID>=0) {
             if (Code[ProgramCounter].Execute(this)) {
 
             } else {
                 ProgramCounter = (ProgramCounter + 1) % Code.Count;
             }
-        }
+        //}
 
 
         if (Input.GetKeyUp(KeyCode.Space)) {
@@ -277,7 +277,7 @@ public class RobotCode : MonoBehaviour {
 
     public void ApplyLaserDamage(Vector3 target){
         for(int i = 0; i < Inimigos.Count; i++){
-            if(Vector3.Distance(target, Inimigos[i].robotPosition) < 1.3f) {
+            if(Vector3.Distance(EnemyPosition, Inimigos[i].robotPosition) < 1.3f) {
                 if (Inimigos[i].TakeDamage(DanoLaser)) {
                     Inimigos.Remove(Inimigos[i]);
                     i--;

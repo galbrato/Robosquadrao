@@ -5,6 +5,6 @@ using UnityEngine;
 public class Link : MonoBehaviour
 {
     public void _OpenFeedback() {
-        Application.OpenURL("https://forms.gle/GzGcmtV7Q5VjaGA88");
+        Application.OpenURL("https://forms.gle/BiXtQS3RWMVP3ky89");
     }
 }

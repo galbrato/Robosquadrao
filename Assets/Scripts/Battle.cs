@@ -118,7 +118,13 @@ public class Battle : MonoBehaviour {
 			case 4:
 				Player.robotsUnlocked++;
 				break;
-			default:
+            case 5:
+                Player.robotsUnlocked++;
+                break;
+            case 6:
+                break;
+
+            default:
 				break;
 		}
 	}
