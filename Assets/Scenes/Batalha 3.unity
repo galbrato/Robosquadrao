@@ -1154,9 +1154,10 @@ MonoBehaviour:
   anchorMin: 0.2
   anchorMax: 0.8
   backgroundSprite: {fileID: 0}
-  backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  titleText: Title
-  bodyText: <Message>
+  backgroundColor: {r: 0.654902, g: 0.6784314, b: 0.1254902, a: 1}
+  titleText: Desistir da batalha
+  bodyText: "Voc\xEA est\xE1 prestes desistir desta batalha, e ter\xE1 que come\xE7ar
+    do ponto inicial da pr\xF3xima vez. Tem certeza que deseja continuar?"
   needsConfirmation: 1
 --- !u!1001 &1944668287
 PrefabInstance:
