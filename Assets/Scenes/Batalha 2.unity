@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 10523624}
   - component: {fileID: 10523623}
   - component: {fileID: 10523622}
+  - component: {fileID: 10523625}
   m_Layer: 5
   m_Name: Desistir
   m_TagString: Untagged
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 846857258}
         m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
@@ -241,6 +242,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10523620}
   m_CullTransparentMesh: 0
+--- !u!114 &10523625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10523620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a118925c6912cd64db7241adcd8d9f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorMin: 0.2
+  anchorMax: 0.8
+  backgroundSprite: {fileID: 0}
+  backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  titleText: Title
+  bodyText: <Message>
+  needsConfirmation: 1
 --- !u!1001 &559017754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -845,6 +865,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
         type: 3}

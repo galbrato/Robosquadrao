@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 16870908}
   m_Layer: 5
   m_Name: Battle_Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +263,7 @@ PrefabInstance:
     - target: {fileID: 1341623637702295587, guid: 4a571057a4bf7374da8fd3ad6372c024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1341623637702295587, guid: 4a571057a4bf7374da8fd3ad6372c024,
         type: 3}
@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 769547823}
   - component: {fileID: 769547822}
   - component: {fileID: 769547821}
+  - component: {fileID: 769547824}
   m_Layer: 5
   m_Name: Desistir
   m_TagString: Untagged
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 846857258}
         m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
@@ -487,6 +488,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769547819}
   m_CullTransparentMesh: 0
+--- !u!114 &769547824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769547819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a118925c6912cd64db7241adcd8d9f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorMin: 0.2
+  anchorMax: 0.8
+  backgroundSprite: {fileID: 0}
+  backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  titleText: Title
+  bodyText: <Message>
+  needsConfirmation: 1
 --- !u!1 &846857254
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 1177919480276708593, guid: e9ee92b7ca97519479c9f738ffcc2a02,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1177919480276708593, guid: e9ee92b7ca97519479c9f738ffcc2a02,
         type: 3}
