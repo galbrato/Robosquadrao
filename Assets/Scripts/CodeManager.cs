@@ -10,6 +10,7 @@ public class CodeManager : MonoBehaviour{
     public Transform _CodeContent;
     public Transform _FuncContent;
 	public InputField inputField;
+    public Dropdown RobotDropDown;
 
 
     public RobotData _ActualRobot;
@@ -22,7 +23,6 @@ public class CodeManager : MonoBehaviour{
     private List<Button> StatementsButtons;
 
     private ConfirmationMenu VoltarButton;
-
     // Start is called before the first frame update
     void Start(){
         CursorExParent = Cursor.transform.parent;
@@ -32,6 +32,11 @@ public class CodeManager : MonoBehaviour{
         if (VoltarButton == null) {
             VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         }
+        UpdateDropdown();
+    }
+
+    private void OnEnable() {
+        UpdateDropdown();
     }
 
     private void Assossiate() {
@@ -110,10 +115,23 @@ public class CodeManager : MonoBehaviour{
             _ActualRobot.Name = inputField.text;
             SaveSystem.SaveRobot(_ActualRobot);
             VoltarButton.needsConfirmation = false;
+            UpdateDropdown();
+        }
+    }
+
+    public void _StartEditByDropdown() {
+        _StartEditRobot(RobotDropDown.value);
+    }
+
+    public void UpdateDropdown() {
+        RobotDropDown.ClearOptions();
+        for (int i = 0; i < Player.robotsUnlocked; i++) {
+            RobotDropDown.options.Add(new Dropdown.OptionData(SaveSystem.LoadRobot(i).Name));
         }
     }
 
     public void _StartEditRobot(int robotID) {
+        RobotDropDown.value = robotID;
         gameObject.SetActive(true);
         _LoadRobot(robotID);
         _PutCodeOnUI();
