@@ -77,13 +77,14 @@ public class LevelSelector : GridLayoutResources {
 					}
 					//cancelar.gameObject.transform.parent.gameObject.SetActive(false);
 				});
-                cancelarFundo.onClick.AddListener(delegate () {
+				cancelarFundo.onClick = cancelar.onClick;
+                /*cancelarFundo.onClick.AddListener(delegate () {
                     foreach (Transform child in content.transform) {
 						Debug.Log("Meu nome: " + gameObject.name);
                         Destroy(child.gameObject);
                     }
                     //cancelar.gameObject.transform.parent.gameObject.SetActive(false);
-                });
+                }); */
 
                 String result = Regex.Match(s, @"\d+").Value;
 				i = Int32.Parse(result) - 1;
