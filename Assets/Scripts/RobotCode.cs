@@ -123,13 +123,13 @@ public class RobotCode : MonoBehaviour {
         if (LaserDelayCouter < LaserDelay) LaserDelayCouter += Time.deltaTime;
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
-        //if (myID>=0) {
+        if (Code != null) {
             if (Code[ProgramCounter].Execute(this)) {
 
             } else {
                 ProgramCounter = (ProgramCounter + 1) % Code.Count;
             }
-        //}
+        }
 
 
         if (Input.GetKeyUp(KeyCode.Space)) {
