@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -894,7 +894,7 @@ PrefabInstance:
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.33
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192129390890, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1111,31 +1111,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: -0.4401113
       objectReference: {fileID: 0}
-    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Text
-      value: Robo
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_FontData.m_BestFit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6315731421396623178, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.657
-      objectReference: {fileID: 0}
-    - target: {fileID: 6315731421396623178, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1.685
-      objectReference: {fileID: 0}
     - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1156,11 +1131,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Length
       value: 0.8197334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7630719192464285289, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Length
-      value: 0.9925891
       objectReference: {fileID: 0}
     - target: {fileID: 7630719192954737934, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
@@ -1186,6 +1156,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Length
       value: 0.63034564
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719192464285289, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Length
+      value: 0.9925891
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Text
+      value: Robo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315731421396623178, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.657
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315731421396623178, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1.685
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cceb03779b8c11646afaa05215287949, type: 3}
