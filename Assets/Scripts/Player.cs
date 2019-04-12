@@ -26,5 +26,9 @@ public static class Player {
 	public static void CreateNewSave() {
 		currentLevel = 1;
 		robotsUnlocked = 1;
-	}
+        for (int i = 0; i < 6; i++) {
+            SaveSystem.SaveRobot(new RobotData(i));
+
+        }
+    }
 }
