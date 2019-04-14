@@ -11,6 +11,7 @@ public class CodeManager : MonoBehaviour{
     public Transform _FuncContent;
 	public InputField inputField;
     public Dropdown RobotDropDown;
+    public Button SaveButton;
 
 
     public RobotData _ActualRobot;
@@ -116,6 +117,17 @@ public class CodeManager : MonoBehaviour{
             SaveSystem.SaveRobot(_ActualRobot);
             VoltarButton.needsConfirmation = false;
             UpdateDropdown();
+            SaveButton.interactable = false;
+        }
+    }
+
+    public void _SaveName() {
+        if (_ActualRobot != null) {
+            RobotData R = SaveSystem.LoadRobot(_ActualRobot.Id);
+            _ActualRobot.Name = inputField.text;
+            R.Name = inputField.text;
+            SaveSystem.SaveRobot(R);
+            UpdateDropdown();
         }
     }
 
@@ -128,6 +140,7 @@ public class CodeManager : MonoBehaviour{
         for (int i = 0; i < Player.robotsUnlocked; i++) {
             RobotDropDown.options.Add(new Dropdown.OptionData(SaveSystem.LoadRobot(i).Name));
         }
+        RobotDropDown.RefreshShownValue();
     }
 
     public void _StartEditRobot(int robotID) {
@@ -139,6 +152,7 @@ public class CodeManager : MonoBehaviour{
 
         if (VoltarButton == null) VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         
+        SaveButton.interactable = false;
         VoltarButton.needsConfirmation = false;
     }
 
@@ -199,6 +213,7 @@ public class CodeManager : MonoBehaviour{
 
         NewLine.GetComponent<StatementHolder>()._Select();
         VoltarButton.needsConfirmation = true;
+        SaveButton.interactable = true;
     }
 
     public void _InsertCode(string StatementName) {
@@ -243,6 +258,7 @@ public class CodeManager : MonoBehaviour{
         
         //Selecionar novo botaum
         SH._Select();
+        SaveButton.interactable = true;
         VoltarButton.needsConfirmation = true;
     }
 
@@ -306,6 +322,7 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
         Contextualize();
+        SaveButton.interactable = true;
         VoltarButton.needsConfirmation = true;
     }
 
