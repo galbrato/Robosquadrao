@@ -70,13 +70,13 @@ public class InimigoProximo : Statement {
             return false;
         }
         RobotCode escolhido = Robot.Inimigos[0];
-        Robot.Inimigos.ForEach((RobotCode a) => {
+        foreach (RobotCode a in Robot.Inimigos) {
             float DistEscolhido = Vector3.Distance(escolhido.transform.position, Robot.transform.position);
             float DistAtual = Vector3.Distance(a.transform.position, Robot.transform.position); ; 
             if ( DistAtual < DistEscolhido) {
                 escolhido = a;
             }
-        });
+        };
         
         Robot.Retorno = new VarPosicao(escolhido.name, escolhido.transform.position);
         return false;

@@ -333,6 +333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 846857258}
@@ -340,6 +345,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Batalha 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1341623637397165135, guid: 4a571057a4bf7374da8fd3ad6372c024,
         type: 3}
@@ -1055,6 +1075,17 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: -0.4401113
       objectReference: {fileID: 0}
+    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300030, guid: 87efaf20c96bd46b2a6e7bf4d4d3fd57,
+        type: 3}
     - target: {fileID: 8331154153702539705, guid: cceb03779b8c11646afaa05215287949,
         type: 3}
       propertyPath: m_Text
@@ -1080,17 +1111,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 1.685
       objectReference: {fileID: 0}
-    - target: {fileID: 599669159545981780, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00000023841858
-      objectReference: {fileID: 0}
-    - target: {fileID: 7630719193437351432, guid: cceb03779b8c11646afaa05215287949,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300030, guid: 87efaf20c96bd46b2a6e7bf4d4d3fd57,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cceb03779b8c11646afaa05215287949, type: 3}
 --- !u!1001 &1231896362
