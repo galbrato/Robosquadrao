@@ -209,11 +209,14 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool TakeDamage(float damage) {
-        soco.GetComponent<AudioSource>().PlayOneShot(punch);
+        
         VidaAtual -= damage;
-        if (VidaAtual <= 0) {
+        if (VidaAtual <= 0 && this.tag != "Untagged") {
             Tchakabuuum();
             return true;
+        }
+        else{
+            soco.GetComponent<AudioSource>().PlayOneShot(punch);
         }
         DamageAnimator.SetTrigger("Hitted");
         return false;
