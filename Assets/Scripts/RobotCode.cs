@@ -219,8 +219,8 @@ public class RobotCode : MonoBehaviour {
         }
         else{
             soco.GetComponent<AudioSource>().PlayOneShot(punch);
+            DamageAnimator.SetTrigger("Hitted");
         }
-        DamageAnimator.SetTrigger("Hitted");
         return false;
     }
 
