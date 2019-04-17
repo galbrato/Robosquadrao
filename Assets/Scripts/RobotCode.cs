@@ -124,10 +124,12 @@ public class RobotCode : MonoBehaviour {
         
         Inimigos.RemoveAll((RobotCode r) => {return r == null;});
         if (Code != null) {
-            if (Code[ProgramCounter].Execute(this)) {
-
-            } else {
-                ProgramCounter = (ProgramCounter + 1) % Code.Count;
+            while (!Code[ProgramCounter].Execute(this)) {
+                ProgramCounter++;
+                if (ProgramCounter == Code.Count) {
+                    ProgramCounter = 0;
+                    break;
+                }
             }
         }
 

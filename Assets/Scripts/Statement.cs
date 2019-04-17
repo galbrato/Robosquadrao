@@ -32,8 +32,8 @@ public abstract class Statement {
             return new Fix();
         } else if (name == "Vazio") {
             return new Vazio();
-        } else if (name == "QualquerInimigo") {
-            return new QualQuerInimigo();
+        } else if (name == "InimigoProximo") {
+            return new InimigoProximo();
         } else if (name == "AliadoDanificado") {
             return new AliadoDanificado();
         } else if (name == "LaserAtaque") {
@@ -60,20 +60,30 @@ public class Vazio : Statement {
 }
 
 [Serializable]
-public class QualQuerInimigo : Statement {
-    public QualQuerInimigo() {
-        name = "QualquerInimigo";
+public class InimigoProximo : Statement {
+    public InimigoProximo() {
+        name = "InimigoProximo";
         type = Tipo.Posicao;
     }
     public override bool Execute(RobotCode Robot) {
         if (Robot.Inimigos == null || Robot.Inimigos.Count == 0) {
             return false;
         }
-        Robot.Retorno = new VarPosicao(Robot.Inimigos[0].name, Robot.Inimigos[0].transform.position);
+        RobotCode escolhido = Robot.Inimigos[0];
+        Robot.Inimigos.ForEach((RobotCode a) => {
+            float DistEscolhido = Vector3.Distance(escolhido.transform.position, Robot.transform.position);
+            float DistAtual = Vector3.Distance(a.transform.position, Robot.transform.position); ; 
+            if ( DistAtual < DistEscolhido) {
+                escolhido = a;
+            }
+        });
+        
+        Robot.Retorno = new VarPosicao(escolhido.name, escolhido.transform.position);
         return false;
     }
+
     public override string ToString() {
-        return "QualquerInimigo";
+        return "InimigoProximo";
     }
 }
 
@@ -755,8 +765,6 @@ public class LaserAtaque : Statement {
 
 [Serializable]
 public class AndarAte : Statement {
-    private float Duration = 1f;
-    private float TimeCounter = 0;
     public AndarAte() {
         name = "AndarAte";
         type = Tipo.Vazio;
@@ -799,15 +807,7 @@ public class AndarAte : Statement {
         //Liberando o retorno
         Robot.Retorno = null;
         //Executando o comando
-        bool retorno = !Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
-
-        TimeCounter += Time.deltaTime;
-        if (TimeCounter > Duration) {
-            TimeCounter = 0;
-            return false;
-        }
-
-        return retorno;
+        return !Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));   
     }
 }
 
