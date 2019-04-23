@@ -4275,18 +4275,18 @@ MonoBehaviour:
   menuManager: {fileID: 1924876161}
   Preview: {fileID: 1734138733}
   robos:
-  - imagem: []
+  - cor: []
     descricao: []
     objetivo: "Objetivo: Andar at\xE9 o final da fase!"
-  - imagem:
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
+  - cor:
+    - {r: 0, g: 0.24008727, b: 1, a: 1}
     descricao:
     - '- Corpo-a-Corpo
 
       - Dano baixo'
     objetivo: "Objetivo: Eliminar rob\xF4 da fase!"
-  - imagem:
-    - {fileID: 21300000, guid: 8ac2ab24e5fbd3842a8404d4efe5a8ab, type: 3}
+  - cor:
+    - {r: 1, g: 0.7241974, b: 0, a: 1}
     descricao:
     - '- Corpo-a-corpo
 
@@ -4294,12 +4294,12 @@ MonoBehaviour:
 
       - Vida Baixa'
     objetivo: 'Objetivo: Matar todo mundo'
-  - imagem: []
+  - cor: []
     descricao: []
     objetivo: 'Objetivo: Curar Aliado!'
-  - imagem:
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
+  - cor:
+    - {r: 0, g: 0.06844139, b: 1, a: 1}
+    - {r: 0, g: 0.06666667, b: 1, a: 1}
     descricao:
     - '- Corpo-a-Corpo
 
@@ -4308,10 +4308,10 @@ MonoBehaviour:
 
       - Dano baixo'
     objetivo: "Objetivo: Eliminar rob\xF4s da fase!"
-  - imagem:
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
-    - {fileID: 21300000, guid: 659722dd73fe72547959f55ab1125fe3, type: 3}
+  - cor:
+    - {r: 0, g: 0.013520718, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
     descricao:
     - '- Corpo-a-Corpo
 
@@ -4323,8 +4323,7 @@ MonoBehaviour:
 
       - Dano baixo'
     objetivo: "Objetivo: Eliminar rob\xF4s da fase!"
-  - imagem:
-    - {fileID: 21300000, guid: 71ca1fe47c265884a8d20f1d065194f1, type: 3}
+  - cor: []
     descricao:
     - -Secreto
     objetivo: 'Objetivo: Segredo'

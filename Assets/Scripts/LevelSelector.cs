@@ -91,7 +91,7 @@ public class LevelSelector : GridLayoutResources {
 				for(int j = 0; j < robos[i].descricao.Length; j++){
 					GameObject aux = Instantiate(robo_models, new Vector3(0,0,0), Quaternion.identity, content.transform);
 					
-					aux.transform.GetChild(0).GetComponent<Image>().sprite = robos[i].imagem[j];
+					aux.transform.GetChild(0).GetComponent<Image>().color = robos[i].cor[j];
 					aux.transform.GetChild(1).GetComponent<Text>().text = robos[i].descricao[j];
 				}
 				
@@ -105,7 +105,7 @@ public class LevelSelector : GridLayoutResources {
 
 [Serializable]
 public struct Row{
-	public Sprite[] imagem;
+	public Color[] cor;
 	[TextArea]
 	public String[] descricao;
 	public String objetivo;
