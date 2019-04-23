@@ -28,7 +28,7 @@ public class RobotCode : MonoBehaviour {
 
     //Codigo do robo
     public List<Statement> Code;
-    private int ProgramCounter;
+    public int ProgramCounter;
     
     //Atributos do robo
     public float Speed = 10.0f;

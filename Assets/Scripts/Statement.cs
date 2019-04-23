@@ -34,10 +34,20 @@ public abstract class Statement {
             return new Vazio();
         } else if (name == "InimigoProximo") {
             return new InimigoProximo();
+        } else if (name == "TemInimigoProximo") {
+            return new TemInimigoProximo();
         } else if (name == "AliadoDanificado") {
             return new AliadoDanificado();
         } else if (name == "LaserAtaque") {
             return new LaserAtaque();
+        } else if (name == "Se") {
+            return new Se();
+        } else if (name == "FimEntao") {
+            return new FimEntao();
+        } else if (name == "TemAliadoDanificado") {
+            return new TemAliadoDanificado();
+        } else if (name == "Nao") {
+            return new Nao();
         }
         return null;
     }
@@ -87,7 +97,6 @@ public class InimigoProximo : Statement {
     }
 }
 
-
 [Serializable]
 public class AliadoDanificado : Statement {
     public AliadoDanificado() {
@@ -112,7 +121,6 @@ public class AliadoDanificado : Statement {
         return "AliadoDanificado";
     }
 }
-
 
 [Serializable]
 public abstract class Variavel {
@@ -1020,32 +1028,28 @@ public class Compare : Statement {
 
 [Serializable]
 public class Se : Statement {
-    public Statement Parametro;
 
-    public List<Statement> SubCode;
-    private int ProgramCounter;
-
-    private bool Verified;
     public Se() {
         type = Tipo.Vazio;
-        Verified = false;
-        ProgramCounter = 0;
-        SubCode = new List<Statement>();
+        name = "Se";
+        ParametrosTipos = new Tipo[1];
+        ParametrosTipos[0] = Tipo.Booleano;
+        Parametros = new Statement[1];
     }
 
     bool VerifyCondition(RobotCode Robot) {
         //Verificando se o Parametro foi passado
-        if (Parametro == null) {
+        if (Parametros == null|| Parametros[0] == null) {
             Debug.LogError("Parametro nulo");
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametro.ReturnTipo() != Tipo.Booleano) {
-            Debug.LogError("Em Atacar Argumento errado");
+        if (Parametros[0].ReturnTipo() != Tipo.Booleano) {
+            Debug.LogError("Em Se Argumento errado");
             return false;
         }
         //Executando o parametro
-        Parametro.Execute(Robot);
+        Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
             Debug.LogError("Retorno Nulo");
@@ -1063,24 +1067,62 @@ public class Se : Statement {
         return boo;
     }
 
+    public int IgnoreStatement(RobotCode Robot, int linha) {
+        int SeQuantidade = 0;
+        for (int i = linha; i < Robot.Code.Count; i++) {
+            if (Robot.Code[i].name == "Se") SeQuantidade++;
+
+            if (Robot.Code[i].name == "FimEntao") SeQuantidade--;
+
+            if (SeQuantidade == 0) {
+                return i;
+            }
+        }
+        if (SeQuantidade != 0) {
+            Debug.Log("não de o fim do então, ignorar so o proximo statement");
+            //se for um Se pular ele inteiro
+            if (Robot.Code[linha+1].name == "Se") {
+                return IgnoreStatement(Robot, linha + 1);
+            } else { //se não for um Se pular so uma linha
+                return linha + 1;
+            }
+        }
+        Debug.LogError("Algo deu errado");
+        return 0;
+    }
+
     public override bool Execute(RobotCode Robot) {
 
-        if (!Verified) {
-            Verified = true;
-            if (!VerifyCondition(Robot)) {
-                return false;
-            }
+        if (!VerifyCondition(Robot)) {
+            //goto linha do FimEntão
+            Robot.ProgramCounter = IgnoreStatement(Robot, Robot.ProgramCounter);
         }
 
-        if (!SubCode[ProgramCounter].Execute(Robot)) {
-            ProgramCounter++;
-            //Se o PC for igual ao numero de comandos, o codigo ja chegou no fim, e pode ser retornado;
-            if (ProgramCounter == SubCode.Count) {
-                return false;
-            }
-        }
 
-        return true;
+        return false;
+    }
+
+    public override string ToString() {
+        if (Parametros[0] != null) {
+            return "Se(" + Parametros[0].ToString() + ") Entao:";
+        }
+        return "Se(NULL) Então:";
+    }
+}
+
+[Serializable]
+public class FimEntao : Statement {
+    public FimEntao() {
+        name = "FimEntao";
+        type = Tipo.Vazio;
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        return false;
+    }
+
+    public override string ToString() {
+        return "FimEntao";
     }
 }
 
@@ -1246,4 +1288,83 @@ public class ExpressaoLogica : Statement {
         }
         return false;
     }
-} 
+}
+
+[Serializable]
+public class Nao : Statement {
+    public Nao() {
+        type = Tipo.Booleano;
+        name = "Nao";
+        Parametros = new Statement[1];
+        ParametrosTipos = new Tipo[1];
+        ParametrosTipos[0] = Tipo.Booleano;
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        if (Parametros[0] == null) {
+            Debug.LogError("Erro! sem parametros");
+            return false;
+        }
+        Parametros[0].Execute(Robot);
+        if (Robot.Retorno.type != ParametrosTipos[0]) {
+            Debug.LogError("ERRO! Tipo retornado diferente de Boleano");
+            return false;
+        }
+        VarBooleano r = (VarBooleano)Robot.Retorno;
+        r.Value = !r.Value;
+        Robot.Retorno = r;
+        return false;
+    }
+
+    public override string ToString() {
+        if (Parametros[0] != null)
+            return "Não " + Parametros[0].ToString();
+        return "Não NULL";
+    }
+}
+
+[Serializable]
+public class TemAliadoDanificado : Statement {
+    public TemAliadoDanificado() {
+        name = "TemAliadoDanificado";
+        type = Tipo.Booleano;
+    }
+    public override bool Execute(RobotCode Robot) {
+        if (Robot.Aliados == null || Robot.Aliados.Count == 0) {
+            Debug.Log("Eu não tenho amiguinhus :(");
+            return false;
+        }
+        bool ThereIs = Robot.Aliados.Exists((RobotCode r) => { return (r.VidaAtual < r.VidaMax); });
+        
+        Robot.Retorno = new VarBooleano("RoboMachucado", ThereIs);
+        return false;
+    }
+    public override string ToString() {
+        return "TemAliadoDanificado";
+    }
+}
+
+
+[Serializable]
+public class TemInimigoProximo : Statement {
+    public TemInimigoProximo() {
+        name = "TemInimigoProximo";
+        type = Tipo.Booleano;
+    }
+    public override bool Execute(RobotCode Robot) {
+        if (Robot.Inimigos == null ) {
+            return false;
+        }
+        if (Robot.Inimigos.Count > 0) {
+            Robot.Retorno = new VarBooleano("Tem mais que um inimigo", true);
+        } else {
+            Robot.Retorno = new VarBooleano("Não vejo inimigo", false);
+        }
+        return false;
+    }
+
+    public override string ToString() {
+        return "TemInimigoProximo";
+    }
+}
+

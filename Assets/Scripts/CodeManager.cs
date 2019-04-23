@@ -73,6 +73,7 @@ public class CodeManager : MonoBehaviour{
         }else if (SH.name.Contains("Parameter")) {
             if (SH._OriginalStatement == null) {
                 StatementHolder SHFather = SH.transform.parent.GetComponentInParent<StatementHolder>();
+                Debug.Log(SHFather._OriginalStatement.name + " espera parametros");
                 if (SHFather._OriginalStatement.ParametrosTipos != null) {
                     TipoEsperado = SHFather._OriginalStatement.ParametrosTipos[0];
                 }
@@ -280,12 +281,13 @@ public class CodeManager : MonoBehaviour{
                 // Deletar da lista de codigo se estiver na linha
                 if (ParameterFather.name.Contains("Line")) {
                     int i = ParameterFather.transform.GetSiblingIndex();
-                    ParameterFather._OriginalStatement = null;
+                    
                     _ActualRobot.Code[i] = new Vazio();
                 } else {// Deletar da lista de parametros do pai
                     StatementHolder FatherFather = ParameterFather.transform.parent.GetComponentInParent<StatementHolder>();
                     FatherFather._OriginalStatement.Parametros[0] = null;
                 }
+                ParameterFather._OriginalStatement = null;
                 Cursor.transform.SetParent(ParameterFather.transform);
 
                 Destroy(ParameterFather.transform.GetChild(0).gameObject);
