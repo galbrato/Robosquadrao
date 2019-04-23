@@ -133,6 +133,7 @@ public class CodeManager : MonoBehaviour{
     }
 
     public void _StartEditByDropdown() {
+        _SaveRobot();
         _StartEditRobot(RobotDropDown.value);
     }
 
