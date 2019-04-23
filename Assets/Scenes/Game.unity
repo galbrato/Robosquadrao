@@ -4324,8 +4324,7 @@ MonoBehaviour:
       - Dano baixo'
     objetivo: "Objetivo: Eliminar rob\xF4s da fase!"
   - cor: []
-    descricao:
-    - -Secreto
+    descricao: []
     objetivo: 'Objetivo: Segredo'
   comecar: {fileID: 1567524934}
   cancelar: {fileID: 501216320}
