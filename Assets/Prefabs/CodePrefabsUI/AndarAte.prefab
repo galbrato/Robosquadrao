@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3898874913871484623}
   - component: {fileID: 8927589672872456568}
   - component: {fileID: 8117255389466921064}
+  - component: {fileID: 1519178263324440523}
   m_Layer: 5
   m_Name: )
   m_TagString: Untagged
@@ -32,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 6814368660837060334}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 165, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 361, y: -67.35}
+  m_SizeDelta: {x: 38, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8927589672872456568
 CanvasRenderer:
@@ -67,11 +68,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c49ee3ef882a08e4aa3447e4b8738dcc, type: 3}
-    m_FontSize: 300
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 1
-    m_MaxSize: 300
+    m_MinSize: 20
+    m_MaxSize: 100
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -79,6 +80,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0
   m_Text: )
+--- !u!114 &1519178263324440523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139911384564994679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1814902919499523206
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +105,7 @@ GameObject:
   - component: {fileID: 1814902919499523207}
   - component: {fileID: 1814902919499523200}
   - component: {fileID: 1814902919499523201}
-  - component: {fileID: 2124557564389818692}
+  - component: {fileID: 7536141385323776967}
   m_Layer: 5
   m_Name: Parameter
   m_TagString: Untagged
@@ -112,10 +127,10 @@ RectTransform:
   m_Father: {fileID: 6814368660837060334}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 342, y: -67.35}
+  m_SizeDelta: {x: 0, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814902919499523200
 MonoBehaviour:
@@ -153,7 +168,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &2124557564389818692
+--- !u!114 &7536141385323776967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +177,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814902919499523206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca07540e3db583d4380d5842503209dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0c37eb60386684e991389ef71b0daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FitInside: 0
+  _minSize: 1
 --- !u!1 &2745417802398918696
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +192,7 @@ GameObject:
   - component: {fileID: 6989559856910340883}
   - component: {fileID: 8545597406149461659}
   - component: {fileID: 3328558515386330963}
+  - component: {fileID: 3149262127043916993}
   m_Layer: 5
   m_Name: AndarAte(
   m_TagString: Untagged
@@ -198,10 +214,10 @@ RectTransform:
   m_Father: {fileID: 6814368660837060334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1485, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 171, y: -67.35}
+  m_SizeDelta: {x: 342, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8545597406149461659
 CanvasRenderer:
@@ -233,11 +249,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c49ee3ef882a08e4aa3447e4b8738dcc, type: 3}
-    m_FontSize: 300
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 1
-    m_MaxSize: 300
+    m_MinSize: 20
+    m_MaxSize: 100
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -245,6 +261,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0
   m_Text: AndarAte(
+--- !u!114 &3149262127043916993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745417802398918696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &3445240915877508670
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +287,7 @@ GameObject:
   - component: {fileID: 9180523581316043586}
   - component: {fileID: 2078373113106957255}
   - component: {fileID: 3445240915877508671}
-  - component: {fileID: 1412346266677872429}
+  - component: {fileID: 3686839242611546521}
   m_Layer: 5
   m_Name: AndarAte
   m_TagString: Untagged
@@ -347,7 +377,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &1412346266677872429
+--- !u!114 &3686839242611546521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,7 +386,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3445240915877508670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca07540e3db583d4380d5842503209dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0c37eb60386684e991389ef71b0daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FitInside: 0
+  _minSize: 1

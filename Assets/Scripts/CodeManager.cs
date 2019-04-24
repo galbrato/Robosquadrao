@@ -70,7 +70,7 @@ public class CodeManager : MonoBehaviour{
             if (SH._OriginalStatement == null) {
                 TipoEsperado = Tipo.Vazio;
             } 
-        }else if (SH.name.Contains("Parameter")) {
+        } else if (SH.name.Contains("Parameter")) {
             if (SH._OriginalStatement == null) {
                 StatementHolder SHFather = SH.transform.parent.GetComponentInParent<StatementHolder>();
                 ////Debug.Log(SHFather._OriginalStatement.name + " espera parametros");

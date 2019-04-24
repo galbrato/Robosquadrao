@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7136755978616923314}
   - component: {fileID: 7136755978616923313}
   - component: {fileID: 7136755978616923342}
-  - component: {fileID: 7136755978616923343}
   - component: {fileID: 7503011864009544875}
   - component: {fileID: 7309550853019767288}
+  - component: {fileID: 4379696994894135520}
   m_Layer: 5
   m_Name: Line
   m_TagString: Untagged
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 134.7}
+  m_SizeDelta: {x: 397.97, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7136755978616923312
 CanvasRenderer:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.08235294}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.16078432}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -181,19 +181,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &7136755978616923343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7136755978616923316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca07540e3db583d4380d5842503209dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _FitInside: 0
 --- !u!82 &7503011864009544875
 AudioSource:
   m_ObjectHideFlags: 0
@@ -302,3 +289,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc187ed37bc41bb4d8753f7206c873be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4379696994894135520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136755978616923316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0c37eb60386684e991389ef71b0daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSize: 0

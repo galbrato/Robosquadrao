@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3480023433106051814}
   - component: {fileID: 9058211430455424337}
   - component: {fileID: 8572135738251054145}
+  - component: {fileID: 6071544154218232602}
   m_Layer: 5
   m_Name: )
   m_TagString: Untagged
@@ -32,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 6395552362161818311}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 165, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 285, y: -67.35}
+  m_SizeDelta: {x: 38, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9058211430455424337
 CanvasRenderer:
@@ -67,11 +68,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c49ee3ef882a08e4aa3447e4b8738dcc, type: 3}
-    m_FontSize: 300
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 1
-    m_MaxSize: 300
+    m_MinSize: 20
+    m_MaxSize: 100
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -79,6 +80,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0
   m_Text: )
+--- !u!114 &6071544154218232602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549721067026388574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &2269748630430228655
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +105,7 @@ GameObject:
   - component: {fileID: 2269748630430228654}
   - component: {fileID: 2269748630430228649}
   - component: {fileID: 2269748630430228648}
-  - component: {fileID: 1957905944792565101}
+  - component: {fileID: 6136010126465952997}
   m_Layer: 5
   m_Name: Parameter
   m_TagString: Untagged
@@ -112,10 +127,10 @@ RectTransform:
   m_Father: {fileID: 6395552362161818311}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 266, y: -67.35}
+  m_SizeDelta: {x: 0, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2269748630430228649
 MonoBehaviour:
@@ -153,7 +168,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &1957905944792565101
+--- !u!114 &6136010126465952997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +177,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2269748630430228655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca07540e3db583d4380d5842503209dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0c37eb60386684e991389ef71b0daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FitInside: 0
+  _minSize: 1
 --- !u!1 &2326599857833962497
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +192,7 @@ GameObject:
   - component: {fileID: 7399404722531538746}
   - component: {fileID: 8126780008118502066}
   - component: {fileID: 2909741635952421754}
+  - component: {fileID: 4506360533831797389}
   m_Layer: 5
   m_Name: Atacar(
   m_TagString: Untagged
@@ -198,10 +214,10 @@ RectTransform:
   m_Father: {fileID: 6395552362161818311}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1485, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 133, y: -67.35}
+  m_SizeDelta: {x: 266, y: 134.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8126780008118502066
 CanvasRenderer:
@@ -233,11 +249,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c49ee3ef882a08e4aa3447e4b8738dcc, type: 3}
-    m_FontSize: 300
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 1
-    m_MaxSize: 300
+    m_MinSize: 20
+    m_MaxSize: 100
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -245,6 +261,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0
   m_Text: Atacar(
+--- !u!114 &4506360533831797389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326599857833962497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &2999367216596169239
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,9 +287,9 @@ GameObject:
   - component: {fileID: 8734684485525641067}
   - component: {fileID: 1911722627242199022}
   - component: {fileID: 2999367216596169238}
-  - component: {fileID: 1569990171640759044}
+  - component: {fileID: 3841673005121695111}
   m_Layer: 5
-  m_Name: AndarAte 1
+  m_Name: Atacar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,7 +302,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999367216596169239}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -347,7 +377,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 1
---- !u!114 &1569990171640759044
+--- !u!114 &3841673005121695111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,7 +386,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2999367216596169239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca07540e3db583d4380d5842503209dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0c37eb60386684e991389ef71b0daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FitInside: 0
+  _minSize: 1
