@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae44a81227d26f4691ed683de99505a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleLevel: 6
+  battleLevel: 9
   allyPrefab: {fileID: 0}
   Friends: []
   Enemies: []
@@ -570,6 +570,9 @@ MonoBehaviour:
   inimigosMortos: 0
   aliadoNoFinal: 0
   aliadosVidaCheia: 0
+  aud: {fileID: 1236801924}
+  win: {fileID: 8300000, guid: 8d0a64be62d5c284d83f4df503553ce6, type: 3}
+  lose: {fileID: 8300000, guid: 8b781bead491b514abc38e75535bc08c, type: 3}
 --- !u!1001 &1032236790
 PrefabInstance:
   m_ObjectHideFlags: 0

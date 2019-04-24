@@ -7332,8 +7332,9 @@ MonoBehaviour:
   anchorMax: 0.8
   backgroundSprite: {fileID: 0}
   backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  titleText: Title
-  bodyText: <Message>
+  titleText: Certeza?
+  bodyText: "Voce tem certeza que deseja voltar? Qualquer altera\xE7\xE3o n\xE3o salva
+    sera perdida!"
   needsConfirmation: 1
 --- !u!1 &4500589639412157189
 GameObject:

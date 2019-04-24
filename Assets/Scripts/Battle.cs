@@ -109,8 +109,10 @@ public class Battle : MonoBehaviour {
 
 	private void ConfereVidaAliados() {
 		foreach(RobotCode friend in Friends) {
-			if (friend.VidaAtual < friend.VidaMax)
+			if (friend.VidaAtual < friend.VidaMax) {
+				aliadosVidaCheia = false;
 				return;
+			}
 		}
 		aliadosVidaCheia = true;
 	}
@@ -149,22 +151,27 @@ public class Battle : MonoBehaviour {
 	}
 
 	public void VerificaVitoria() {
-		if (recuperarVidaAliados) {
+		if(destruirInimigos && chegarFinal && recuperarVidaAliados) {
+			if (inimigosMortos && aliadoNoFinal && aliadosVidaCheia)
+				Vitoria();
+		} else if (destruirInimigos && chegarFinal) {
+			if (inimigosMortos && aliadoNoFinal)
+				Vitoria();
+		} else if (destruirInimigos && recuperarVidaAliados) {
+			if (inimigosMortos && aliadosVidaCheia)
+				Vitoria();
+		} else if(chegarFinal && recuperarVidaAliados) {
+			if (aliadoNoFinal && aliadosVidaCheia)
+				Vitoria();
+		} else if (recuperarVidaAliados) {
 			if (aliadosVidaCheia)
 				Vitoria();
 		} else if (chegarFinal) {
-			if(destruirInimigos) {
-				//if ((destruirInimigos && aliadoNoFinal && inimigosMortos) || aliadoNoFinal)
-				if (aliadoNoFinal && inimigosMortos)
-					Vitoria();
-			} else {
-				if (aliadoNoFinal)
-					Vitoria();
-			}
-		} else {
-			if (inimigosMortos) {
+			if (aliadoNoFinal)
 				Vitoria();
-			}
+		} else {
+			if (inimigosMortos)
+				Vitoria();
 		}
 	}
 
