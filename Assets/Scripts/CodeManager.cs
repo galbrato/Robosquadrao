@@ -31,7 +31,7 @@ public class CodeManager : MonoBehaviour{
             Assossiate();
         }
         if (VoltarButton == null) {
-            VoltarButton = GetComponentInChildren<ConfirmationMenu>();
+            //VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         }
         UpdateDropdown();
     }
@@ -116,9 +116,9 @@ public class CodeManager : MonoBehaviour{
         if (_ActualRobot != null) {
             _ActualRobot.Name = inputField.text;
             SaveSystem.SaveRobot(_ActualRobot);
-            VoltarButton.needsConfirmation = false;
+            //VoltarButton.needsConfirmation = false;
             UpdateDropdown();
-            SaveButton.interactable = false;
+            //SaveButton.interactable = false;
         }
     }
 
@@ -133,6 +133,7 @@ public class CodeManager : MonoBehaviour{
     }
 
     public void _StartEditByDropdown() {
+        _SaveRobot();
         _StartEditRobot(RobotDropDown.value);
     }
 
@@ -151,10 +152,10 @@ public class CodeManager : MonoBehaviour{
         _PutCodeOnUI();
         inputField.text = _ActualRobot.Name;
 
-        if (VoltarButton == null) VoltarButton = GetComponentInChildren<ConfirmationMenu>();
+        //if (VoltarButton == null) VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         
-        SaveButton.interactable = false;
-        VoltarButton.needsConfirmation = false;
+        //SaveButton.interactable = false;
+        //VoltarButton.needsConfirmation = false;
     }
 
     private void InsertStatment(StatementHolder SH, Statement S) {
@@ -213,8 +214,8 @@ public class CodeManager : MonoBehaviour{
         NewLine.name = "Line " + NewLine.transform.GetSiblingIndex();
 
         NewLine.GetComponent<StatementHolder>()._Select();
-        VoltarButton.needsConfirmation = true;
-        SaveButton.interactable = true;
+        //VoltarButton.needsConfirmation = true;
+        //SaveButton.interactable = true;
     }
 
     public void _InsertCode(string StatementName) {
@@ -259,8 +260,8 @@ public class CodeManager : MonoBehaviour{
         
         //Selecionar novo botaum
         SH._Select();
-        SaveButton.interactable = true;
-        VoltarButton.needsConfirmation = true;
+        //SaveButton.interactable = true;
+        //VoltarButton.needsConfirmation = true;
     }
 
     public void _RemoveCode() {
@@ -324,8 +325,8 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
         Contextualize();
-        SaveButton.interactable = true;
-        VoltarButton.needsConfirmation = true;
+        //SaveButton.interactable = true;
+        //VoltarButton.needsConfirmation = true;
     }
 
     void _PrintCode() {

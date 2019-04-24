@@ -653,11 +653,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: "Tipo Posi\xE7\xE3o"
   saida: Vazio
   contexto: "O rob\xF4 ir\xE1 atacar com 1 soco na dire\xE7\xE3o da Posi\xE7\xE3o
     passada por argumento. O argumento que ser\xE1 passado entre par\xEAnteses tem
     que Retornar um TipoPosi\xE7\xE3o.\r"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -1230,11 +1232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Nenhum
   saida: "Tipo Posi\xE7\xE3o"
   contexto: "Retorna a Posi\xE7\xE3o do inimigo mais pr\xF3ximo que o rob\xF4 consegue
     enxergar, \xE9 um bom  argumento de Fun\xE7\xF5es que fazem um ataque, como a
     Atacar() ou LaserAtaque()."
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -2016,8 +2020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -417.08, y: 464.40002}
-  m_SizeDelta: {x: 834.15, y: 130.6}
+  m_AnchoredPosition: {x: -217.23, y: 460.00006}
+  m_SizeDelta: {x: 943.75, y: 121.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1435812524
 CanvasRenderer:
@@ -2323,7 +2327,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1567524935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7254684989557028115}
+        m_MethodName: _SaveRobot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1620401509
@@ -3291,9 +3306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Tipo Booleano
   saida: Vazio
   contexto: "Faz verifica\xE7\xE3o"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -5174,11 +5191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: "TipoPosi\xE7\xE3o"
   saida: Vazio
   contexto: "O rob\xF4 ir\xE1 tentar consertar q aliado na dire\xE7\xE3o da Posi\xE7\xE3o
     passada por argumento. O argumento que ser\xE1 passado entre par\xEAnteses tem
     que Retornar um TipoPosi\xE7\xE3o, de prefer\xEAncia uma posi\xE7\xE3o de um aliado."
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -5642,9 +5661,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Tipo Booleano
   saida: Vazio
   contexto: "Faz verifica\xE7\xE3o"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -6084,8 +6105,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 437.6, y: 0.006225586}
-  m_SizeDelta: {x: -874.4, y: 0.6}
+  m_AnchoredPosition: {x: 485, y: -0.2999878}
+  m_SizeDelta: {x: -970.1, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5074766196743255146
 CanvasRenderer:
@@ -6428,11 +6449,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Nenhum
   saida: "Tipo Posi\xE7\xE3o"
   contexto: "Retorna a Posi\xE7\xE3o qualquer aliado que n\xE3o esteja com a vida
     m\xE1xima e que o rob\xF4 consiga enxergar, \xE9 um bom  argumento de fun\xE7\xF5es
     que interagem com aliados como por exemplo Reparar()."
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -6612,6 +6635,81 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Save
+--- !u!1 &3411235446232358339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7568371627880586524}
+  - component: {fileID: 1230145526561232306}
+  - component: {fileID: 1701143124715232314}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7568371627880586524
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411235446232358339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7254684989549151281}
+  m_Father: {fileID: 3097197614210988766}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -117.6, y: 0}
+  m_SizeDelta: {x: -235.1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1230145526561232306
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411235446232358339}
+  m_CullTransparentMesh: 0
+--- !u!114 &1701143124715232314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411235446232358339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &3631849911466136919
 GameObject:
   m_ObjectHideFlags: 0
@@ -6944,7 +7042,6 @@ GameObject:
   - component: {fileID: 8473970090946226630}
   - component: {fileID: 1266545565911941799}
   - component: {fileID: 4705154342578485890}
-  - component: {fileID: 8377737268933502152}
   m_Layer: 5
   m_Name: Voltar
   m_TagString: Untagged
@@ -7060,51 +7157,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: AtualizaNomes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 53df1ba675bb84592aa8104512652085,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8377737268933502152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4189460205351938460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a118925c6912cd64db7241adcd8d9f0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anchorMin: 0.2
-  anchorMax: 0.8
-  backgroundSprite: {fileID: 0}
-  backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  titleText: Certeza?
-  bodyText: "Voce tem certeza que deseja voltar? qualquer altera\xE7\xE3o n\xE3o salva
-    sera perdida!"
-  needsConfirmation: 1
 --- !u!1 &4553954932356366482
 GameObject:
   m_ObjectHideFlags: 0
@@ -7439,9 +7493,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Tipo Booleano
   saida: Vazio
   contexto: "Faz verifica\xE7\xE3o"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -7571,15 +7627,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7254684989549151281}
+  - {fileID: 7568371627880586524}
   - {fileID: 4492236657010533394}
   m_Father: {fileID: 7254684989557028126}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.099976, y: 464.40002}
-  m_SizeDelta: {x: -831.2, y: -949.4}
+  m_AnchoredPosition: {x: -100.63, y: 460}
+  m_SizeDelta: {x: -743.06, y: -949.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7326646012915535425
 CanvasRenderer:
@@ -7596,7 +7652,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964501265397427570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -7874,8 +7930,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 145.79999, y: 464.38}
-  m_SizeDelta: {x: -1702.3, y: -949.5}
+  m_AnchoredPosition: {x: 383.69, y: 460}
+  m_SizeDelta: {x: -1711.7, y: -949.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6592093743159028606
 CanvasRenderer:
@@ -8638,11 +8694,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Nenhum
   saida: "Tipo Posi\xE7\xE3o"
   contexto: "Retorna a Posi\xE7\xE3o do Fim da fase, pode ser passado como argumento
     de AndarAte() por exemplo, ou qualquer Fun\xE7\xE3o que recebe argumento do tipo
     Posi\xE7\xE3o.\r\n"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -8909,11 +8967,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Nenhum
   saida: "Tipo Posi\xE7\xE3o"
   contexto: "Retorna a posi\xE7\xE3o do In\xEDcio da fase, pode ser passado como argumento
     de AndarAte() por exemplo, ou qualquer Fun\xE7\xE3o que recebe argumento do tipo
     Posi\xE7\xE3o.\r\n"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -9902,8 +9962,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5647584802544157255}
   m_HandleRect: {fileID: 5647584802544157248}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.058783144
+  m_Value: 0.9999999
+  m_Size: 0.3629873
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10725,7 +10785,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5647584802768955608}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11454,11 +11514,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: "Tipo Posi\xE7\xE3o"
   saida: Vazio
   contexto: "O rob\xF4 andar\xE1 por 1 segundo na dire\xE7\xE3o da posi\xE7\xE3o passada
     por argumento. O argumento que ser\xE1 passado entre par\xEAnteses tem que Retornar
     um TipoPosi\xE7\xE3o.\r\n"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -11890,8 +11952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5.174988}
-  m_SizeDelta: {x: 0, y: -10.35}
+  m_AnchoredPosition: {x: 0, y: -0.025024414}
+  m_SizeDelta: {x: 0, y: 0.049927}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6920369878745079821
 CanvasRenderer:
@@ -12472,12 +12534,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: "Tipo Posi\xE7\xE3o"
   saida: Vazio
   contexto: "O rob\xF4 ir\xE1 atacar com 1 laser na dire\xE7\xE3o da Posi\xE7\xE3o
     passada por argumento. O argumento que ser\xE1 passado entre par\xEAnteses tem
     que Retornar um TipoPosi\xE7\xE3o. O laser ele \xE9 atirado a dist\xE2ncia, \xE9
     eficiente contra Inimigos que ainda n\xE3o chegaram perto do rob\xF4.\r\n"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -12812,9 +12876,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Tipo Booleano
   saida: Vazio
   contexto: "Faz verifica\xE7\xE3o"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -13100,14 +13166,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3097197614210988766}
+  m_Father: {fileID: 7568371627880586524}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -130.5, y: -0.08703613}
-  m_SizeDelta: {x: -260.1, y: 0.2}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.50000006, y: 0.49999994}
 --- !u!222 &7254684989549151287
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13973,9 +14039,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcceebc905acace449371744d8631261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  funcao: 
   parametro: Tipo Booleano
   saida: Vazio
   contexto: "Faz verifica\xE7\xE3o"
+  ref_funcao: {fileID: 0}
   ref_parametro: {fileID: 0}
   ref_saida: {fileID: 0}
   ref_contexto: {fileID: 0}
@@ -14095,7 +14163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7694673853871494392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14563,12 +14631,12 @@ PrefabInstance:
     - target: {fileID: 2188656239514694824, guid: 051557f283ddd3e4eabc59e1fde422d6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 65.31
+      value: 188.26007
       objectReference: {fileID: 0}
     - target: {fileID: 2188656239514694824, guid: 051557f283ddd3e4eabc59e1fde422d6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 725.1
+      value: -79.99997
       objectReference: {fileID: 0}
     - target: {fileID: 2188656239514694824, guid: 051557f283ddd3e4eabc59e1fde422d6,
         type: 3}
@@ -14609,6 +14677,40 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188656239514694829, guid: 051557f283ddd3e4eabc59e1fde422d6,
+        type: 3}
+      propertyPath: Nome_tela
+      value: "Programa\xE7\xE3o"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188656239514694829, guid: 051557f283ddd3e4eabc59e1fde422d6,
+        type: 3}
+      propertyPath: descricao
+      value: "\n   - \xC9 poss\xEDvel mudar o nome do rob\xF4 tocando no nome dele!\r\n
+        \  - A esquerda fica o seu c\xF3digo e a direita fica a lista de comandos
+        que voc\xEA pode digitar.\r\n   - Na tela de c\xF3digo existe um cursor, toque
+        em uma linha vazia para posicionar o cursor onde ser\xE1 escrito o c\xF3digo.\r\n
+        \  - O bot\xE3o \u201CNova Linha\u201D adiciona uma linha vazia em seu c\xF3digo,
+        abaixo da posi\xE7\xE3o do cursor.\r\n   - O bot\xE3o \u201CApagar\u201D apaga
+        linha vazia ou c\xF3digo onde o cursor est\xE1 presente.\r\n   - Os comandos
+        s\xE3o adicionados na posi\xE7\xE3o atual do cursor.    \n   - Somente aparecer\xE1
+        bot\xF5es e fun\xE7\xF5es que podem ser adicionados dependendo de onde est\xE1
+        o cursor.\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188656239514694829, guid: 051557f283ddd3e4eabc59e1fde422d6,
+        type: 3}
+      propertyPath: ref_tela
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188656239514694829, guid: 051557f283ddd3e4eabc59e1fde422d6,
+        type: 3}
+      propertyPath: ref_descricao
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188656239514694829, guid: 051557f283ddd3e4eabc59e1fde422d6,
+        type: 3}
+      propertyPath: inter
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051557f283ddd3e4eabc59e1fde422d6, type: 3}
