@@ -107,12 +107,10 @@ public class AliadoDanificado : Statement {
     }
     public override bool Execute(RobotCode Robot) {
         if (Robot.Aliados == null || Robot.Aliados.Count == 0) {
-            Debug.Log("Eu não tenho amiguinhus :(");
             return false;
         }
         RobotCode RoboMachucado = Robot.Aliados.Find((RobotCode r) => { return (r.VidaAtual < r.VidaMax); });
         if (RoboMachucado == null) {
-            Debug.Log("Não tenho amiguinhu machucado");
             Robot.Retorno = null;
             return false;
         }
@@ -360,7 +358,7 @@ public class ExpressaoAritimetica : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro1 == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -391,7 +389,7 @@ public class ExpressaoAritimetica : Statement {
         }
         //Verificando se o Parametro foi passado
         if (Parametro2 == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -454,7 +452,7 @@ public class CastVariavel : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         Tipo ParameterTipor = Tipo.Vazio;
@@ -519,7 +517,7 @@ public class AtribuiVariavel : Statement {
         }
         //Verificando se o Parametro foi passado
         if (Parametro == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -635,6 +633,7 @@ public class Atacar : Statement {
     }
 
     public override bool Execute(RobotCode Robot) {
+        if (Parametros[0] == null) return false;
         if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
@@ -643,7 +642,6 @@ public class Atacar : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if(Robot.Retorno == null) {
-            Debug.Log("Retorno Nulo");
             return false;
         }
         //Verificando se o retorno é do tipo correto
@@ -685,6 +683,8 @@ public class Fix : Statement {
     }
 
     public override bool Execute(RobotCode Robot) {
+        if (Parametros[0] == null) return false;
+
         if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em fix Argumento errado");
             return false;
@@ -693,7 +693,7 @@ public class Fix : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
-            Debug.Log("Retorno Nulo");
+             
             return false;
         }
         //Verificando se o retorno é do tipo correto
@@ -735,6 +735,8 @@ public class LaserAtaque : Statement {
     }
 
     public override bool Execute(RobotCode Robot) {
+        if (Parametros[0] == null) return false;
+
         if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
             Debug.LogError("Em Atacar Argumento errado");
             return false;
@@ -743,7 +745,7 @@ public class LaserAtaque : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
-            Debug.Log("Retorno Nulo");
+             
             return false;
         }
         //Verificando se o retorno é do tipo correto
@@ -792,7 +794,7 @@ public class AndarAte : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametros[0] == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -804,7 +806,6 @@ public class AndarAte : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
-            Debug.Log("Retorno Nulo, skipando");
             return false;
         }
         //Verificando se o retorno é do tipo correto
@@ -852,7 +853,7 @@ public class Indexar : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -930,7 +931,7 @@ public class Compare : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro1 == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Executando o parametro
@@ -959,7 +960,7 @@ public class Compare : Statement {
         }
         //Verificando se o Parametro foi passado
         if (Parametro2 == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         
@@ -1039,27 +1040,17 @@ public class Se : Statement {
     }
 
     bool VerifyCondition(RobotCode Robot) {
-        //Verificando se o Parametro foi passado
-        if (Parametros == null|| Parametros[0] == null) {
-            Debug.LogError("Parametro nulo");
-            return false;
-        }
-        //Verificando se o retorno do Parametro é do tipo certo
-        if (Parametros[0].ReturnTipo() != Tipo.Booleano) {
-            Debug.LogError("Em Se Argumento errado");
-            return false;
-        }
         //Executando o parametro
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
             Debug.LogError("Retorno Nulo");
-            return false;
+            //return false;
         }
         //Verificando se o retorno é do tipo correto
         if (Robot.Retorno.type != Tipo.Booleano) {
             Debug.LogError("Retorno de tipo diferente");
-            return false;
+            //return false;
         }
         //Obtendo parametro
         bool boo = ((VarBooleano)Robot.Retorno).Value;
@@ -1069,7 +1060,16 @@ public class Se : Statement {
     }
 
     public override bool Execute(RobotCode Robot) {
-
+        //Verificando se o Parametro foi passado
+        if (Parametros == null || Parametros[0] == null) {
+ 
+            return false;
+        }
+        //Verificando se o retorno do Parametro é do tipo certo
+        if (Parametros[0].ReturnTipo() != Tipo.Booleano) {
+            Debug.LogError("Em Se Argumento errado");
+            return false;
+        }
         if (!VerifyCondition(Robot)) {
             //goto linha do FimEntão
             int SeQuantidade = 0;
@@ -1084,10 +1084,11 @@ public class Se : Statement {
                 }
             }
             if (SeQuantidade > 0) {
-                Debug.Log("O if não fecha o escopo certo ignorar TUDO PARA BAIXO");
+                //Debug.Log("O if não fecha o escopo certo ignorar TUDO PARA BAIXO");
                 Robot.ProgramCounter = Robot.Code.Count-1;
+            } else {
+                Debug.LogError("Algo deu errado");
             }
-            Debug.LogError("Algo deu errado");
         }
         return false;
     }
@@ -1133,7 +1134,7 @@ public class Enquanto : Statement {
     bool VerifyCondition(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -1202,7 +1203,7 @@ public class ExpressaoLogica : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametro1 == null) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -1231,7 +1232,7 @@ public class ExpressaoLogica : Statement {
         }
         //Verificando se o Parametro foi passado
         if (Parametro2 == null && Operation != LogicOperator.nao) {
-            Debug.LogError("Parametro nulo");
+ 
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
@@ -1380,7 +1381,6 @@ public class Avancar : Statement {
     public override bool Execute(RobotCode Robot) {
         //Verificando se o Parametro foi passado
         if (Parametros[0] == null) {
-            Debug.LogError("Parametro nulo");
             return false;
         }
         //Verificando se o retorno do Parametro é do tipo certo
