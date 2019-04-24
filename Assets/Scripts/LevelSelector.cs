@@ -20,6 +20,7 @@ public class LevelSelector : GridLayoutResources {
     public GameObject robo_models;
 	public GameObject content;
 	public GameObject Objetivo;
+	public GameObject text_obj;
 
 	private int nonBattleScenes = 2;    // Quantidade de cenas da build que não são de batalha (como o "MainMenu" e o "Game")
 	private List<Scene> scenes;
@@ -70,6 +71,8 @@ public class LevelSelector : GridLayoutResources {
 			botao.onClick.AddListener(delegate { 
 				//menuManager.ChangeScene(s); 
 				Preview.SetActive(true);
+				text_obj.GetComponent<TypeWriterEffect>().enabled = true;
+
 				comecar.onClick.AddListener(delegate(){menuManager.ChangeScene(s);});
 				cancelar.onClick.AddListener(delegate(){
 					foreach (Transform child in content.transform){
@@ -95,7 +98,8 @@ public class LevelSelector : GridLayoutResources {
 					aux.transform.GetChild(1).GetComponent<Text>().text = robos[i].descricao[j];
 				}
 				
-				Objetivo.GetComponent<Text>().text = robos[i].objetivo;
+				//Objetivo.GetComponent<Text>().text = robos[i].objetivo;
+				text_obj.GetComponent<TypeWriterEffect>().FullText = robos[i].objetivo;
 			});	// Adiciona o evento de mudança de cena ao botão, para levar à batalha
 
 			objetos[i].GetComponentInChildren<Text>().text = (i+1).ToString();	// Muda o texto do botão
