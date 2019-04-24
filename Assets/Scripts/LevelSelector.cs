@@ -22,7 +22,7 @@ public class LevelSelector : GridLayoutResources {
 	public GameObject Objetivo;
 	public GameObject text_obj;
 
-	private int nonBattleScenes = 0;    // Quantidade de cenas da build que não são de batalha (como o "MainMenu" e o "Game")
+	private int nonBattleScenes = 2;    // Quantidade de cenas da build que não são de batalha (como o "MainMenu" e o "Game")
 	private List<Scene> scenes;
 
 	private void Awake() {
