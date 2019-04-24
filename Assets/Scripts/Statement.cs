@@ -1067,35 +1067,26 @@ public class Se : Statement {
         return boo;
     }
 
-    public int IgnoreStatement(RobotCode Robot, int linha) {
-        int SeQuantidade = 0;
-        for (int i = linha; i < Robot.Code.Count; i++) {
-            if (Robot.Code[i].name == "Se") SeQuantidade++;
-
-            if (Robot.Code[i].name == "FimEntao") SeQuantidade--;
-
-            if (SeQuantidade == 0) {
-                return i;
-            }
-        }
-        if (SeQuantidade != 0) {
-            Debug.Log("não de o fim do então, ignorar so o proximo statement");
-            //se for um Se pular ele inteiro
-            if (Robot.Code[linha+1].name == "Se") {
-                return IgnoreStatement(Robot, linha + 1);
-            } else { //se não for um Se pular so uma linha
-                return linha + 1;
-            }
-        }
-        Debug.LogError("Algo deu errado");
-        return 0;
-    }
-
     public override bool Execute(RobotCode Robot) {
 
         if (!VerifyCondition(Robot)) {
             //goto linha do FimEntão
-            Robot.ProgramCounter = IgnoreStatement(Robot, Robot.ProgramCounter);
+            int SeQuantidade = 0;
+            for (int i = Robot.ProgramCounter; i < Robot.Code.Count; i++) {
+                if (Robot.Code[i].name == "Se") SeQuantidade++;
+
+                if (Robot.Code[i].name == "FimEntao") SeQuantidade--;
+
+                if (SeQuantidade == 0) {
+                    Robot.ProgramCounter = i;
+                    return false;
+                }
+            }
+            if (SeQuantidade > 0) {
+                Debug.Log("O if não fecha o escopo certo ignorar TUDO PARA BAIXO");
+                Robot.ProgramCounter = Robot.Code.Count-1;
+            }
+            Debug.LogError("Algo deu errado");
         }
 
 
