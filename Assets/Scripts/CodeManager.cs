@@ -7,6 +7,7 @@ public class CodeManager : MonoBehaviour{
     //Cursos e variaveis para fazer o cursor piscar
     public Text Cursor;
     private Transform CursorExParent;
+    [SerializeField] Scrollbar _CodeScroll;
     public Transform _CodeContent;
     public Transform _FuncContent;
 	public InputField inputField;
@@ -158,6 +159,25 @@ public class CodeManager : MonoBehaviour{
         //VoltarButton.needsConfirmation = false;
     }
 
+    void UpdateCodeScroll() {
+        return;
+        Transform CursorLine = Cursor.transform.parent;
+        while (!CursorLine.name.Contains("Line")) {
+            Debug.Log(CursorLine.name + "->" + CursorLine.parent.name);
+            CursorLine = CursorLine.parent;
+        }
+    
+        float linha = CursorLine.GetSiblingIndex();
+        float nLinhas = _CodeContent.childCount;
+
+        float ActualLinha = (1 -_CodeScroll.value)*nLinhas;
+        Debug.Log("linha atual: " + ActualLinha + " linha selecionada: "+ linha);
+        if (Mathf.Abs(linha - ActualLinha) > 4) {
+            _CodeScroll.value = 1f - (linha / nLinhas);
+
+        }
+    }
+
     private void InsertStatment(StatementHolder SH, Statement S) {
         if (S.name == "Vazio") {
             return;
@@ -201,6 +221,7 @@ public class CodeManager : MonoBehaviour{
             InsertStatment(aux, s);
         }
         if(aux != null)aux._Select();
+        UpdateCodeScroll();
     }
 
     public void _InsertLine() {
@@ -214,6 +235,7 @@ public class CodeManager : MonoBehaviour{
         NewLine.name = "Line " + NewLine.transform.GetSiblingIndex();
 
         NewLine.GetComponent<StatementHolder>()._Select();
+        UpdateCodeScroll();
         //VoltarButton.needsConfirmation = true;
         //SaveButton.interactable = true;
     }
@@ -260,6 +282,7 @@ public class CodeManager : MonoBehaviour{
         
         //Selecionar novo botaum
         SH._Select();
+        UpdateCodeScroll();
         //SaveButton.interactable = true;
         //VoltarButton.needsConfirmation = true;
     }
@@ -325,6 +348,7 @@ public class CodeManager : MonoBehaviour{
             Debug.LogError("ERRO, tentando remover4 algo que náo é statement nem linha");
         }
         Contextualize();
+        UpdateCodeScroll();
         //SaveButton.interactable = true;
         //VoltarButton.needsConfirmation = true;
     }
