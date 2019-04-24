@@ -22,6 +22,9 @@ public class Battle : MonoBehaviour {
     public bool inimigosMortos = false;
 	public bool aliadoNoFinal = false;
 	public bool aliadosVidaCheia = false;
+	public AudioSource aud;
+	public AudioClip win;
+	public AudioClip lose;
 
 	private Text texto;
     private GameObject telaVitoria;
@@ -133,6 +136,10 @@ public class Battle : MonoBehaviour {
 	}
 
 	public void Vitoria() {
+		if(telaVitoria.activeInHierarchy == false){
+			aud.Stop();
+			aud.PlayOneShot(win);
+		}
 		telaVitoria.SetActive(true);
 		if (battleLevel >= Player.currentLevel) {
 			AplicaRecompensas();
@@ -160,6 +167,10 @@ public class Battle : MonoBehaviour {
 	}
 
 	public void Derrota() {
+		if(telaDerrota.activeInHierarchy == false){
+			aud.Stop();
+			aud.PlayOneShot(lose);
+		}
 		telaDerrota.SetActive(true);
 	}
 
