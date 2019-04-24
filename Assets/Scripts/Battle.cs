@@ -56,6 +56,8 @@ public class Battle : MonoBehaviour {
 		telaDerrota = canvas.transform.GetChild(1).gameObject;
 		telaVitoria = canvas.transform.GetChild(2).gameObject;
 
+		ConfiguraTelaVitoria();
+
 		List<GameObject> amigos = new List<GameObject>();
         amigos.AddRange(GameObject.FindGameObjectsWithTag("Friend"));
         Enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
