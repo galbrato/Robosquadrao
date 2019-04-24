@@ -52,9 +52,9 @@ public class CodeManager : MonoBehaviour{
             }
         }
         if (StatementsButtons.Count == StatementsUIPrefabs.Count) {
-            for (int i = 0; i < StatementsUIPrefabs.Count; i++) {
-                Debug.Log(StatementsUIPrefabs[i].name + " tem como botão " + StatementsButtons[i].transform.parent.name);
-            }
+            /*for (int i = 0; i < StatementsUIPrefabs.Count; i++) {
+                ////Debug.Log(StatementsUIPrefabs[i].name + " tem como botão " + StatementsButtons[i].transform.parent.name);
+            }*/
         } else {
             Debug.LogError("ERRO! não achou tudo");
         }
@@ -73,7 +73,7 @@ public class CodeManager : MonoBehaviour{
         }else if (SH.name.Contains("Parameter")) {
             if (SH._OriginalStatement == null) {
                 StatementHolder SHFather = SH.transform.parent.GetComponentInParent<StatementHolder>();
-                Debug.Log(SHFather._OriginalStatement.name + " espera parametros");
+                ////Debug.Log(SHFather._OriginalStatement.name + " espera parametros");
                 if (SHFather._OriginalStatement.ParametrosTipos != null) {
                     TipoEsperado = SHFather._OriginalStatement.ParametrosTipos[0];
                 }
@@ -107,7 +107,7 @@ public class CodeManager : MonoBehaviour{
         try {
             _ActualRobot = SaveSystem.LoadRobot(ID);
         } catch (System.IO.FileNotFoundException) {
-            Debug.Log("Robo " + ID + " inexistente criando novo");
+            ////Debug.Log("Robo " + ID + " inexistente criando novo");
             _ActualRobot = new RobotData(ID);
         }
     }
@@ -159,11 +159,11 @@ public class CodeManager : MonoBehaviour{
     }
 
     private void InsertStatment(StatementHolder SH, Statement S) {
-        if (S.ToString().Contains("Vazio")) {
+        if (S.name == "Vazio") {
             return;
         }
         SH._OriginalStatement = S;
-        GameObject UI = StatementsUIPrefabs.Find((GameObject g) => { return S.name.Contains(g.name); });
+        GameObject UI = StatementsUIPrefabs.Find((GameObject g) => { return S.name == g.name; });
         if (UI == null) {
             Debug.LogError("ERRO, Não conseguiu achar " + S.ToString() + " dentro da lsita de prefabs");
         }
@@ -307,7 +307,7 @@ public class CodeManager : MonoBehaviour{
                 //Deletando o statement
                 Destroy(t.GetChild(0).gameObject);
             } else if (t.parent.childCount == 1) {
-                Debug.Log("Unica linha, não podo ser deletada");
+                ////Debug.Log("Unica linha, não podo ser deletada");
                 return;
             } else if(t.childCount == 1) {//Deletar a linha
                 //pegando a nova linah do cursor
@@ -332,7 +332,7 @@ public class CodeManager : MonoBehaviour{
     void _PrintCode() {
         for (int i = 0; i < _ActualRobot.Code.Count; i++) {
 
-            Debug.Log("Linha[" + i + "]: " + _ActualRobot.Code[i].ToString());
+            ////Debug.Log("Linha[" + i + "]: " + _ActualRobot.Code[i].ToString());
         }
     }
 
