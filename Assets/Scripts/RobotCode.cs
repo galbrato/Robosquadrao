@@ -167,7 +167,6 @@ public class RobotCode : MonoBehaviour {
     }
 
     public bool Fix(Vector3 dir) {
-        Debug.Log("Curaaaaaaaaaaa");
         AllyPosition = dir;
         if(HealDelayCouter >= HealDelay){
             FlipRobot(dir);
