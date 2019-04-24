@@ -22,6 +22,9 @@ public class Battle : MonoBehaviour {
     public bool inimigosMortos = false;
 	public bool aliadoNoFinal = false;
 	public bool aliadosVidaCheia = false;
+	public AudioSource aud;
+	public AudioClip win;
+	public AudioClip lose;
 
 	private Text texto;
     private GameObject telaVitoria;
@@ -33,9 +36,9 @@ public class Battle : MonoBehaviour {
 		// Descobre as posições para spawnar os robôs já desbloqueados
 		try {
 			MeshRenderer[] posRobo = GameObject.Find("AllySpawnPosition").GetComponentsInChildren<MeshRenderer>();
-		spawnPositions = new Vector3[posRobo.Length];
-		for (int i = 0; i < posRobo.Length; ++i)
-			spawnPositions[i] = posRobo[i].transform.position;
+			spawnPositions = new Vector3[posRobo.Length];
+			for (int i = 0; i < posRobo.Length; ++i)
+				spawnPositions[i] = posRobo[i].transform.position;
 		} catch (System.NullReferenceException) {
 			Debug.LogError("ERRO! Cenário não possui o objeto AllySpawnPosition com as posições de spawn");
 		}
@@ -46,19 +49,17 @@ public class Battle : MonoBehaviour {
 		
 		SpawnaRobos(allyPrefab);
 		
-		Inicio = GameObject.Find("Inicio").transform.position;
-
 		GameObject gameObjectObjetivo = GameObject.Find("Objetivo");
-		Objetivo = gameObjectObjetivo.transform.position;
         colliderObjetivo = gameObjectObjetivo.GetComponent<SphereCollider>();
+
+		Objetivo = gameObjectObjetivo.transform.position;
+		Inicio = GameObject.Find("Inicio").transform.position;
 
 		GameObject canvas = GameObject.Find("Battle_Canvas");
 		telaDerrota = canvas.transform.GetChild(1).gameObject;
 		telaVitoria = canvas.transform.GetChild(2).gameObject;
 
-		texto = telaVitoria.transform.GetChild(2).GetComponent<Text>();
-		if (battleLevel < Player.currentLevel)
-			texto.enabled = false;
+		ConfiguraTelaVitoria();
 
 		List<GameObject> amigos = new List<GameObject>();
         amigos.AddRange(GameObject.FindGameObjectsWithTag("Friend"));
@@ -88,6 +89,14 @@ public class Battle : MonoBehaviour {
 		VerificaVitoria();
 	}
 
+	private void ConfiguraTelaVitoria() {
+		texto = telaVitoria.transform.GetChild(2).GetComponent<Text>();
+		if (battleLevel < Player.currentLevel) {
+			texto.enabled = false;
+			telaVitoria.transform.GetChild(3).gameObject.SetActive(false);
+		}
+	}
+
 	private void SpawnaRobos(GameObject robo) {
 		int limit = Mathf.Min(Player.robotsUnlocked, spawnPositions.Length);
 		for (int i = 0; i < limit; ++i) {
@@ -106,7 +115,7 @@ public class Battle : MonoBehaviour {
 		aliadosVidaCheia = true;
 	}
 
-	private void Recompensas() {
+	private void AplicaRecompensas() {
 		Player.currentLevel++;
 		switch(battleLevel) {
 			case 1:
@@ -123,16 +132,19 @@ public class Battle : MonoBehaviour {
                 break;
             case 6:
                 break;
-
             default:
 				break;
 		}
 	}
 
 	public void Vitoria() {
+		if(telaVitoria.activeInHierarchy == false){
+			aud.Stop();
+			aud.PlayOneShot(win);
+		}
 		telaVitoria.SetActive(true);
 		if (battleLevel >= Player.currentLevel) {
-			Recompensas();
+			AplicaRecompensas();
 		}
 	}
 
@@ -157,6 +169,10 @@ public class Battle : MonoBehaviour {
 	}
 
 	public void Derrota() {
+		if(telaDerrota.activeInHierarchy == false){
+			aud.Stop();
+			aud.PlayOneShot(lose);
+		}
 		telaDerrota.SetActive(true);
 	}
 

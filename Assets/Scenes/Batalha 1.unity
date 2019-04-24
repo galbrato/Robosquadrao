@@ -335,21 +335,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 846857258}
-    - target: {fileID: 1341623637434113160, guid: 4a571057a4bf7374da8fd3ad6372c024,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeScene
-      objectReference: {fileID: 0}
     - target: {fileID: 1341623637397165135, guid: 4a571057a4bf7374da8fd3ad6372c024,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 846857258}
-    - target: {fileID: 1341623637397165135, guid: 4a571057a4bf7374da8fd3ad6372c024,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeScene
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a571057a4bf7374da8fd3ad6372c024, type: 3}
 --- !u!224 &537738500 stripped
@@ -719,6 +709,9 @@ MonoBehaviour:
   inimigosMortos: 0
   aliadoNoFinal: 0
   aliadosVidaCheia: 0
+  aud: {fileID: 882641493}
+  win: {fileID: 8300000, guid: 8d0a64be62d5c284d83f4df503553ce6, type: 3}
+  lose: {fileID: 8300000, guid: 8b781bead491b514abc38e75535bc08c, type: 3}
 --- !u!1 &882641492
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,44 +958,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 846857258}
     - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 846857258}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ChangeScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177919480657956676, guid: e9ee92b7ca97519479c9f738ffcc2a02,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: Game
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ee92b7ca97519479c9f738ffcc2a02, type: 3}
 --- !u!224 &919696486 stripped

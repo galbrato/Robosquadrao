@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3246,52 +3246,6 @@ PrefabInstance:
         bot\xF5es e fun\xE7\xF5es que podem ser adicionados dependendo de onde est\xE1
         o cursor.\r\n"
       objectReference: {fileID: 0}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: funcao
-      value: TemAliadoDanificado
-      objectReference: {fileID: 0}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: parametro
-      value: Vazio
-      objectReference: {fileID: 0}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: contexto
-      value: "Retorna verdadeiro caso exista aliados danificados e retorna falso caso
-        o contr\xE1rio. O argumento precisa ser do TipoBooleano.\r"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: ref_funcao
-      value: 
-      objectReference: {fileID: 1135058556}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: ref_parametro
-      value: 
-      objectReference: {fileID: 631201749}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: ref_saida
-      value: 
-      objectReference: {fileID: 805828603}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: ref_contexto
-      value: 
-      objectReference: {fileID: 658686000}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: inter
-      value: 
-      objectReference: {fileID: 1962014780}
-    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: saida
-      value: Tipo Booleano
-      objectReference: {fileID: 0}
     - target: {fileID: 5304731500492069324, guid: b1ab57c363cb24f4981a899d0449d6a0,
         type: 3}
       propertyPath: funcao
@@ -3370,6 +3324,122 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 4faf039100482794fb40a94c770f18e2, type: 3}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1383336745}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 4faf039100482794fb40a94c770f18e2, type: 3}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[8]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[9]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[10]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[11]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[12]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254684989557028115, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: FuncLevel.Array.data[13]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: funcao
+      value: TemAliadoDanificado
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: parametro
+      value: Vazio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: contexto
+      value: "Retorna verdadeiro caso exista aliados danificados e retorna falso caso
+        o contr\xE1rio. O argumento precisa ser do TipoBooleano.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: ref_funcao
+      value: 
+      objectReference: {fileID: 1135058556}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: ref_parametro
+      value: 
+      objectReference: {fileID: 631201749}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: ref_saida
+      value: 
+      objectReference: {fileID: 805828603}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: ref_contexto
+      value: 
+      objectReference: {fileID: 658686000}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: inter
+      value: 
+      objectReference: {fileID: 1962014780}
+    - target: {fileID: 3666898371020210058, guid: b1ab57c363cb24f4981a899d0449d6a0,
+        type: 3}
+      propertyPath: saida
+      value: Tipo Booleano
+      objectReference: {fileID: 0}
     - target: {fileID: 6142646521717944046, guid: b1ab57c363cb24f4981a899d0449d6a0,
         type: 3}
       propertyPath: funcao
@@ -3417,46 +3487,6 @@ PrefabInstance:
       propertyPath: ref_contexto
       value: 
       objectReference: {fileID: 658686000}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1383336745}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.AudioClip, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2830099342784634262, guid: b1ab57c363cb24f4981a899d0449d6a0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 8300000, guid: 4faf039100482794fb40a94c770f18e2, type: 3}
     - target: {fileID: 2151537988727880815, guid: b1ab57c363cb24f4981a899d0449d6a0,
         type: 3}
       propertyPath: funcao
