@@ -12,6 +12,7 @@ public class CodeManager : MonoBehaviour{
     public Transform _FuncContent;
 	public InputField inputField;
     public Dropdown RobotDropDown;
+    public ConfirmationMenu VoltarButton;
     public Button SaveButton;
 
 
@@ -24,7 +25,6 @@ public class CodeManager : MonoBehaviour{
     public List<int> FuncLevel;
     private List<Button> StatementsButtons;
 
-    private ConfirmationMenu VoltarButton;
     // Start is called before the first frame update
     void Start(){
         CursorExParent = Cursor.transform.parent;
@@ -32,7 +32,7 @@ public class CodeManager : MonoBehaviour{
             Assossiate();
         }
         if (VoltarButton == null) {
-            //VoltarButton = GetComponentInChildren<ConfirmationMenu>();
+            VoltarButton = GetComponentInChildren<ConfirmationMenu>();
         }
         UpdateDropdown();
     }
@@ -117,9 +117,8 @@ public class CodeManager : MonoBehaviour{
         if (_ActualRobot != null) {
             _ActualRobot.Name = inputField.text;
             SaveSystem.SaveRobot(_ActualRobot);
-            //VoltarButton.needsConfirmation = false;
             UpdateDropdown();
-            //SaveButton.interactable = false;
+            DontNeedConfirmation();
         }
     }
 
@@ -154,9 +153,8 @@ public class CodeManager : MonoBehaviour{
         inputField.text = _ActualRobot.Name;
 
         //if (VoltarButton == null) VoltarButton = GetComponentInChildren<ConfirmationMenu>();
-        
-        //SaveButton.interactable = false;
-        //VoltarButton.needsConfirmation = false;
+
+        DontNeedConfirmation();
     }
 
     void UpdateCodeScroll() {
@@ -236,8 +234,17 @@ public class CodeManager : MonoBehaviour{
 
         NewLine.GetComponent<StatementHolder>()._Select();
         UpdateCodeScroll();
-        //VoltarButton.needsConfirmation = true;
-        //SaveButton.interactable = true;
+        NeedConfirmation();
+    }
+
+    public void NeedConfirmation() {
+        VoltarButton.needsConfirmation = true;
+        SaveButton.interactable = true;
+    }
+
+    public void DontNeedConfirmation() {
+        VoltarButton.needsConfirmation = false;
+        SaveButton.interactable = false;
     }
 
     public void _InsertCode(string StatementName) {
@@ -283,8 +290,7 @@ public class CodeManager : MonoBehaviour{
         //Selecionar novo botaum
         SH._Select();
         UpdateCodeScroll();
-        //SaveButton.interactable = true;
-        //VoltarButton.needsConfirmation = true;
+        NeedConfirmation();
     }
 
     public void _RemoveCode() {
@@ -349,8 +355,7 @@ public class CodeManager : MonoBehaviour{
         }
         Contextualize();
         UpdateCodeScroll();
-        //SaveButton.interactable = true;
-        //VoltarButton.needsConfirmation = true;
+        NeedConfirmation();
     }
 
     void _PrintCode() {

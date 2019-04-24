@@ -7198,6 +7198,7 @@ GameObject:
   - component: {fileID: 8473970090946226630}
   - component: {fileID: 1266545565911941799}
   - component: {fileID: 4705154342578485890}
+  - component: {fileID: 7708243275344199258}
   m_Layer: 5
   m_Name: Voltar
   m_TagString: Untagged
@@ -7313,19 +7314,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7254684989557028115}
-        m_MethodName: _SaveRobot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &7708243275344199258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189460205351938460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a118925c6912cd64db7241adcd8d9f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorMin: 0.2
+  anchorMax: 0.8
+  backgroundSprite: {fileID: 0}
+  backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  titleText: Title
+  bodyText: <Message>
+  needsConfirmation: 1
 --- !u!1 &4500589639412157189
 GameObject:
   m_ObjectHideFlags: 0
@@ -13669,6 +13678,7 @@ MonoBehaviour:
   _FuncContent: {fileID: 5647584801908330535}
   inputField: {fileID: 5647584803650510589}
   RobotDropDown: {fileID: 1435812522}
+  VoltarButton: {fileID: 7708243275344199258}
   SaveButton: {fileID: 1333418687778272991}
   _ActualRobot:
     Id: 0
@@ -14814,7 +14824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7694673853871494392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14832,8 +14842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.5, y: -16.225006}
-  m_SizeDelta: {x: -1294.6, y: -128.1}
+  m_AnchoredPosition: {x: 9.5, y: 3.7}
+  m_SizeDelta: {x: -1294.6, y: 7.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4865646672215870791
 CanvasRenderer:

@@ -21,13 +21,16 @@ public class Tabulation : MonoBehaviour {
             if (CodeContent.GetChild(i).childCount > 0) {
                 if (CodeContent.GetChild(i).GetChild(0).name.Contains("Se")) NumberOfTabulations++;
                 else if (CodeContent.GetChild(i).GetChild(0).name.Contains("FimEntao")) NumberOfTabulations--;
+                if (NumberOfTabulations < 0) NumberOfTabulations = 0;
             }
         }
         if (CodeContent.GetChild(myLine).childCount > 0 && CodeContent.GetChild(myLine).GetChild(0).name.Contains("FimEntao")) NumberOfTabulations--;
+        if (NumberOfTabulations < 0) NumberOfTabulations = 0;
+
         if (myLayout == null && transform.childCount > 0) {
             myLayout = transform.GetChild(0).GetComponent<HorizontalLayoutGroup>();
         }
-        if (myLayout != null) {
+        if (myLayout != null ) {
             myLayout.padding.left = 100 * NumberOfTabulations;
         }
     }
