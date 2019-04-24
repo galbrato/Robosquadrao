@@ -2795,7 +2795,7 @@ PrefabInstance:
     - target: {fileID: 7398185749200394651, guid: b1ab57c363cb24f4981a899d0449d6a0,
         type: 3}
       propertyPath: funcao
-      value: Fix()
+      value: Reparar()
       objectReference: {fileID: 0}
     - target: {fileID: 7398185749200394651, guid: b1ab57c363cb24f4981a899d0449d6a0,
         type: 3}
