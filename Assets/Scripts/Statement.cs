@@ -48,6 +48,8 @@ public abstract class Statement {
             return new TemAliadoDanificado();
         } else if (name == "Nao") {
             return new Nao();
+        } else if (name == "Avancar") {
+            return new Avancar();
         }
         return null;
     }
@@ -1028,7 +1030,6 @@ public class Compare : Statement {
 
 [Serializable]
 public class Se : Statement {
-
     public Se() {
         type = Tipo.Vazio;
         name = "Se";
@@ -1088,8 +1089,6 @@ public class Se : Statement {
             }
             Debug.LogError("Algo deu errado");
         }
-
-
         return false;
     }
 
@@ -1359,3 +1358,61 @@ public class TemInimigoProximo : Statement {
     }
 }
 
+
+[Serializable]
+public class Avancar : Statement {
+    private float Duration = 1;
+    private float TimeCounter;
+    public Avancar() {
+        name = "Avancar";
+        type = Tipo.Vazio;
+        this.Parametros = new Statement[1];
+        this.ParametrosTipos = new Tipo[1];
+        this.ParametrosTipos[0] = Tipo.Posicao;
+    }
+
+
+    public override string ToString() {
+        if (Parametros[0] != null) return "Avancar(" + Parametros[0].ToString() + ")";
+        else return "Avancar(NULL)";
+    }
+
+    public override bool Execute(RobotCode Robot) {
+        //Verificando se o Parametro foi passado
+        if (Parametros[0] == null) {
+            Debug.LogError("Parametro nulo");
+            return false;
+        }
+        //Verificando se o retorno do Parametro é do tipo certo
+        if (Parametros[0].ReturnTipo() != Tipo.Posicao) {
+            Debug.LogError("Em Avancar Argumento errado");
+            return false;
+        }
+        //Executando o parametro
+        Parametros[0].Execute(Robot);
+        //Verificando se retorno do parametro foi passado
+        if (Robot.Retorno == null) {
+            Debug.Log("Retorno Nulo, skipando");
+            return false;
+        }
+        //Verificando se o retorno é do tipo correto
+        if (Robot.Retorno.type != Tipo.Posicao) {
+            Debug.LogError("Retorno de tipo diferente");
+            return false;
+        }
+        //Obtendo parametro
+        VarPosicao pos = (VarPosicao)Robot.Retorno;
+        //Liberando o retorno
+        Robot.Retorno = null;
+        //Executando o comando
+        bool retorno = !Robot.WalkTo(new Vector3(pos.x, pos.y, pos.z));
+
+        TimeCounter += Time.deltaTime;
+        if (TimeCounter > Duration) {
+            TimeCounter = 0;
+            return false;
+        }
+
+        return retorno;
+    }
+}
