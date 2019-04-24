@@ -1044,8 +1044,8 @@ public class Se : Statement {
         Parametros[0].Execute(Robot);
         //Verificando se retorno do parametro foi passado
         if (Robot.Retorno == null) {
-            Debug.LogError("Retorno Nulo");
-            //return false;
+            //Debug.LogError("Retorno Nulo");
+            return false;
         }
         //Verificando se o retorno é do tipo correto
         if (Robot.Retorno.type != Tipo.Booleano) {
@@ -1297,8 +1297,8 @@ public class Nao : Statement {
             return false;
         }
         Parametros[0].Execute(Robot);
-        if (Robot.Retorno.type != ParametrosTipos[0]) {
-            Debug.LogError("ERRO! Tipo retornado diferente de Boleano");
+        if (Robot.Retorno == null || Robot.Retorno.type != ParametrosTipos[0]) {
+            //Debug.LogError("ERRO! Tipo retornado diferente de Boleano");
             return false;
         }
         VarBooleano r = (VarBooleano)Robot.Retorno;
