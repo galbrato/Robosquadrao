@@ -126,7 +126,7 @@ public class RobotCode : MonoBehaviour {
         if (Code != null) {
             while (!Code[ProgramCounter].Execute(this)) {
                 ProgramCounter++;
-                if (ProgramCounter == Code.Count) {
+                if (ProgramCounter >= Code.Count) {
                     ProgramCounter = 0;
                     break;
                 }
