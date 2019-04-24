@@ -1084,8 +1084,9 @@ public class Se : Statement {
                 }
             }
             if (SeQuantidade > 0) {
-                //Debug.Log("O if não fecha o escopo certo ignorar TUDO PARA BAIXO");
-                Robot.ProgramCounter = Robot.Code.Count-1;
+    public ConfirmationMenu VoltarButton;
+    //Debug.Log("O if não fecha o escopo certo ignorar TUDO PARA BAIXO");
+    Robot.ProgramCounter = Robot.Code.Count-1;
             } else {
                 Debug.LogError("Algo deu errado");
             }
@@ -1299,7 +1300,7 @@ public class Nao : Statement {
         Parametros[0].Execute(Robot);
         if (Robot.Retorno == null || Robot.Retorno.type != ParametrosTipos[0]) {
             //Debug.LogError("ERRO! Tipo retornado diferente de Boleano");
-            return false;
+            return true;
         }
         VarBooleano r = (VarBooleano)Robot.Retorno;
         r.Value = !r.Value;
