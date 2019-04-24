@@ -241,7 +241,11 @@ public class RobotCode : MonoBehaviour {
             //print("damage:" + DamagePosition + " inimigo " + Inimigos[i].name + " pos" + Inimigos[i].transform.position + " Distance : " + Vector3.Distance(DamagePosition, Inimigos[i].transform.position));
             if(Vector3.Distance(DamagePosition, Inimigos[i].transform.position) < 1.3f && !Inimigos[i].CompareTag("Untagged")) {
                 if (Inimigos[i].TakeDamage(Dano)) {
+                    for (int j = 0; j < Inimigos.Count; j++) {
+                        Inimigos[j].Aliados.Remove(Inimigos[i]);
+                    }
                     Inimigos.Remove(Inimigos[i]);
+                    
                     i--;
                 }
             }
@@ -260,7 +264,7 @@ public class RobotCode : MonoBehaviour {
 
         for(int i = 0; i < Aliados.Count; i++){
             //print("Heal:" + HealPosition + " inimigo " + Aliados[i].name + " pos" + Aliados[i].robotPosition + " Distance : " + Vector3.Distance(HealPosition, Aliados[i].robotPosition));
-            if(Vector3.Distance(HealPosition, Aliados[i].robotPosition) < 1.3f) {
+            if(Vector3.Distance(HealPosition, Aliados[i].robotPosition) < 1.3f && !Aliados[i].CompareTag("Untagged")) {
                 Aliados[i].TakeHeal(DanoHeal);
             }
         }

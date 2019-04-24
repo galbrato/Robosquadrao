@@ -4457,7 +4457,7 @@ MonoBehaviour:
       - Dano Alto
 
       - Vida Baixa'
-    objetivo: 'Objetivo: Matar todo mundo'
+    objetivo: "Objetivo: Eliminar rob\xF4 da fase!"
   - cor: []
     descricao: []
     objetivo: 'Objetivo: Curar Aliado!'
@@ -4487,9 +4487,78 @@ MonoBehaviour:
 
       - Dano baixo'
     objetivo: "Objetivo: Eliminar rob\xF4s da fase!"
-  - cor: []
-    descricao: []
-    objetivo: 'Objetivo: Segredo'
+  - cor:
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    descricao:
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    objetivo: "Objetivo: Eliminar rob\xF4s da fase e andar at\xE9 o final!"
+  - cor:
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    - {r: 0, g: 0.011764707, b: 1, a: 1}
+    descricao:
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    objetivo: "Objetivo: Eliminar rob\xF4s da fase e curar todos os aliados!"
+  - cor:
+    - {r: 1, g: 0.7241974, b: 0, a: 1}
+    - {r: 1, g: 0.7241974, b: 0, a: 1}
+    - {r: 0, g: 0.013520718, b: 1, a: 1}
+    - {r: 0, g: 0.013520718, b: 1, a: 1}
+    - {r: 1, g: 0.7241974, b: 0, a: 1}
+    - {r: 0, g: 0.013520718, b: 1, a: 1}
+    - {r: 0, g: 0.013520718, b: 1, a: 1}
+    descricao:
+    - '- Corpo-a-corpo
+
+      - Dano Alto
+
+      - Vida Baixa'
+    - '- Corpo-a-corpo
+
+      - Dano Alto
+
+      - Vida Baixa'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-corpo
+
+      - Dano Alto
+
+      - Vida Baixa'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    - '- Corpo-a-Corpo
+
+      - Dano baixo'
+    objetivo: "Objetivo: Eliminar rob\xF4s da fase, curar todos os aliados e andar
+      at\xE9 o final!"
   comecar: {fileID: 1567524934}
   cancelar: {fileID: 501216320}
   cancelarFundo: {fileID: 7397662445534257375}
