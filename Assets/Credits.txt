@@ -1,0 +1,22 @@
+Efeitos sonoros:
+    robot-death.wav - https://freesound.org/people/psychedelic_hands/sounds/144469/ by psychedelic_hands
+    Vintage Keyboard 2 - https://freesound.org/people/jim-ph/sounds/194796/ by jim-ph
+    Socket Wrench - https://freesound.org/people/YourFriendJesse/sounds/131200/ by YourFriendJesse
+    laser - https://freesound.org/people/kafokafo/sounds/128349/ by kafokafo
+    TF_Robotic-Hit.flac - https://freesound.org/people/copyc4t/sounds/235740/ by copyc4t
+    Jingle_Lose_00.wav - https://freesound.org/people/LittleRobotSoundFactory/sounds/270329/ by LittleRobotSoundFactory
+    Jingle_Win_00.wav - https://freesound.org/people/LittleRobotSoundFactory/sounds/270333/ by LittleRobotSoundFactory
+    Mouse click sounds - https://freesound.org/people/Masgame/sounds/347544/ by Masgame
+    Metal Ping.aif - https://freesound.org/people/timgormly/sounds/170957/ by timgormly
+    Typewriter ding_near_mono.wav - https://freesound.org/people/_stubb/sounds/406243/ by _stubb
+    UI SFX by LittleRobotSoundFactory
+    Keyboard Typing - https://freesound.org/people/Trollarch2/sounds/331656/ by Trollarch2
+
+Trilha Sonora:
+    Readers! Do You Read de Chris Zabriskie está licenciada sob uma licença Creative Commons Attribution (https://creativecommons.org/licenses/by/4.0/)
+    Origem: http://chriszabriskie.com/reappear/
+    Artista: http://chriszabriskie.com/
+
+    Manea 2 by Vibe Mountain
+
+
